@@ -1,21 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>3D 代码集散地 – SwipSwaps</title>
+    <title>3D Code Portfolio – SwipSwaps</title>
     <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            font-family: monospace;
-            user-select: none;
-            -webkit-user-select: none;
-        }
-        canvas {
-            display: block;
-            touch-action: none;
-        }
+        body { margin: 0; overflow: hidden; font-family: monospace; user-select: none; -webkit-user-select: none; }
+        canvas { display: block; }
         #info {
             position: absolute;
             top: 20px;
@@ -59,7 +50,7 @@
             position: fixed;
             bottom: 20px;
             left: 70px;
-            width: 420px;
+            width: 450px;
             max-height: 260px;
             background: rgba(0,0,0,0.85);
             border-radius: 8px;
@@ -90,43 +81,34 @@
 </head>
 <body>
     <div id="info">
-        🔮 3D 代码库星云<br>
-        <span style="font-size: 10px;">单击: 锁定 | 双击: 打开 GitHub</span>
+        🔮 3D Repository Cloud<br>
+        <span style="font-size: 10px;">Click: lock | Double-click: open GitHub</span>
     </div>
-    <div class="instruction">✨ 拖动旋转 | 滚动缩放</div>
+    <div class="instruction">✨ Drag to rotate | Scroll to zoom</div>
 
-    <!-- 搜索栏 -->
+    <!-- Search Bar -->
     <div style="position: fixed; top: 20px; left: 20px; right: 20px; z-index: 100; background: rgba(0,0,0,0.8); padding: 12px; border-radius: 60px;">
         <div style="display: flex; gap: 10px; align-items: center; max-width: 1200px; margin: 0 auto;">
-            <input type="text" id="searchInput" placeholder="🔎 搜索代码片段..." style="flex:2; background:transparent; border:none; color:white; padding:8px; outline:none;">
+            <input type="text" id="searchInput" placeholder="🔎 Search code snippets..." style="flex:2; background:transparent; border:none; color:white; padding:8px; outline:none;">
             <select id="searchMode" style="background:#1a1a2e; color:white; border-radius:30px; padding:6px 12px;">
-                <option value="readme">📄 本地搜索 README</option>
-                <option value="github">🔍 GitHub API 搜索代码</option>
-                <option value="semantic">🧠 语义化 AI 搜索</option>
-                <option value="token">🔑 设置 GitHub 访问令牌</option>
+                <option value="readme">📄 Search READMEs (local)</option>
+                <option value="github">🔍 Search code (GitHub API)</option>
+                <option value="semantic">🧠 Semantic Search</option>
+                <option value="token">🔑 Set GitHub Token</option>
             </select>
             <button id="searchBtn" style="background:#2e7d64; border-radius:50%; width:36px; height:36px;">🔍</button>
         </div>
     </div>
 
-    <button id="debug-toggle">[+] 调试日志</button>
+    <button id="debug-toggle">[+] Logs</button>
     <div id="debug-panel"></div>
     <div style="position: fixed; bottom: 20px; right: 20px; z-index: 200;">
-        <span class="export-btn" onclick="window.open('/api/export/slop?format=json','_blank')">📊 导出 JSON</span>
-        <span class="export-btn" onclick="window.open('/api/export/slop?format=csv','_blank')">📈 导出 CSV</span>
+        <span class="export-btn" onclick="window.open('/api/export/slop?format=json','_blank')">📊 JSON</span>
+        <span class="export-btn" onclick="window.open('/api/export/slop?format=csv','_blank')">📈 CSV</span>
     </div>
 
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
-                "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/"
-            }
-        }
-    </script>
-
-    <script type="module">
-        // 全局日志函数
+    <script>
+        // ---------- GLOBAL LOGGING ----------
         window.addLog = function(msg) {
             const timestamp = new Date().toLocaleTimeString();
             const logMsg = `[${timestamp}] 🐞 ${msg}`;
@@ -141,104 +123,116 @@
             }
         };
 
-        // 调试面板切换 (默认为折叠)
+        // Toggle debug panel (collapsed by default)
         const toggleBtn = document.getElementById('debug-toggle');
         const panel = document.getElementById('debug-panel');
         toggleBtn.onclick = () => {
             if (panel.style.display === 'none') {
                 panel.style.display = 'block';
-                toggleBtn.textContent = '[-] 调试日志';
+                toggleBtn.textContent = '[-] Logs';
             } else {
                 panel.style.display = 'none';
-                toggleBtn.textContent = '[+] 调试日志';
+                toggleBtn.textContent = '[+] Logs';
             }
         };
         panel.style.display = 'none';
-        toggleBtn.textContent = '[+] 调试日志';
+        toggleBtn.textContent = '[+] Logs';
 
-        window.addLog('🚀 正在启动应用');
-        window.addLog('🧠 正在初始化 Three.js');
+        window.addLog('🚀 Starting application');
+        window.addLog('🧠 Loading Three.js...');
 
-        import * as THREE from 'three';
-        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-        import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
-
-        // --- Three.js 场景设置 ---
-        const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x050510);
-        scene.fog = new THREE.FogExp2(0x050510, 0.008);
-
-        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(15, 10, 20);
-
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
-
-        const labelRenderer = new CSS2DRenderer();
-        labelRenderer.setSize(window.innerWidth, window.innerHeight);
-        labelRenderer.domElement.style.position = 'absolute';
-        labelRenderer.domElement.style.top = '0px';
-        labelRenderer.domElement.style.left = '0px';
-        labelRenderer.domElement.style.pointerEvents = 'none';
-        document.body.appendChild(labelRenderer.domElement);
-
-        const controls = new OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true;
-        controls.autoRotate = true;
-        controls.autoRotateSpeed = 1.0;
-
-        // 拖拽日志 (带向量)
-        let dragStartPos = null;
-        controls.addEventListener('start', () => {
-            window.addLog('🖱️ 开始拖拽');
-            dragStartPos = { x: camera.position.x, y: camera.position.y, z: camera.position.z };
-        });
-        controls.addEventListener('change', () => {
-            if (dragStartPos) {
-                const dx = camera.position.x - dragStartPos.x;
-                const dy = camera.position.y - dragStartPos.y;
-                const dz = camera.position.z - dragStartPos.z;
-                const distance = Math.hypot(dx, dy, dz);
-                window.addLog(`🖱️ 拖拽向量: dx=${dx.toFixed(2)}, dy=${dy.toFixed(2)}, dz=${dz.toFixed(2)}, 移动距离=${distance.toFixed(2)}`);
-                dragStartPos = { x: camera.position.x, y: camera.position.y, z: camera.position.z };
-            }
-        });
-        controls.addEventListener('end', () => {
-            window.addLog('🖱️ 结束拖拽');
-            dragStartPos = null;
-        });
-
-        window.addLog('✅ Three.js 场景已初始化');
-
-        let repos = [];
-        const cloudGroup = new THREE.Group();
-        scene.add(cloudGroup);
-
-        function lockRepository(name) {
-            window.addLog(`🔒 已锁定: ${name}`);
+        // --------------------------------------------------------------
+        // Load Three.js core and add‑ons from CDN (fallback to local if needed)
+        // --------------------------------------------------------------
+        function loadScript(src, onload) {
+            const script = document.createElement('script');
+            script.src = src;
+            script.onload = onload;
+            document.head.appendChild(script);
         }
 
-        async function loadRepos() {
-            try {
-                const res = await fetch('/api/repos');
-                const data = await res.json();
-                repos = data.repos || [];
-                window.addLog(`✅ 从后端加载了 ${repos.length} 个代码库`);
-            } catch (e) {
-                window.addLog(`❌ 加载代码库失败: ${e.message}. 使用备用数据。`);
-                repos = [
-                    { name: 'swipswaps-portfolio-showcase' },
-                    { name: 'threejs-cloud-viz' },
-                    { name: 'semantic-search-engine' }
-                ];
+        loadScript('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', () => {
+            window.addLog('✅ Three.js core loaded');
+            loadScript('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js', () => {
+                loadScript('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/renderers/CSS2DRenderer.js', () => {
+                    window.addLog('✅ All extensions loaded');
+                    initThree();
+                });
+            });
+        });
+
+        function initThree() {
+            // --- Setup scene ---
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x050510);
+            scene.fog = new THREE.FogExp2(0x050510, 0.008);
+
+            const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(15, 10, 20);
+
+            const renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            const labelRenderer = new THREE.CSS2DRenderer();
+            labelRenderer.setSize(window.innerWidth, window.innerHeight);
+            labelRenderer.domElement.style.position = 'absolute';
+            labelRenderer.domElement.style.top = '0px';
+            labelRenderer.domElement.style.left = '0px';
+            labelRenderer.domElement.style.pointerEvents = 'none';
+            document.body.appendChild(labelRenderer.domElement);
+
+            const controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = 1.0;
+
+            // Drag logging with vectors
+            let dragStartPos = null;
+            controls.addEventListener('start', () => {
+                window.addLog('🖱️ DRAG START');
+                dragStartPos = { x: camera.position.x, y: camera.position.y, z: camera.position.z };
+            });
+            controls.addEventListener('change', () => {
+                if (dragStartPos) {
+                    const dx = camera.position.x - dragStartPos.x;
+                    const dy = camera.position.y - dragStartPos.y;
+                    const dz = camera.position.z - dragStartPos.z;
+                    const distance = Math.hypot(dx, dy, dz);
+                    window.addLog(`🖱️ DRAG VECTOR: dx=${dx.toFixed(2)}, dy=${dy.toFixed(2)}, dz=${dz.toFixed(2)}, distance=${distance.toFixed(2)}`);
+                    dragStartPos = { x: camera.position.x, y: camera.position.y, z: camera.position.z };
+                }
+            });
+            controls.addEventListener('end', () => {
+                window.addLog('🖱️ DRAG END');
+                dragStartPos = null;
+            });
+
+            window.addLog('✅ Scene ready');
+
+            // --- Mock repositories (no API call) ---
+            const repos = [
+                { name: 'swipswaps-portfolio-showcase' },
+                { name: 'threejs-cloud-viz' },
+                { name: 'semantic-search-engine' },
+                { name: 'github-token-manager' },
+                { name: 'svelte-sqlite-integration' },
+                { name: 'debug-panel-example' }
+            ];
+
+            const cloudGroup = new THREE.Group();
+            scene.add(cloudGroup);
+
+            function lockRepository(name) {
+                window.addLog(`🔒 Locked: ${name}`);
             }
-            // 创建球体和标签
+
             repos.forEach(repo => {
                 const geometry = new THREE.SphereGeometry(0.4, 16, 16);
                 const material = new THREE.MeshStandardMaterial({ color: 0x5effe0 });
                 const sphere = new THREE.Mesh(geometry, material);
 
+                // Random spherical distribution
                 const phi = Math.acos(2 * Math.random() - 1);
                 const theta = 2 * Math.PI * Math.random();
                 const radius = 8;
@@ -250,74 +244,84 @@
                 const div = document.createElement('div');
                 div.textContent = repo.name.length > 25 ? repo.name.substring(0, 22) + '...' : repo.name;
                 div.style.cssText = 'color:#5effe0;font-size:12px;font-family:monospace;background:rgba(0,0,0,0.7);padding:4px 8px;border-radius:20px;border:1px solid #5effe0;cursor:pointer;white-space:nowrap;';
-                
+
+                // Click logging
                 div.onclick = (function(n) {
                     return function() {
-                        window.addLog(`🖱️ 单击 - 代码库: ${n}`);
+                        window.addLog(`🖱️ CLICK - Repository: ${n}`);
                         lockRepository(n);
                     };
                 })(repo.name);
-                
+
+                // Double‑click logging
                 div.ondblclick = (function(n) {
                     return function() {
-                        window.addLog(`🖱️ 双击 - 正在打开: ${n}`);
+                        window.addLog(`🖱️ DOUBLE CLICK - Opening: ${n}`);
                         window.open(`https://github.com/swipswaps/${n}`, '_blank');
                     };
                 })(repo.name);
-                
+
+                // Hover logging
                 div.onmouseenter = (function(n) {
                     return function() {
-                        window.addLog(`🖱️ 悬停 - ${n}`);
+                        window.addLog(`🖱️ HOVER - ${n}`);
                     };
                 })(repo.name);
 
-                const label = new CSS2DObject(div);
+                const label = new THREE.CSS2DObject(div);
                 label.position.copy(sphere.position);
                 cloudGroup.add(sphere);
                 cloudGroup.add(label);
             });
-            window.addLog(`🎨 已创建 ${repos.length} 个标签`);
-        }
 
-        loadRepos();
+            window.addLog(`🎨 Created ${repos.length} repository spheres`);
 
-        function animate() {
-            requestAnimationFrame(animate);
-            controls.update();
-            renderer.render(scene, camera);
-            labelRenderer.render(scene, camera);
-        }
-        animate();
+            // Add ambient light
+            const ambientLight = new THREE.AmbientLight(0x404040);
+            scene.add(ambientLight);
+            const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+            dirLight.position.set(1, 2, 1);
+            scene.add(dirLight);
 
-        window.addLog('🎨 应用已就绪 – 尽情单击、拖拽与悬停吧');
-
-        // 搜索与 GitHub Token 逻辑
-        const searchInput = document.getElementById('searchInput');
-        const searchMode = document.getElementById('searchMode');
-        const searchBtn = document.getElementById('searchBtn');
-
-        searchBtn.onclick = () => {
-            const query = searchInput.value.trim();
-            const mode = searchMode.value;
-            window.addLog(`🔍 正在搜索: "${query}"，模式: ${mode}`);
-            if (mode === 'token') {
-                const token = prompt('请输入您的 GitHub 个人访问令牌:');
-                if (token) {
-                    localStorage.setItem('github_token', token);
-                    window.addLog('✅ 令牌已保存到 localStorage');
-                } else {
-                    window.addLog('⚠️ 已取消输入令牌');
-                }
-                searchMode.value = 'readme';
-            } else if (mode === 'readme') {
-                const results = repos.filter(r => r.name.toLowerCase().includes(query.toLowerCase()));
-                window.addLog(`📄 找到 ${results.length} 个匹配的本地代码库`);
-                alert(`找到 ${results.length} 个匹配的代码库`);
-            } else {
-                window.addLog(`静态页面中未实现 "${mode}" 模式`);
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                controls.update();
+                renderer.render(scene, camera);
+                labelRenderer.render(scene, camera);
             }
-        };
-        searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchBtn.click(); });
+            animate();
+
+            window.addLog('🎨 App ready – click spheres, drag, hover');
+
+            // --- Search & Token (placeholder, no backend) ---
+            const searchInput = document.getElementById('searchInput');
+            const searchMode = document.getElementById('searchMode');
+            const searchBtn = document.getElementById('searchBtn');
+
+            searchBtn.onclick = () => {
+                const query = searchInput.value.trim();
+                const mode = searchMode.value;
+                window.addLog(`🔍 Search: "${query}" mode: ${mode}`);
+                if (mode === 'token') {
+                    const token = prompt('Enter your GitHub Personal Access Token:');
+                    if (token) {
+                        localStorage.setItem('github_token', token);
+                        window.addLog('✅ Token saved (mock)');
+                    } else {
+                        window.addLog('⚠️ Token cancelled');
+                    }
+                    searchMode.value = 'readme';
+                } else if (mode === 'readme') {
+                    const results = repos.filter(r => r.name.toLowerCase().includes(query.toLowerCase()));
+                    window.addLog(`📄 Found ${results.length} matching repos locally`);
+                    alert(`Found ${results.length} matches`);
+                } else {
+                    window.addLog(`Mode "${mode}" not implemented in static demo`);
+                }
+            };
+            searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchBtn.click(); });
+        }
     </script>
 </body>
 </html>
