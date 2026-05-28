@@ -17,7 +17,22 @@
         #readme-panel { position: fixed; top:20px; right:20px; width:350px; max-height:400px; background:rgba(0,0,0,0.9); border-radius:12px; border:1px solid #5effe0; z-index:150; pointer-events:auto; color:#ccc; font-size:12px; font-family:monospace; padding:10px; overflow-y:auto; display:none; backdrop-filter:blur(8px); }
         #readme-panel a { color:#5effe0; }
         #close-readme { float:right; cursor:pointer; background:#333; padding:2px 8px; border-radius:10px; }
-    </style>
+    
+        #control-panel {
+            position: fixed; bottom:20px; left:20px; width:260px; background:rgba(0,0,0,0.85);
+            border-radius:12px; padding:10px; font-family:monospace; font-size:11px;
+            color:#5effe0; border:1px solid #5effe0; z-index:102; backdrop-filter:blur(5px);
+            pointer-events:auto; user-select:none; display:none;
+        }
+        #control-panel button, #control-panel select {
+            background:#1a2a2a; border:1px solid #5effe0; color:#5effe0; border-radius:20px;
+            padding:4px 8px; margin:2px; cursor:pointer; font-family:monospace;
+        }
+        #control-panel input { width:100px; margin-left:8px; vertical-align:middle; }
+        .ctrl-row { margin:6px 0; display:flex; align-items:center; justify-content:space-between; }
+        #ctrl-toggle { position:fixed; bottom:20px; left:300px; background:#0a0a14; border:1px solid #5effe0;
+            border-radius:20px; padding:4px 12px; cursor:pointer; z-index:103; font-size:10px; color:#5effe0; }
+</style>
     <script type="importmap">
         { "imports": { "three": "https://unpkg.com/three@0.128.0/build/three.module.js", "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/" } }
     </script>
@@ -32,7 +47,18 @@
             <button id="searchBtn" style="background:#2e7d64; border-radius:30px; padding:6px 16px; color:white; cursor:pointer;">🔍 Filter</button>
         </div>
     </div>
-    <div id="minimap-container"><canvas id="minimap-canvas"></canvas></div>
+    
+    <div id="ctrl-toggle">🎮 Controls</div>
+    <div id="control-panel">
+        <div class="ctrl-row"><span>🔄 Auto-rotate</span><button id="toggleAutoRotate">ON</button></div>
+        <div class="ctrl-row"><span>⚡ Damping (inertia)</span><button id="toggleDamping">ON</button></div>
+        <div class="ctrl-row"><span>📉 Damping factor</span><input type="range" id="dampingFactor" min="0.02" max="0.3" step="0.01" value="0.1"><span id="dampingVal">0.10</span></div>
+        <div class="ctrl-row"><span>🐌 Rotate speed</span><input type="range" id="rotateSpeed" min="0.5" max="3.0" step="0.1" value="1.0"><span id="rotateVal">1.0</span></div>
+        <div class="ctrl-row"><span>🔍 Zoom speed</span><input type="range" id="zoomSpeed" min="0.5" max="3.0" step="0.1" value="1.0"><span id="zoomVal">1.0</span></div>
+        <div class="ctrl-row"><button id="resetViewBtn">🎯 Reset View</button></div>
+        <div class="ctrl-row"><span style="font-size:9px;">Settings logged to panel</span></div>
+    </div>
+<div id="minimap-container"><canvas id="minimap-canvas"></canvas></div>
     <div id="readme-panel"><span id="close-readme">✖</span><div id="readme-content">Loading...</div></div>
     <button id="debug-toggle">[+] Logs</button>
     <div id="debug-panel"></div>
@@ -174,7 +200,7 @@
                 let repoName = null;
                 if (intersects.length > 0) repoName = intersects[0].object.userData.name;
                 else if (lastHoveredRepo) { repoName = lastHoveredRepo; logEvent('debug', 'click_fallback_to_hover', { repo: repoName }); }
-                if (repoName) {
+                if (repoName) { window._lastClickedRepo = repoName;
                     logEvent('user_action', 'click_repository', { repo: repoName });
                     const spheres = cloudGroup.children.filter(c => c.isMesh);
                     spheres.forEach(sphere => { if(sphere.userData.name === repoName) { sphere.material.emissive.setHex(0xffaa00); setTimeout(() => sphere.material.emissive.setHex(0x1a4d40), 500); } });
@@ -200,12 +226,66 @@
                 let repoName = null;
                 if (intersects.length > 0) repoName = intersects[0].object.userData.name;
                 else if (lastHoveredRepo) { repoName = lastHoveredRepo; logEvent('debug', 'double_click_fallback_to_hover', { repo: repoName }); }
-                if (repoName) {
+                if (repoName) { window._lastClickedRepo = repoName;
                     logEvent('user_action', 'double_click_repository', { repo: repoName });
                     window.open(`https://github.com/swipswaps/${repoName}`, '_blank', 'noopener,noreferrer');
                 }
             });
 
+            
+            // --- Similarity visualisation (Levenshtein distance) ---
+            function levenshtein(a, b) {
+                const matrix = Array(b.length + 1).fill().map(() => Array(a.length + 1).fill(0));
+                for (let i = 0; i <= a.length; i++) matrix[0][i] = i;
+                for (let j = 0; j <= b.length; j++) matrix[j][0] = j;
+                for (let j = 1; j <= b.length; j++) {
+                    for (let i = 1; i <= a.length; i++) {
+                        const cost = a[i-1] === b[j-1] ? 0 : 1;
+                        matrix[j][i] = Math.min(matrix[j-1][i] + 1, matrix[j][i-1] + 1, matrix[j-1][i-1] + cost);
+                    }
+                }
+                return matrix[b.length][a.length];
+            }
+            let currentSimilarLines = [];
+            function highlightSimilar(repoName) {
+                currentSimilarLines.forEach(line => cloudGroup.remove(line));
+                currentSimilarLines = [];
+                const spheres = cloudGroup.children.filter(c => c.isMesh);
+                const targetSphere = spheres.find(s => s.userData.name === repoName);
+                if (!targetSphere) return;
+                const scores = spheres.map(s => ({ sphere: s, name: s.userData.name, dist: levenshtein(repoName.toLowerCase(), s.userData.name.toLowerCase()) }));
+                scores.sort((a,b) => a.dist - b.dist);
+                const similar = scores.slice(1, 6); // top 5
+                similar.forEach(s => {
+                    const points = [targetSphere.position.clone(), s.sphere.position.clone()];
+                    const geometry = new THREE.BufferGeometry().setFromPoints(points);
+                    const material = new THREE.LineBasicMaterial({ color: 0xffaa00 });
+                    const line = new THREE.Line(geometry, material);
+                    cloudGroup.add(line);
+                    currentSimilarLines.push(line);
+                    logEvent('info', 'similar_line', { from: repoName, to: s.name, distance: s.dist });
+                });
+            }
+            // Add "Similar" button next to search
+            const controlsDiv = document.querySelector('#info').parentElement.querySelector('div[style*="display:flex"]');
+            if (controlsDiv && !document.getElementById('similarBtn')) {
+                const simBtn = document.createElement('button');
+                simBtn.id = 'similarBtn';
+                simBtn.textContent = '🔗 Similar';
+                simBtn.style.background = '#2e7d64';
+                simBtn.style.borderRadius = '30px';
+                simBtn.style.padding = '6px 16px';
+                simBtn.style.color = 'white';
+                simBtn.style.cursor = 'pointer';
+                simBtn.onclick = () => {
+                    const lastClicked = window._lastClickedRepo;
+                    if (lastClicked) highlightSimilar(lastClicked);
+                    else logEvent('warn', 'similar_no_repo', {});
+                };
+                controlsDiv.appendChild(simBtn);
+            }
+            // Store last clicked repo name from single-click
+            // Modify the single-click handler to set window._lastClickedRepo
             // Hover
             let hoverDebounce = null;
             window.addEventListener('mousemove', (event) => {
