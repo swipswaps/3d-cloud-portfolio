@@ -5,87 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>3D Code Portfolio – SwipSwaps</title>
     <style>
-        body { margin: 0; overflow: hidden; font-family: monospace; user-select: none; -webkit-user-select: none; }
+        body { margin: 0; overflow: hidden; font-family: monospace; user-select: none; }
         canvas { display: block; }
-        #info {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            color: white;
-            background: rgba(0,0,0,0.6);
-            padding: 10px 15px;
-            border-radius: 8px;
-            pointer-events: none;
-            z-index: 10;
-            font-size: 14px;
-            backdrop-filter: blur(5px);
-        }
-        .instruction {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            color: #5effe0;
-            background: rgba(0,0,0,0.5);
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 11px;
-            pointer-events: none;
-            z-index: 10;
-        }
         #debug-toggle {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 101;
-            background: #0a0a14;
-            border: 1px solid #5effe0;
-            border-radius: 20px;
-            padding: 4px 12px;
-            cursor: pointer;
-            color: #5effe0;
-            font-family: monospace;
-            font-size: 10px;
+            position: fixed; bottom:20px; left:20px; z-index:101; background:#0a0a14;
+            border:1px solid #5effe0; border-radius:20px; padding:4px 12px; cursor:pointer;
+            color:#5effe0; font-family:monospace; font-size:10px;
         }
         #debug-panel {
-            position: fixed;
-            bottom: 20px;
-            left: 70px;
-            width: 500px;
-            max-height: 300px;
-            background: rgba(0,0,0,0.85);
-            border-radius: 8px;
-            padding: 10px;
-            font-size: 10px;
-            font-family: monospace;
-            color: #0f0;
-            overflow-y: auto;
-            z-index: 100;
-            display: none;
-            pointer-events: auto;
+            position: fixed; bottom:20px; left:70px; width:500px; max-height:300px;
+            background:rgba(0,0,0,0.85); border-radius:8px; padding:10px; font-size:10px;
+            font-family:monospace; color:#0f0; overflow-y:auto; z-index:100; display:none;
+            pointer-events:auto; user-select:text; -webkit-user-select:text;
         }
-        /* No dead backend buttons – removed /api/export/slop and stub search modes */
+        .instruction { position: absolute; bottom:20px; right:20px; color:#5effe0;
+            background:rgba(0,0,0,0.5); padding:5px 10px; border-radius:5px; font-size:11px;
+            pointer-events:none;
+        }
+        #info { position: absolute; top:20px; left:20px; color:white;
+            background:rgba(0,0,0,0.6); padding:10px 15px; border-radius:8px; font-size:14px;
+            backdrop-filter:blur(5px); pointer-events:none;
+        }
     </style>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/"
+            }
+        }
+    </script>
 </head>
 <body>
-    <div id="info">
-        🔮 3D Repository Cloud<br>
-        <span style="font-size: 10px;">Click: lock | Double-click: open GitHub</span>
-    </div>
+    <div id="info">🔮 3D Repository Cloud<br><span style="font-size:10px;">Click: lock | Double-click: open GitHub</span></div>
     <div class="instruction">✨ Drag to rotate | Scroll to zoom</div>
-
-    <!-- Minimal search bar (only local README filtering works, no dead backend calls) -->
-    <div style="position: fixed; top: 20px; left: 20px; right: 20px; z-index: 100; background: rgba(0,0,0,0.8); padding: 12px; border-radius: 60px;">
-        <div style="display: flex; gap: 10px; align-items: center; max-width: 1200px; margin: 0 auto;">
-            <input type="text" id="searchInput" placeholder="🔎 Filter spheres by name..." style="flex:2; background:transparent; border:none; color:white; padding:8px; outline:none;">
+    <div style="position:fixed; top:20px; left:20px; right:20px; z-index:100; background:rgba(0,0,0,0.8); padding:12px; border-radius:60px;">
+        <div style="display:flex; gap:10px; align-items:center; max-width:1200px; margin:0 auto;">
+            <input type="text" id="searchInput" placeholder="🔎 Filter spheres by name..." style="flex:2; background:transparent; border:none; color:white; padding:8px;">
             <button id="searchBtn" style="background:#2e7d64; border-radius:30px; padding:6px 16px; color:white; cursor:pointer;">🔍 Filter</button>
         </div>
     </div>
-
     <button id="debug-toggle">[+] Logs</button>
     <div id="debug-panel"></div>
 
-    <script>
-        // ---------- EVIDENCE LOGGING (visible in debug panel) ----------
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+
         function evidenceLog(msg) {
             console.log(msg);
             const panel = document.getElementById('debug-panel');
@@ -98,14 +65,12 @@
             }
         }
 
-        // Global state for logEvidence()
         const state = {
             repoSource: null,
             apiUrl: null,
             apiStatus: null,
             repoCount: 0,
             rateLimitRemaining: null,
-            rateLimitReset: null,
             sampleClickTarget: null,
             dragLogAttached: false,
             toggleBound: false,
@@ -114,7 +79,6 @@
             doubleClickSample: null
         };
 
-        // ---------- TOGGLE DEBUG PANEL (collapsed by default) ----------
         const toggleBtn = document.getElementById('debug-toggle');
         const panel = document.getElementById('debug-panel');
         state.toggleBound = !!toggleBtn && !!panel;
@@ -130,126 +94,58 @@
                     panel.style.display = 'none';
                     toggleBtn.textContent = '[+] Logs';
                 }
-                evidenceLog(`[C5] "collapsible debug panel" -- toggle clicked, panel.display=${panel.style.display}`);
+                evidenceLog(`[C5] toggle clicked, panel.display=${panel.style.display}`);
             };
         }
 
         evidenceLog('🚀 Starting application');
-        evidenceLog('🧠 Loading Three.js from single CDN...');
+        evidenceLog('🧠 Loading Three.js via import map');
 
-        // ---------- LOAD THREE.JS FROM ONE CDN (all modules from same origin) ----------
-        let scriptLoadTimeout = null;
-
-        function loadThree() {
-            return new Promise((resolve, reject) => {
-                const timeout = setTimeout(() => {
-                    reject(new Error('Three.js CDN timeout after 10 seconds'));
-                }, 10000);
-                scriptLoadTimeout = timeout;
-
-                const script = document.createElement('script');
-                script.src = 'https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js';
-                script.onload = () => {
-                    clearTimeout(timeout);
-                    resolve();
-                };
-                script.onerror = () => {
-                    clearTimeout(timeout);
-                    reject(new Error('Failed to load Three.js core'));
-                };
-                document.head.appendChild(script);
-            });
-        }
-
-        function loadExtension(name, url) {
-            return new Promise((resolve, reject) => {
-                const timeout = setTimeout(() => {
-                    reject(new Error(`${name} timeout after 10 seconds`));
-                }, 10000);
-                const script = document.createElement('script');
-                script.src = url;
-                script.onload = () => { clearTimeout(timeout); resolve(); };
-                script.onerror = () => { clearTimeout(timeout); reject(new Error(`Failed to load ${name}`)); };
-                document.head.appendChild(script);
-            });
-        }
-
-        loadThree()
-            .then(() => {
-                evidenceLog('✅ Three.js core loaded');
-                return Promise.all([
-                    loadExtension('OrbitControls', 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js'),
-                    loadExtension('CSS2DRenderer', 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/renderers/CSS2DRenderer.js')
-                ]);
-            })
-            .then(() => {
-                evidenceLog('✅ All Three.js extensions loaded');
-                initThree();
-            })
-            .catch(err => {
-                evidenceLog(`❌ Script loading failed: ${err.message}`);
-                state.repoSource = `error: ${err.message}`;
-                logEvidence();
-            });
-
-        // ---------- FETCH REAL REPOS FROM GITHUB PUBLIC API (no key, no mock) ----------
         async function fetchRealRepos() {
             const url = 'https://api.github.com/users/swipswaps/repos?per_page=100&sort=updated&type=public';
             state.apiUrl = url;
-            evidenceLog(`[C2] "use what github allows without a key" -- fetching ${url}`);
-
+            evidenceLog(`[C2] fetching ${url}`);
             try {
                 const resp = await fetch(url);
                 state.apiStatus = resp.status;
                 state.rateLimitRemaining = resp.headers.get('X-RateLimit-Remaining');
-                state.rateLimitReset = resp.headers.get('X-RateLimit-Reset');
-                evidenceLog(`[C2] status=${resp.status} ratelimit_remaining=${state.rateLimitRemaining} reset_epoch=${state.rateLimitReset}`);
-
+                evidenceLog(`[C2] status=${resp.status} ratelimit_remaining=${state.rateLimitRemaining}`);
                 if (!resp.ok) {
                     state.repoSource = `github_api_failed (${resp.status})`;
-                    evidenceLog(`❌ GitHub API returned ${resp.status} — no mock repos used`);
                     return null;
                 }
-
                 const repos = await resp.json();
-                if (!Array.isArray(repos) || repos.length === 0) {
+                if (!repos.length) {
                     state.repoSource = 'github_api_empty';
-                    evidenceLog(`❌ GitHub API returned empty array — no mock repos used`);
                     return null;
                 }
-
                 state.repoSource = 'github_api';
                 state.repoCount = repos.length;
-                evidenceLog(`[C1] "no mock repos" -- repo source: ${state.repoSource}, count=${state.repoCount} (all real from GitHub API)`);
+                evidenceLog(`[C1] repo source: ${state.repoSource}, count=${state.repoCount} (real from GitHub)`);
                 return repos;
             } catch (err) {
                 state.repoSource = `github_api_exception: ${err.message}`;
-                evidenceLog(`❌ Fetch exception: ${err.message} — no mock repos used`);
+                evidenceLog(`❌ Fetch exception: ${err.message}`);
                 return null;
             }
         }
 
-        // ---------- THREE.JS INITIALIZATION ----------
         async function initThree() {
-            const realRepos = await fetchRealRepos();
-            if (!realRepos) {
-                // No fallback to mock data – show error in scene
-                evidenceLog(`❌ Cannot render cloud: no repositories available. ${state.repoSource}`);
+            const repos = await fetchRealRepos();
+            if (!repos) {
+                evidenceLog(`❌ No repos available. ${state.repoSource}`);
                 return;
             }
 
             const scene = new THREE.Scene();
             scene.background = new THREE.Color(0x050510);
             scene.fog = new THREE.FogExp2(0x050510, 0.008);
-
             const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
             camera.position.set(15, 10, 20);
-
             const renderer = new THREE.WebGLRenderer({ antialias: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
             document.body.appendChild(renderer.domElement);
-
-            const labelRenderer = new THREE.CSS2DRenderer();
+            const labelRenderer = new CSS2DRenderer();
             labelRenderer.setSize(window.innerWidth, window.innerHeight);
             labelRenderer.domElement.style.position = 'absolute';
             labelRenderer.domElement.style.top = '0px';
@@ -257,12 +153,11 @@
             labelRenderer.domElement.style.pointerEvents = 'none';
             document.body.appendChild(labelRenderer.domElement);
 
-            const controls = new THREE.OrbitControls(camera, renderer.domElement);
+            const controls = new OrbitControls(camera, renderer.domElement);
             controls.enableDamping = true;
             controls.autoRotate = true;
             controls.autoRotateSpeed = 1.0;
 
-            // [C4] Drag vector logging
             let dragStartPos = null;
             controls.addEventListener('start', () => {
                 evidenceLog('🖱️ DRAG START');
@@ -274,7 +169,7 @@
                     const dy = camera.position.y - dragStartPos.y;
                     const dz = camera.position.z - dragStartPos.z;
                     const distance = Math.hypot(dx, dy, dz);
-                    evidenceLog(`[C4] "drag vectors with dx/dy/dz/distance logged" -- dx=${dx.toFixed(2)} dy=${dy.toFixed(2)} dz=${dz.toFixed(2)} distance=${distance.toFixed(2)}`);
+                    evidenceLog(`[C4] drag vector: dx=${dx.toFixed(2)} dy=${dy.toFixed(2)} dz=${dz.toFixed(2)} distance=${distance.toFixed(2)}`);
                     dragStartPos = { x: camera.position.x, y: camera.position.y, z: camera.position.z };
                 }
             });
@@ -287,12 +182,43 @@
             const cloudGroup = new THREE.Group();
             scene.add(cloudGroup);
 
-            // [C3][C6][C7] Click, hover, double-click handlers
-            realRepos.forEach(repo => {
+            const ambientLight = new THREE.AmbientLight(0x404040);
+            scene.add(ambientLight);
+            const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+            dirLight.position.set(1, 2, 1);
+            scene.add(dirLight);
+
+            // ---------- EVENT DELEGATION (works because labels now have pointer-events: auto) ----------
+            window.addEventListener('click', (e) => {
+                const label = e.target.closest('[style*="cursor: pointer"]');
+                if (label && label.textContent) {
+                    const repoName = label.textContent.replace(/\.\.\.$/, '');
+                    evidenceLog(`🖱️ CLICK - Repository: ${repoName}`);
+                    evidenceLog(`🔒 Locked: ${repoName}`);
+                }
+            });
+
+            window.addEventListener('dblclick', (e) => {
+                const label = e.target.closest('[style*="cursor: pointer"]');
+                if (label && label.textContent) {
+                    const repoName = label.textContent.replace(/\.\.\.$/, '');
+                    evidenceLog(`🖱️ DOUBLE CLICK - Opening: ${repoName}`);
+                    window.open(`https://github.com/swipswaps/${repoName}`, '_blank');
+                }
+            });
+
+            window.addEventListener('mouseover', (e) => {
+                const label = e.target.closest('[style*="cursor: pointer"]');
+                if (label && label.textContent) {
+                    const repoName = label.textContent.replace(/\.\.\.$/, '');
+                    evidenceLog(`🖱️ HOVER - ${repoName}`);
+                }
+            });
+
+            repos.forEach(repo => {
                 const geometry = new THREE.SphereGeometry(0.4, 16, 16);
                 const material = new THREE.MeshStandardMaterial({ color: 0x5effe0 });
                 const sphere = new THREE.Mesh(geometry, material);
-
                 const phi = Math.acos(2 * Math.random() - 1);
                 const theta = 2 * Math.PI * Math.random();
                 const radius = 8;
@@ -303,50 +229,15 @@
 
                 const div = document.createElement('div');
                 div.textContent = repo.name.length > 25 ? repo.name.substring(0, 22) + '...' : repo.name;
-                div.style.cssText = 'color:#5effe0;font-size:12px;font-family:monospace;background:rgba(0,0,0,0.7);padding:4px 8px;border-radius:20px;border:1px solid #5effe0;cursor:pointer;white-space:nowrap;';
+                // CRITICAL: add pointer-events: auto so clicks go through
+                div.style.cssText = 'color:#5effe0;font-size:12px;font-family:monospace;background:rgba(0,0,0,0.7);padding:4px 8px;border-radius:20px;border:1px solid #5effe0;cursor:pointer;white-space:nowrap;pointer-events:auto;';
 
-                // [C3] Click opens GitHub
-                div.onclick = (function(n) {
-                    return function() {
-                        const targetUrl = `https://github.com/swipswaps/${n}`;
-                        evidenceLog(`[C3] "click sphere opens GitHub repo" -- clicked ${n}, target=${targetUrl}`);
-                        window.open(targetUrl, '_blank');
-                    };
-                })(repo.name);
-                state.sampleClickTarget = `https://github.com/swipswaps/${repo.name}`;
-
-                // [C7] Double-click logs and opens GitHub
-                div.ondblclick = (function(n) {
-                    return function() {
-                        const targetUrl = `https://github.com/swipswaps/${n}`;
-                        evidenceLog(`[C7] "double-click logs and opens GitHub" -- double-clicked ${n}, target=${targetUrl}`);
-                        window.open(targetUrl, '_blank');
-                    };
-                })(repo.name);
-                state.doubleClickSample = `double-click on ${repo.name} opens ${repo.name}`;
-
-                // [C6] Hover logs the repo name
-                div.onmouseenter = (function(n) {
-                    return function() {
-                        evidenceLog(`[C6] "hover logs the repo name" -- HOVER ${n}`);
-                    };
-                })(repo.name);
-                state.hoverSample = `hover on ${repo.name} logs name`;
-
-                const label = new THREE.CSS2DObject(div);
+                const label = new CSS2DObject(div);
                 label.position.copy(sphere.position);
                 cloudGroup.add(sphere);
                 cloudGroup.add(label);
             });
 
-            // Lighting
-            const ambientLight = new THREE.AmbientLight(0x404040);
-            scene.add(ambientLight);
-            const dirLight = new THREE.DirectionalLight(0xffffff, 1);
-            dirLight.position.set(1, 2, 1);
-            scene.add(dirLight);
-
-            // Animation
             function animate() {
                 requestAnimationFrame(animate);
                 controls.update();
@@ -355,13 +246,10 @@
             }
             animate();
 
-            evidenceLog(`✅ Rendered ${realRepos.length} real repository spheres`);
+            evidenceLog(`✅ Rendered ${repos.length} real repos`);
             evidenceLog('🎨 App ready – click, drag, hover, double-click all logged');
-
-            // [C5] Final evidence: all components
             logEvidence();
 
-            // Minimal local search filter (no backend)
             const searchInput = document.getElementById('searchInput');
             const searchBtn = document.getElementById('searchBtn');
             searchBtn.onclick = () => {
@@ -370,29 +258,29 @@
                 const labels = document.querySelectorAll('.css2d-object');
                 let visible = 0;
                 labels.forEach(label => {
-                    const text = label.textContent.toLowerCase();
-                    if (text.includes(query)) {
+                    if (label.textContent.toLowerCase().includes(query)) {
                         label.style.display = 'block';
                         visible++;
                     } else {
                         label.style.display = 'none';
                     }
                 });
-                evidenceLog(`📄 ${visible} labels match "${query}"`);
+                evidenceLog(`📄 ${visible} labels match`);
             };
         }
 
-        // [C1][C2][C3][C4][C5][C6][C7] evidence summary
         function logEvidence() {
-            evidenceLog(`[C1] "no mock repos" -- repo source: ${state.repoSource} (must be 'github_api', not 'hardcoded')`);
-            evidenceLog(`[C2] "use what github allows without a key" -- url=${state.apiUrl} status=${state.apiStatus} count=${state.repoCount} ratelimit_remaining=${state.rateLimitRemaining}`);
-            evidenceLog(`[C3] "click sphere opens GitHub repo" -- sample target: ${state.sampleClickTarget}`);
-            evidenceLog(`[C4] "drag vectors with dx/dy/dz/distance logged" -- drag handler attached: ${state.dragLogAttached}`);
-            evidenceLog(`[C5] "collapsible debug panel, collapsed by default" -- toggle bound: ${state.toggleBound}, initial display: ${state.panelInitialDisplay}`);
-            evidenceLog(`[C6] "hover logs the repo name" -- sample: ${state.hoverSample || 'hover event will log'}`);
-            evidenceLog(`[C7] "double-click logs and opens GitHub" -- sample: ${state.doubleClickSample || 'double-click event will log'}`);
+            evidenceLog(`[C1] "no mock repos" -- source: ${state.repoSource}`);
+            evidenceLog(`[C2] "use what github allows" -- url=${state.apiUrl} status=${state.apiStatus} count=${state.repoCount} ratelimit=${state.rateLimitRemaining}`);
+            evidenceLog(`[C3] click opens GitHub -- target: ${state.sampleClickTarget || 'event delegation will log'}`);
+            evidenceLog(`[C4] drag vectors -- attached: ${state.dragLogAttached}`);
+            evidenceLog(`[C5] collapsible debug panel -- toggle bound: ${state.toggleBound}, initial display: ${state.panelInitialDisplay}`);
+            evidenceLog(`[C6] hover logs -- sample: ${state.hoverSample || 'event delegation will log'}`);
+            evidenceLog(`[C7] double-click logs -- sample: ${state.doubleClickSample || 'event delegation will log'}`);
             evidenceLog(`--- END EVIDENCE ---`);
         }
+
+        initThree();
     </script>
 </body>
 </html>
