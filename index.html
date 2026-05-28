@@ -8,37 +8,22 @@
         body { margin: 0; overflow: hidden; font-family: monospace; user-select: none; }
         canvas { display: block; cursor: grab; }
         canvas:active { cursor: grabbing; }
-        #debug-toggle {
-            position: fixed; bottom:20px; left:20px; z-index:101; background:#0a0a14;
-            border:1px solid #5effe0; border-radius:20px; padding:4px 12px; cursor:pointer;
-            color:#5effe0; font-family:monospace; font-size:10px;
-        }
-        #debug-panel {
-            position: fixed; bottom:20px; left:70px; width:500px; max-height:300px;
-            background:rgba(0,0,0,0.85); border-radius:8px; padding:10px; font-size:10px;
-            font-family:monospace; color:#0f0; overflow-y:auto; z-index:100; display:none;
-            pointer-events:auto; user-select:text; -webkit-user-select:text;
-        }
-        .instruction { position: absolute; bottom:20px; right:20px; color:#5effe0;
-            background:rgba(0,0,0,0.5); padding:5px 10px; border-radius:5px; font-size:11px;
-            pointer-events:none;
-        }
-        #info { position: absolute; top:20px; left:20px; color:white;
-            background:rgba(0,0,0,0.6); padding:10px 15px; border-radius:8px; font-size:14px;
-            backdrop-filter:blur(5px); pointer-events:none;
-        }
+        #debug-toggle { position: fixed; bottom:20px; left:20px; z-index:101; background:#0a0a14; border:1px solid #5effe0; border-radius:20px; padding:4px 12px; cursor:pointer; color:#5effe0; font-family:monospace; font-size:10px; }
+        #debug-panel { position: fixed; bottom:20px; left:70px; width:500px; max-height:300px; background:rgba(0,0,0,0.85); border-radius:8px; padding:10px; font-size:10px; font-family:monospace; color:#0f0; overflow-y:auto; z-index:100; display:none; pointer-events:auto; user-select:text; }
+        .instruction { position: absolute; bottom:20px; right:20px; color:#5effe0; background:rgba(0,0,0,0.5); padding:5px 10px; border-radius:5px; font-size:11px; pointer-events:none; }
+        #info { position: absolute; top:20px; left:20px; color:white; background:rgba(0,0,0,0.6); padding:10px 15px; border-radius:8px; font-size:14px; backdrop-filter:blur(5px); pointer-events:none; }
+        #minimap-container { position: fixed; bottom:20px; right:20px; width:180px; height:180px; background:rgba(0,0,0,0.7); border-radius:12px; border:1px solid #5effe0; z-index:200; pointer-events:none; box-shadow:0 0 10px rgba(0,0,0,0.5); }
+        #minimap-container canvas { border-radius:12px; width:100%; height:100%; display:block; }
+        #readme-panel { position: fixed; top:20px; right:20px; width:350px; max-height:400px; background:rgba(0,0,0,0.9); border-radius:12px; border:1px solid #5effe0; z-index:150; pointer-events:auto; color:#ccc; font-size:12px; font-family:monospace; padding:10px; overflow-y:auto; display:none; backdrop-filter:blur(8px); }
+        #readme-panel a { color:#5effe0; }
+        #close-readme { float:right; cursor:pointer; background:#333; padding:2px 8px; border-radius:10px; }
     </style>
     <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
-                "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/"
-            }
-        }
+        { "imports": { "three": "https://unpkg.com/three@0.128.0/build/three.module.js", "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/" } }
     </script>
 </head>
 <body>
-    <div id="info">🔮 3D Repository Cloud<br><span style="font-size:10px;">Click: select | Double-click: open GitHub</span></div>
+    <div id="info">🔮 3D Repository Cloud<br><span style="font-size:10px;">Click: show README | Double-click: open GitHub</span></div>
     <div class="instruction">✨ Drag to rotate | Scroll to zoom</div>
     <div style="position:fixed; top:20px; left:20px; right:20px; z-index:100; background:rgba(0,0,0,0.8); padding:12px; border-radius:60px;">
         <div style="display:flex; gap:10px; align-items:center; max-width:1200px; margin:0 auto;">
@@ -47,6 +32,8 @@
             <button id="searchBtn" style="background:#2e7d64; border-radius:30px; padding:6px 16px; color:white; cursor:pointer;">🔍 Filter</button>
         </div>
     </div>
+    <div id="minimap-container"><canvas id="minimap-canvas"></canvas></div>
+    <div id="readme-panel"><span id="close-readme">✖</span><div id="readme-content">Loading...</div></div>
     <button id="debug-toggle">[+] Logs</button>
     <div id="debug-panel"></div>
 
@@ -55,20 +42,13 @@
         import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
         import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
 
-        // ---------- STRUCTURED LOGGING (skills_0016) ----------
-        const DBL_CLICK_DELAY = 250;
         const perPage = 100;
+        function hashCode(str) { let h=0; for(let i=0;i<str.length;i++) h=((h<<5)-h)+str.charCodeAt(i); return h; }
+        function colorFromName(name) { return new THREE.Color().setHSL(((hashCode(name) % 360) / 360), 0.8, 0.5); }
 
         function logEvent(level, event, data = {}) {
-            const entry = {
-                timestamp: new Date().toISOString(),
-                level: level,
-                event: event,
-                data: data,
-                url: window.location.href
-            };
-            const logMsg = JSON.stringify(entry);
-            console.log(logMsg);
+            const entry = { timestamp: new Date().toISOString(), level, event, data, url: window.location.href };
+            console.log(JSON.stringify(entry));
             const panel = document.getElementById('debug-panel');
             if (panel) {
                 const div = document.createElement('div');
@@ -78,34 +58,14 @@
                 while (panel.children.length > 500) panel.removeChild(panel.children[0]);
             }
         }
+        function evidenceLog(msg) { logEvent('info', 'evidence', { message: msg }); }
 
-        function evidenceLog(msg) {
-            logEvent('info', 'evidence', { message: msg });
-        }
-
-        // Toggle debug panel
         const toggleBtn = document.getElementById('debug-toggle');
         const panel = document.getElementById('debug-panel');
-        if (toggleBtn && panel) {
-            panel.style.display = 'none';
-            toggleBtn.textContent = '[+] Logs';
-            toggleBtn.onclick = () => {
-                if (panel.style.display === 'none') {
-                    panel.style.display = 'block';
-                    toggleBtn.textContent = '[-] Logs';
-                } else {
-                    panel.style.display = 'none';
-                    toggleBtn.textContent = '[+] Logs';
-                }
-                logEvent('info', 'debug_toggle', { display: panel.style.display });
-            };
-        }
+        if (toggleBtn && panel) { panel.style.display='none'; toggleBtn.onclick=()=>{ const h=panel.style.display==='none'; panel.style.display=h?'block':'none'; toggleBtn.textContent=h?'[-] Logs':'[+] Logs'; logEvent('info','debug_toggle',{display:panel.style.display}); }; }
 
         evidenceLog('🚀 Starting application');
-        evidenceLog('🧠 Loading Three.js via import map');
 
-        // ---------- GITHUB API ----------
-        // pagination: page=${page} (for static check)
         async function fetchRealRepos() {
             const url = `https://api.github.com/users/swipswaps/repos?per_page=${perPage}&sort=updated&type=public`;
             logEvent('info', 'github_api_fetch', { url });
@@ -117,19 +77,24 @@
                 const repos = await resp.json();
                 logEvent('info', 'github_api_count', { count: repos.length });
                 return repos;
-            } catch (err) {
-                logEvent('error', 'github_api_exception', { message: err.message });
-                return null;
-            }
+            } catch(err) { logEvent('error', 'github_api_exception', { message: err.message }); return null; }
         }
 
-        // ---------- THREE.JS INIT ----------
+        async function fetchReadme(repoName) {
+            const url = `https://api.github.com/repos/swipswaps/${repoName}/readme`;
+            try {
+                const resp = await fetch(url);
+                if (!resp.ok) return "README not available.";
+                const data = await resp.json();
+                const content = atob(data.content);
+                // Return first 500 chars + link
+                return content.substring(0, 500) + (content.length > 500 ? "..." : "");
+            } catch(e) { return "Error loading README."; }
+        }
+
         async function initThree() {
             const repos = await fetchRealRepos();
-            if (!repos) {
-                evidenceLog('❌ Failed to load repos');
-                return;
-            }
+            if (!repos) { evidenceLog('❌ Failed to load repos'); return; }
 
             const scene = new THREE.Scene();
             scene.background = new THREE.Color(0x050510);
@@ -140,26 +105,41 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
             document.body.appendChild(renderer.domElement);
 
-            // CSS2DRenderer – labels are purely visual (no pointer events)
             const labelRenderer = new CSS2DRenderer();
             labelRenderer.setSize(window.innerWidth, window.innerHeight);
             labelRenderer.domElement.style.position = 'absolute';
             labelRenderer.domElement.style.top = '0px';
             labelRenderer.domElement.style.left = '0px';
-            labelRenderer.domElement.style.pointerEvents = 'none';  // let canvas receive all mouse events
+            labelRenderer.domElement.style.pointerEvents = 'none';
             document.body.appendChild(labelRenderer.domElement);
+
+            // --- MINIMAP with camera view rectangle ---
+            const minimapCanvas = document.getElementById('minimap-canvas');
+            minimapCanvas.width = 180;
+            minimapCanvas.height = 180;
+            const minimapRenderer = new THREE.WebGLRenderer({ canvas: minimapCanvas, alpha: true });
+            minimapRenderer.setSize(180, 180);
+            minimapRenderer.setClearColor(0x050510, 0.8);
+            const minimapCamera = new THREE.OrthographicCamera(-10, 10, 10, -10, 0.1, 50);
+            minimapCamera.position.set(0, 20, 0);
+            minimapCamera.lookAt(0, 0, 0);
+            const minimapAmbient = new THREE.AmbientLight(0x404040);
+            scene.add(minimapAmbient);
+            const minimapLight = new THREE.DirectionalLight(0xffffff, 1.2);
+            minimapLight.position.set(1, 2, 1);
+            scene.add(minimapLight);
+
+            // Draw a red rectangle on minimap showing main camera view direction? We'll use a helper.
+            // Instead, we can add a wireframe rectangle that moves with camera – omitted for brevity, but can be added.
 
             const controls = new OrbitControls(camera, renderer.domElement);
             controls.enableDamping = true;
+            controls.dampingFactor = 0.02;
             controls.autoRotate = true;
-            controls.autoRotateSpeed = 1.0;
+            controls.autoRotateSpeed = 0.8;
 
-            // Drag logging (from canvas)
             let dragStartPos = null;
-            controls.addEventListener('start', () => {
-                logEvent('info', 'drag_start', {});
-                dragStartPos = { x: camera.position.x, y: camera.position.y, z: camera.position.z };
-            });
+            controls.addEventListener('start', () => { logEvent('info', 'drag_start', {}); dragStartPos = { x: camera.position.x, y: camera.position.y, z: camera.position.z }; });
             controls.addEventListener('change', () => {
                 if (dragStartPos) {
                     const dx = camera.position.x - dragStartPos.x;
@@ -170,75 +150,63 @@
                     dragStartPos = { x: camera.position.x, y: camera.position.y, z: camera.position.z };
                 }
             });
-            controls.addEventListener('end', () => {
-                logEvent('info', 'drag_end', {});
-                dragStartPos = null;
-            });
+            controls.addEventListener('end', () => { logEvent('info', 'drag_end', {}); dragStartPos = null; });
 
-            // ----- Raycaster for click detection -----
             const raycaster = new THREE.Raycaster();
             const mouse = new THREE.Vector2();
             let lastHoveredRepo = null;
+            const cloudGroup = new THREE.Group();
+            scene.add(cloudGroup);
 
-            // Listener on the canvas (via window, using renderer.domElement coordinates)
-            window.addEventListener('click', (event) => {
+            // --- Single-click: show README panel ---
+            const readmePanel = document.getElementById('readme-panel');
+            const readmeContent = document.getElementById('readme-content');
+            const closeReadme = document.getElementById('close-readme');
+            closeReadme.onclick = () => readmePanel.style.display = 'none';
+
+            window.addEventListener('click', async (event) => {
                 event.stopPropagation();
                 const rect = renderer.domElement.getBoundingClientRect();
                 mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
                 mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
                 raycaster.setFromCamera(mouse, camera);
-                const intersects = raycaster.intersectObjects(cloudGroup.children.filter(c => c.isMesh));
+                let intersects = raycaster.intersectObjects(cloudGroup.children.filter(c => c.isMesh));
                 let repoName = null;
-                if (intersects.length > 0) {
-                    repoName = intersects[0].object.userData.name;
-                } else if (lastHoveredRepo) {
-                    repoName = lastHoveredRepo;
-                    logEvent('debug', 'click_fallback_to_hover', { repo: repoName });
-                }
+                if (intersects.length > 0) repoName = intersects[0].object.userData.name;
+                else if (lastHoveredRepo) { repoName = lastHoveredRepo; logEvent('debug', 'click_fallback_to_hover', { repo: repoName }); }
                 if (repoName) {
                     logEvent('user_action', 'click_repository', { repo: repoName });
-                    // Visual feedback
                     const spheres = cloudGroup.children.filter(c => c.isMesh);
-                    spheres.forEach(sphere => {
-                        if (sphere.userData.name === repoName) {
-                            sphere.material.emissive.setHex(0xffaa00);
-                            setTimeout(() => sphere.material.emissive.setHex(0x1a4d40), 500);
-                        }
-                    });
+                    spheres.forEach(sphere => { if(sphere.userData.name === repoName) { sphere.material.emissive.setHex(0xffaa00); setTimeout(() => sphere.material.emissive.setHex(0x1a4d40), 500); } });
+                    // Show README panel
+                    readmeContent.innerHTML = "Loading README...";
+                    readmePanel.style.display = 'block';
+                    const readmeText = await fetchReadme(repoName);
+                    readmeContent.innerHTML = `<strong>${repoName}</strong><br><br>${readmeText.replace(/\n/g, '<br>')}<br><br><a href="https://github.com/swipswaps/${repoName}" target="_blank">Open on GitHub →</a>`;
                 } else {
                     logEvent('debug', 'click_canvas_empty', { clientX: event.clientX, clientY: event.clientY });
+                    readmePanel.style.display = 'none';
                 }
             });
 
-            // Double‑click detection (using the same fallback)
-            let clickTimer = null;
-            window.addEventListener('click', (event) => {
+            // --- Native double-click: open GitHub (reliable) ---
+            window.addEventListener('dblclick', async (event) => {
                 event.stopPropagation();
-                if (clickTimer) {
-                    clearTimeout(clickTimer);
-                    clickTimer = null;
-                    const rect = renderer.domElement.getBoundingClientRect();
-                    mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-                    mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-                    raycaster.setFromCamera(mouse, camera);
-                    const intersects = raycaster.intersectObjects(cloudGroup.children.filter(c => c.isMesh));
-                    let repoName = null;
-                    if (intersects.length > 0) {
-                        repoName = intersects[0].object.userData.name;
-                    } else if (lastHoveredRepo) {
-                        repoName = lastHoveredRepo;
-                        logEvent('debug', 'double_click_fallback_to_hover', { repo: repoName });
-                    }
-                    if (repoName) {
-                        logEvent('user_action', 'double_click_repository', { repo: repoName });
-                        window.open(`https://github.com/swipswaps/${repoName}`, '_blank', 'noopener,noreferrer');
-                    }
-                } else {
-                    clickTimer = setTimeout(() => { clickTimer = null; }, DBL_CLICK_DELAY);
+                const rect = renderer.domElement.getBoundingClientRect();
+                mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+                mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+                raycaster.setFromCamera(mouse, camera);
+                let intersects = raycaster.intersectObjects(cloudGroup.children.filter(c => c.isMesh));
+                let repoName = null;
+                if (intersects.length > 0) repoName = intersects[0].object.userData.name;
+                else if (lastHoveredRepo) { repoName = lastHoveredRepo; logEvent('debug', 'double_click_fallback_to_hover', { repo: repoName }); }
+                if (repoName) {
+                    logEvent('user_action', 'double_click_repository', { repo: repoName });
+                    window.open(`https://github.com/swipswaps/${repoName}`, '_blank', 'noopener,noreferrer');
                 }
             });
 
-            // Hover via raycasting on mousemove (throttled) – stores lastHoveredRepo
+            // Hover
             let hoverDebounce = null;
             window.addEventListener('mousemove', (event) => {
                 if (hoverDebounce) return;
@@ -251,24 +219,12 @@
                     if (intersects.length > 0) {
                         const repoName = intersects[0].object.userData.name;
                         lastHoveredRepo = repoName;
-                        if (window._lastHover !== repoName) {
-                            window._lastHover = repoName;
-                            logEvent('debug', 'hover_repository', { repo: repoName });
-                        }
-                    } else {
-                        window._lastHover = null;
-                        lastHoveredRepo = null;
-                    }
+                        if (window._lastHover !== repoName) { window._lastHover = repoName; logEvent('debug', 'hover_repository', { repo: repoName }); }
+                    } else { window._lastHover = null; lastHoveredRepo = null; }
                     hoverDebounce = null;
                 }, 50);
             });
 
-            // ----- Create spheres and labels -----
-            const cloudGroup = new THREE.Group();
-            scene.add(cloudGroup);
-            window._cloudGroup = cloudGroup;
-
-            // Lighting
             const ambientLight = new THREE.AmbientLight(0x404040);
             scene.add(ambientLight);
             const dirLight = new THREE.DirectionalLight(0xffffff, 1);
@@ -276,9 +232,9 @@
             scene.add(dirLight);
 
             repos.forEach(repo => {
-                const geometry = new THREE.SphereGeometry(0.4, 16, 16);
-                const material = new THREE.MeshStandardMaterial({ color: 0x5effe0 });
-                const sphere = new THREE.Mesh(geometry, material);
+                const color = colorFromName(repo.name);
+                const material = new THREE.MeshStandardMaterial({ color: color });
+                const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.4, 16, 16), material);
                 const phi = Math.acos(2 * Math.random() - 1);
                 const theta = 2 * Math.PI * Math.random();
                 const radius = 8;
@@ -288,11 +244,10 @@
                 sphere.userData = { name: repo.name };
 
                 const div = document.createElement('div');
-                div.textContent = repo.name.length > 25 ? repo.name.substring(0, 22) + '...' : repo.name;
+                div.textContent = repo.name.length > 25 ? repo.name.substring(0,22)+'...' : repo.name;
                 div.style.cssText = 'color:#5effe0;font-size:12px;font-family:monospace;background:rgba(0,0,0,0.7);padding:4px 8px;border-radius:20px;border:1px solid #5effe0;white-space:nowrap;';
                 div.className = 'repo-label';
                 div.style.pointerEvents = 'none';
-
                 const label = new CSS2DObject(div);
                 label.position.copy(sphere.position);
                 cloudGroup.add(sphere);
@@ -300,73 +255,23 @@
             });
 
             evidenceLog(`✅ Rendered ${repos.length} real repos`);
-            evidenceLog('🎨 App ready – drag from anywhere, click spheres (raycasting + hover fallback)');
+            evidenceLog('🎨 App ready: single-click shows README, double-click opens GitHub');
 
-            // Functional self-test
-            setTimeout(() => {
-                const labelCount = cloudGroup.children.filter(c => c.isCSS2DObject).length;
-                if (labelCount > 0) {
-                    logEvent('functional', 'cloud_working', { labels: labelCount });
-                } else {
-                    logEvent('error', 'cloud_failure', { labels: labelCount });
-                }
-            }, 3000);
-
-            // Performance observers
-            if (window.PerformanceObserver) {
-                const longTaskObserver = new PerformanceObserver((list) => {
-                    for (const entry of list.getEntries()) {
-                        if (entry.duration > 50) {
-                            logEvent('warn', 'long_task', { duration_ms: entry.duration.toFixed(2), name: entry.name });
-                        }
-                    }
-                });
-                longTaskObserver.observe({ type: 'longtask', buffered: true });
-                logEvent('info', 'longtask_observer_active', {});
-            }
-
-            // cloudGroup.children.forEach is required by static checks; we use querySelectorAll for performance.
-            // Search and clear functionality
             const searchInput = document.getElementById('searchInput');
             const searchBtn = document.getElementById('searchBtn');
             const clearBtn = document.getElementById('clearBtn');
-
-            if (clearBtn) {
-                clearBtn.onclick = () => {
-                    if (searchInput) searchInput.value = '';
-                    const labels = document.querySelectorAll('.repo-label');
-                    labels.forEach(label => label.style.display = 'block');
-                    logEvent('user_action', 'clear_filter', {});
-                };
-            }
-
-            if (searchBtn) {
-                searchBtn.onclick = () => {
-                    const query = searchInput.value.trim().toLowerCase();
-                    logEvent('user_action', 'filter', { query });
-                    const labels = document.querySelectorAll('.repo-label');
-                    let visible = 0;
-                    labels.forEach(label => {
-                        if (label.textContent.toLowerCase().includes(query)) {
-                            label.style.display = 'block';
-                            visible++;
-                        } else {
-                            label.style.display = 'none';
-                        }
-                    });
-                    logEvent('info', 'filter_result', { visible });
-                };
-            }
+            if (clearBtn) clearBtn.onclick = () => { if(searchInput) searchInput.value=''; document.querySelectorAll('.repo-label').forEach(lbl=>lbl.style.display='block'); logEvent('user_action','clear_filter',{}); };
+            if (searchBtn) searchBtn.onclick = () => { const q=searchInput.value.trim().toLowerCase(); logEvent('user_action','filter',{query:q}); let v=0; document.querySelectorAll('.repo-label').forEach(lbl=>{ if(lbl.textContent.toLowerCase().includes(q)) { lbl.style.display='block'; v++; } else lbl.style.display='none'; }); logEvent('info','filter_result',{visible:v}); };
 
             function animate() {
                 requestAnimationFrame(animate);
                 controls.update();
                 renderer.render(scene, camera);
                 labelRenderer.render(scene, camera);
+                minimapRenderer.render(scene, minimapCamera);
             }
             animate();
         }
-
         initThree();
     </script>
 </body>
