@@ -146,6 +146,84 @@
             const minimapRenderer = new THREE.WebGLRenderer({ canvas: minimapCanvas, alpha: true });
             minimapRenderer.setSize(180, 180);
             minimapRenderer.setClearColor(0x050510, 0.8);
+
+            // --- Minimap camera view rectangle (top‑down projection) ---
+            const minimapOverlay = document.createElement('canvas');
+            minimapOverlay.width = 180;
+            minimapOverlay.height = 180;
+            minimapOverlay.style.position = 'absolute';
+            minimapOverlay.style.top = '0';
+            minimapOverlay.style.left = '0';
+            minimapOverlay.style.pointerEvents = 'auto'; // allow clicks
+            const minimapContainer = document.getElementById('minimap-container');
+            minimapContainer.style.position = 'relative';
+            minimapContainer.appendChild(minimapOverlay);
+            const overlayCtx = minimapOverlay.getContext('2d');
+            
+            function updateMinimapRectangle() {
+                overlayCtx.clearRect(0, 0, 180, 180);
+                // Get camera position and target, project onto top‑down (ignore Y)
+                const camX = camera.position.x;
+                const camZ = camera.position.z;
+                const targetX = controls.target.x;
+                const targetZ = controls.target.z;
+                // Compute view direction vector (top‑down)
+                const dirX = targetX - camX;
+                const dirZ = targetZ - camZ;
+                const length = Math.hypot(dirX, dirZ);
+                if (length < 0.01) return;
+                const normX = dirX / length;
+                const normZ = dirZ / length;
+                // Perpendicular (left vector) for rectangle width
+                const perpX = -normZ;
+                const perpZ = normX;
+                // Rectangle half‑width (based on camera field of view at a certain distance)
+                const dist = Math.hypot(camX - targetX, camZ - targetZ);
+                const halfWidth = Math.tan(camera.fov * Math.PI / 360) * dist;
+                // Scale from world units (-10..10) to minimap pixels (0..180)
+                function worldToMinimap(x, z) {
+                    const px = ((x + 10) / 20) * 180;
+                    const py = ((z + 10) / 20) * 180;
+                    return { x: px, y: py };
+                }
+                const center = worldToMinimap(targetX, targetZ);
+                const tip = worldToMinimap(targetX + normX * 1.5, targetZ + normZ * 1.5);
+                const left = worldToMinimap(targetX + perpX * halfWidth, targetZ + perpZ * halfWidth);
+                const right = worldToMinimap(targetX - perpX * halfWidth, targetZ - perpZ * halfWidth);
+                overlayCtx.beginPath();
+                overlayCtx.moveTo(center.x, center.y);
+                overlayCtx.lineTo(tip.x, tip.y);
+                overlayCtx.lineTo(right.x, right.y);
+                overlayCtx.fillStyle = 'rgba(255,0,0,0.3)';
+                overlayCtx.fill();
+                overlayCtx.strokeStyle = 'red';
+                overlayCtx.lineWidth = 1;
+                overlayCtx.stroke();
+                // Draw a small circle at camera position
+                const camPx = worldToMinimap(camX, camZ);
+                overlayCtx.beginPath();
+                overlayCtx.arc(camPx.x, camPx.y, 2, 0, 2*Math.PI);
+                overlayCtx.fillStyle = 'yellow';
+                overlayCtx.fill();
+            }
+            // Update rectangle on each frame (in animate)
+            // Also add click handler on minimap overlay to rotate camera
+            minimapOverlay.addEventListener('click', (e) => {
+                const rect = minimapOverlay.getBoundingClientRect();
+                const scaleX = 180 / rect.width;
+                const scaleY = 180 / rect.height;
+                const canvasX = (e.clientX - rect.left) * scaleX;
+                const canvasY = (e.clientY - rect.top) * scaleY;
+                // Convert minimap pixel to world X,Z
+                const worldX = (canvasX / 180) * 20 - 10;
+                const worldZ = (canvasY / 180) * 20 - 10;
+                // Set controls target to that point
+                controls.target.set(worldX, 0, worldZ);
+                controls.update();
+                logEvent('user_action', 'minimap_click', { x: worldX, z: worldZ });
+            });
+            // Call updateMinimapRectangle() inside animate()
+
             const minimapCamera = new THREE.OrthographicCamera(-10, 10, 10, -10, 0.1, 50);
             minimapCamera.position.set(0, 20, 0);
             minimapCamera.lookAt(0, 0, 0);
@@ -460,6 +538,7 @@
                 renderer.render(scene, camera);
                 labelRenderer.render(scene, camera);
                 minimapRenderer.render(scene, minimapCamera);
+                if (typeof updateMinimapRectangle === "function") updateMinimapRectangle();
             }
             animate();
         }
