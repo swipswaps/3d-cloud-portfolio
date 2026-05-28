@@ -161,6 +161,95 @@
             const controls = new OrbitControls(camera, renderer.domElement);
             controls.enableDamping = true;
             controls.dampingFactor = 0.02;
+            // --- Control panel logic (safe after controls exist) ---
+            // Wait for DOM and Three.js elements to be ready
+            (function initControlPanel() {
+                const ctrlToggle = document.getElementById('ctrl-toggle');
+                const ctrlPanel = document.getElementById('control-panel');
+                if (!ctrlToggle || !ctrlPanel) {
+                    console.warn('Control panel elements not found, retrying...');
+                    setTimeout(initControlPanel, 100);
+                    return;
+                }
+                ctrlToggle.onclick = () => {
+                    const isHidden = ctrlPanel.style.display === 'none';
+                    ctrlPanel.style.display = isHidden ? 'block' : 'none';
+                    logEvent('info', 'control_panel_toggle', { visible: isHidden });
+                };
+                ctrlPanel.style.display = 'none';
+                
+                // Store initial camera state for reset
+                const initialCameraPos = camera.position.clone();
+                const initialControlsTarget = controls.target.clone();
+                
+                const autoRotateBtn = document.getElementById('toggleAutoRotate');
+                const dampingBtn = document.getElementById('toggleDamping');
+                const dampingSlider = document.getElementById('dampingFactor');
+                const dampingVal = document.getElementById('dampingVal');
+                const rotSlider = document.getElementById('rotateSpeed');
+                const rotVal = document.getElementById('rotateVal');
+                const zoomSlider = document.getElementById('zoomSpeed');
+                const zoomVal = document.getElementById('zoomVal');
+                const resetBtn = document.getElementById('resetViewBtn');
+                
+                if (autoRotateBtn) {
+                    autoRotateBtn.onclick = () => {
+                        controls.autoRotate = !controls.autoRotate;
+                        autoRotateBtn.textContent = controls.autoRotate ? 'ON' : 'OFF';
+                        logEvent('user_action', 'auto_rotate_toggle', { state: controls.autoRotate });
+                    };
+                }
+                if (dampingBtn) {
+                    dampingBtn.onclick = () => {
+                        controls.enableDamping = !controls.enableDamping;
+                        dampingBtn.textContent = controls.enableDamping ? 'ON' : 'OFF';
+                        logEvent('user_action', 'damping_toggle', { state: controls.enableDamping });
+                    };
+                }
+                if (dampingSlider) {
+                    dampingSlider.oninput = () => {
+                        const val = parseFloat(dampingSlider.value);
+                        controls.dampingFactor = val;
+                        dampingVal.textContent = val.toFixed(2);
+                        logEvent('user_action', 'damping_factor_change', { value: val });
+                    };
+                }
+                if (rotSlider) {
+                    rotSlider.oninput = () => {
+                        const val = parseFloat(rotSlider.value);
+                        controls.rotateSpeed = val;
+                        rotVal.textContent = val.toFixed(1);
+                        logEvent('user_action', 'rotate_speed_change', { value: val });
+                    };
+                }
+                if (zoomSlider) {
+                    zoomSlider.oninput = () => {
+                        const val = parseFloat(zoomSlider.value);
+                        controls.zoomSpeed = val;
+                        zoomVal.textContent = val.toFixed(1);
+                        logEvent('user_action', 'zoom_speed_change', { value: val });
+                    };
+                }
+                if (resetBtn) {
+                    resetBtn.onclick = () => {
+                        camera.position.copy(initialCameraPos);
+                        controls.target.copy(initialControlsTarget);
+                        controls.update();
+                        logEvent('user_action', 'reset_view', { position: camera.position, target: controls.target });
+                    };
+                }
+            })();
+            
+            // Ensure auto-rotate stops on drag (independent of panel)
+            controls.addEventListener('start', () => {
+                if (controls.autoRotate) {
+                    controls.autoRotate = false;
+                    const autoRotateBtn = document.getElementById('toggleAutoRotate');
+                    if (autoRotateBtn) autoRotateBtn.textContent = 'OFF';
+                    logEvent('user_action', 'auto_rotate_disabled_by_drag', {});
+                }
+            });
+
             controls.autoRotate = true;
             controls.autoRotateSpeed = 0.8;
 
