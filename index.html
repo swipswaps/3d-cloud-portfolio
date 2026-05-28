@@ -388,6 +388,28 @@
                     if (intersects.length > 0) {
                         const repoName = intersects[0].object.userData.name;
                         lastHoveredRepo = repoName;
+
+                    // Hover visual feedback
+                    if (intersects.length > 0) {
+                        const hit = intersects[0].object;
+                        if (window._lastHoveredSphere !== hit) {
+                            if (window._lastHoveredSphere) {
+                                window._lastHoveredSphere.material.emissiveIntensity = 0;
+                            }
+                            hit.material.emissiveIntensity = 0.6;
+                            window._lastHoveredSphere = hit;
+                            renderer.domElement.style.cursor = "grab";
+                    renderer.domElement.style.cursor = 'pointer';
+                        }
+                    } else {
+                        if (window._lastHoveredSphere) {
+                            window._lastHoveredSphere.material.emissiveIntensity = 0;
+                            window._lastHoveredSphere = null;
+                        }
+                        renderer.domElement.style.cursor = "grab";
+                    renderer.domElement.style.cursor = 'grab';
+                    }
+
                         if (window._lastHover !== repoName) { window._lastHover = repoName; logEvent('debug', 'hover_repository', { repo: repoName }); }
                     } else { window._lastHover = null; lastHoveredRepo = null; }
                     hoverDebounce = null;
