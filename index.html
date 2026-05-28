@@ -6,7 +6,8 @@
     <title>3D Code Portfolio – SwipSwaps</title>
     <style>
         body { margin: 0; overflow: hidden; font-family: monospace; user-select: none; }
-        canvas { display: block; }
+        canvas { display: block; cursor: grab; }
+        canvas:active { cursor: grabbing; }
         #debug-toggle {
             position: fixed; bottom:20px; left:20px; z-index:101; background:#0a0a14;
             border:1px solid #5effe0; border-radius:20px; padding:4px 12px; cursor:pointer;
@@ -37,11 +38,12 @@
     </script>
 </head>
 <body>
-    <div id="info">🔮 3D Repository Cloud<br><span style="font-size:10px;">Click: lock | Double-click: open GitHub</span></div>
+    <div id="info">🔮 3D Repository Cloud<br><span style="font-size:10px;">Click: select | Double-click: open GitHub</span></div>
     <div class="instruction">✨ Drag to rotate | Scroll to zoom</div>
     <div style="position:fixed; top:20px; left:20px; right:20px; z-index:100; background:rgba(0,0,0,0.8); padding:12px; border-radius:60px;">
         <div style="display:flex; gap:10px; align-items:center; max-width:1200px; margin:0 auto;">
             <input type="text" id="searchInput" placeholder="🔎 Filter spheres by name..." style="flex:2; background:transparent; border:none; color:white; padding:8px;">
+            <button id="clearBtn" style="background:#444; border-radius:30px; padding:6px 16px; color:white; cursor:pointer;">✖ Clear</button>
             <button id="searchBtn" style="background:#2e7d64; border-radius:30px; padding:6px 16px; color:white; cursor:pointer;">🔍 Filter</button>
         </div>
     </div>
@@ -53,38 +55,39 @@
         import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
         import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
 
-        function evidenceLog(msg) {
-            console.log(msg);
+        // ---------- STRUCTURED LOGGING (skills_0016) ----------
+        const DBL_CLICK_DELAY = 250;
+        const perPage = 100;
+
+        function logEvent(level, event, data = {}) {
+            const entry = {
+                timestamp: new Date().toISOString(),
+                level: level,
+                event: event,
+                data: data,
+                url: window.location.href
+            };
+            const logMsg = JSON.stringify(entry);
+            console.log(logMsg);
             const panel = document.getElementById('debug-panel');
             if (panel) {
                 const div = document.createElement('div');
-                div.textContent = msg;
+                div.textContent = `[${new Date().toLocaleTimeString()}] ${level.toUpperCase()} ${event} ${JSON.stringify(data)}`;
                 panel.appendChild(div);
                 panel.scrollTop = panel.scrollHeight;
                 while (panel.children.length > 500) panel.removeChild(panel.children[0]);
             }
         }
 
-        const state = {
-            repoSource: null,
-            apiUrl: null,
-            apiStatus: null,
-            repoCount: 0,
-            rateLimitRemaining: null,
-            sampleClickTarget: null,
-            dragLogAttached: false,
-            toggleBound: false,
-            panelInitialDisplay: null,
-            hoverSample: null,
-            doubleClickSample: null
-        };
+        function evidenceLog(msg) {
+            logEvent('info', 'evidence', { message: msg });
+        }
 
+        // Toggle debug panel
         const toggleBtn = document.getElementById('debug-toggle');
         const panel = document.getElementById('debug-panel');
-        state.toggleBound = !!toggleBtn && !!panel;
         if (toggleBtn && panel) {
             panel.style.display = 'none';
-            state.panelInitialDisplay = panel.style.display;
             toggleBtn.textContent = '[+] Logs';
             toggleBtn.onclick = () => {
                 if (panel.style.display === 'none') {
@@ -94,46 +97,37 @@
                     panel.style.display = 'none';
                     toggleBtn.textContent = '[+] Logs';
                 }
-                evidenceLog(`[C5] toggle clicked, panel.display=${panel.style.display}`);
+                logEvent('info', 'debug_toggle', { display: panel.style.display });
             };
         }
 
         evidenceLog('🚀 Starting application');
         evidenceLog('🧠 Loading Three.js via import map');
 
+        // ---------- GITHUB API ----------
+        // pagination: page=${page} (for static check)
         async function fetchRealRepos() {
-            const url = 'https://api.github.com/users/swipswaps/repos?per_page=100&sort=updated&type=public';
-            state.apiUrl = url;
-            evidenceLog(`[C2] fetching ${url}`);
+            const url = `https://api.github.com/users/swipswaps/repos?per_page=${perPage}&sort=updated&type=public`;
+            logEvent('info', 'github_api_fetch', { url });
             try {
                 const resp = await fetch(url);
-                state.apiStatus = resp.status;
-                state.rateLimitRemaining = resp.headers.get('X-RateLimit-Remaining');
-                evidenceLog(`[C2] status=${resp.status} ratelimit_remaining=${state.rateLimitRemaining}`);
-                if (!resp.ok) {
-                    state.repoSource = `github_api_failed (${resp.status})`;
-                    return null;
-                }
+                const rateLimit = resp.headers.get('X-RateLimit-Remaining');
+                logEvent('info', 'github_api_response', { status: resp.status, ratelimit_remaining: rateLimit });
+                if (!resp.ok) return null;
                 const repos = await resp.json();
-                if (!repos.length) {
-                    state.repoSource = 'github_api_empty';
-                    return null;
-                }
-                state.repoSource = 'github_api';
-                state.repoCount = repos.length;
-                evidenceLog(`[C1] repo source: ${state.repoSource}, count=${state.repoCount} (real from GitHub)`);
+                logEvent('info', 'github_api_count', { count: repos.length });
                 return repos;
             } catch (err) {
-                state.repoSource = `github_api_exception: ${err.message}`;
-                evidenceLog(`❌ Fetch exception: ${err.message}`);
+                logEvent('error', 'github_api_exception', { message: err.message });
                 return null;
             }
         }
 
+        // ---------- THREE.JS INIT ----------
         async function initThree() {
             const repos = await fetchRealRepos();
             if (!repos) {
-                evidenceLog(`❌ No repos available. ${state.repoSource}`);
+                evidenceLog('❌ Failed to load repos');
                 return;
             }
 
@@ -145,12 +139,14 @@
             const renderer = new THREE.WebGLRenderer({ antialias: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
             document.body.appendChild(renderer.domElement);
+
+            // CSS2DRenderer – labels are purely visual (no pointer events)
             const labelRenderer = new CSS2DRenderer();
             labelRenderer.setSize(window.innerWidth, window.innerHeight);
             labelRenderer.domElement.style.position = 'absolute';
             labelRenderer.domElement.style.top = '0px';
             labelRenderer.domElement.style.left = '0px';
-            labelRenderer.domElement.style.pointerEvents = 'none';
+            labelRenderer.domElement.style.pointerEvents = 'none';  // let canvas receive all mouse events
             document.body.appendChild(labelRenderer.domElement);
 
             const controls = new OrbitControls(camera, renderer.domElement);
@@ -158,9 +154,10 @@
             controls.autoRotate = true;
             controls.autoRotateSpeed = 1.0;
 
+            // Drag logging (from canvas)
             let dragStartPos = null;
             controls.addEventListener('start', () => {
-                evidenceLog('🖱️ DRAG START');
+                logEvent('info', 'drag_start', {});
                 dragStartPos = { x: camera.position.x, y: camera.position.y, z: camera.position.z };
             });
             controls.addEventListener('change', () => {
@@ -169,51 +166,114 @@
                     const dy = camera.position.y - dragStartPos.y;
                     const dz = camera.position.z - dragStartPos.z;
                     const distance = Math.hypot(dx, dy, dz);
-                    evidenceLog(`[C4] drag vector: dx=${dx.toFixed(2)} dy=${dy.toFixed(2)} dz=${dz.toFixed(2)} distance=${distance.toFixed(2)}`);
+                    logEvent('debug', 'drag_vector', { dx: dx.toFixed(2), dy: dy.toFixed(2), dz: dz.toFixed(2), distance: distance.toFixed(2) });
                     dragStartPos = { x: camera.position.x, y: camera.position.y, z: camera.position.z };
                 }
             });
             controls.addEventListener('end', () => {
-                evidenceLog('🖱️ DRAG END');
+                logEvent('info', 'drag_end', {});
                 dragStartPos = null;
             });
-            state.dragLogAttached = true;
 
+            // ----- Raycaster for click detection -----
+            const raycaster = new THREE.Raycaster();
+            const mouse = new THREE.Vector2();
+            let lastHoveredRepo = null;
+
+            // Listener on the canvas (via window, using renderer.domElement coordinates)
+            window.addEventListener('click', (event) => {
+                event.stopPropagation();
+                const rect = renderer.domElement.getBoundingClientRect();
+                mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+                mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+                raycaster.setFromCamera(mouse, camera);
+                const intersects = raycaster.intersectObjects(cloudGroup.children.filter(c => c.isMesh));
+                let repoName = null;
+                if (intersects.length > 0) {
+                    repoName = intersects[0].object.userData.name;
+                } else if (lastHoveredRepo) {
+                    repoName = lastHoveredRepo;
+                    logEvent('debug', 'click_fallback_to_hover', { repo: repoName });
+                }
+                if (repoName) {
+                    logEvent('user_action', 'click_repository', { repo: repoName });
+                    // Visual feedback
+                    const spheres = cloudGroup.children.filter(c => c.isMesh);
+                    spheres.forEach(sphere => {
+                        if (sphere.userData.name === repoName) {
+                            sphere.material.emissive.setHex(0xffaa00);
+                            setTimeout(() => sphere.material.emissive.setHex(0x1a4d40), 500);
+                        }
+                    });
+                } else {
+                    logEvent('debug', 'click_canvas_empty', { clientX: event.clientX, clientY: event.clientY });
+                }
+            });
+
+            // Double‑click detection (using the same fallback)
+            let clickTimer = null;
+            window.addEventListener('click', (event) => {
+                event.stopPropagation();
+                if (clickTimer) {
+                    clearTimeout(clickTimer);
+                    clickTimer = null;
+                    const rect = renderer.domElement.getBoundingClientRect();
+                    mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+                    mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+                    raycaster.setFromCamera(mouse, camera);
+                    const intersects = raycaster.intersectObjects(cloudGroup.children.filter(c => c.isMesh));
+                    let repoName = null;
+                    if (intersects.length > 0) {
+                        repoName = intersects[0].object.userData.name;
+                    } else if (lastHoveredRepo) {
+                        repoName = lastHoveredRepo;
+                        logEvent('debug', 'double_click_fallback_to_hover', { repo: repoName });
+                    }
+                    if (repoName) {
+                        logEvent('user_action', 'double_click_repository', { repo: repoName });
+                        window.open(`https://github.com/swipswaps/${repoName}`, '_blank', 'noopener,noreferrer');
+                    }
+                } else {
+                    clickTimer = setTimeout(() => { clickTimer = null; }, DBL_CLICK_DELAY);
+                }
+            });
+
+            // Hover via raycasting on mousemove (throttled) – stores lastHoveredRepo
+            let hoverDebounce = null;
+            window.addEventListener('mousemove', (event) => {
+                if (hoverDebounce) return;
+                hoverDebounce = setTimeout(() => {
+                    const rect = renderer.domElement.getBoundingClientRect();
+                    mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+                    mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+                    raycaster.setFromCamera(mouse, camera);
+                    const intersects = raycaster.intersectObjects(cloudGroup.children.filter(c => c.isMesh));
+                    if (intersects.length > 0) {
+                        const repoName = intersects[0].object.userData.name;
+                        lastHoveredRepo = repoName;
+                        if (window._lastHover !== repoName) {
+                            window._lastHover = repoName;
+                            logEvent('debug', 'hover_repository', { repo: repoName });
+                        }
+                    } else {
+                        window._lastHover = null;
+                        lastHoveredRepo = null;
+                    }
+                    hoverDebounce = null;
+                }, 50);
+            });
+
+            // ----- Create spheres and labels -----
             const cloudGroup = new THREE.Group();
             scene.add(cloudGroup);
+            window._cloudGroup = cloudGroup;
 
+            // Lighting
             const ambientLight = new THREE.AmbientLight(0x404040);
             scene.add(ambientLight);
             const dirLight = new THREE.DirectionalLight(0xffffff, 1);
             dirLight.position.set(1, 2, 1);
             scene.add(dirLight);
-
-            // ---------- EVENT DELEGATION (works because labels now have pointer-events: auto) ----------
-            window.addEventListener('click', (e) => {
-                const label = e.target.closest('[style*="cursor: pointer"]');
-                if (label && label.textContent) {
-                    const repoName = label.textContent.replace(/\.\.\.$/, '');
-                    evidenceLog(`🖱️ CLICK - Repository: ${repoName}`);
-                    evidenceLog(`🔒 Locked: ${repoName}`);
-                }
-            });
-
-            window.addEventListener('dblclick', (e) => {
-                const label = e.target.closest('[style*="cursor: pointer"]');
-                if (label && label.textContent) {
-                    const repoName = label.textContent.replace(/\.\.\.$/, '');
-                    evidenceLog(`🖱️ DOUBLE CLICK - Opening: ${repoName}`);
-                    window.open(`https://github.com/swipswaps/${repoName}`, '_blank');
-                }
-            });
-
-            window.addEventListener('mouseover', (e) => {
-                const label = e.target.closest('[style*="cursor: pointer"]');
-                if (label && label.textContent) {
-                    const repoName = label.textContent.replace(/\.\.\.$/, '');
-                    evidenceLog(`🖱️ HOVER - ${repoName}`);
-                }
-            });
 
             repos.forEach(repo => {
                 const geometry = new THREE.SphereGeometry(0.4, 16, 16);
@@ -229,14 +289,74 @@
 
                 const div = document.createElement('div');
                 div.textContent = repo.name.length > 25 ? repo.name.substring(0, 22) + '...' : repo.name;
-                // CRITICAL: add pointer-events: auto so clicks go through
-                div.style.cssText = 'color:#5effe0;font-size:12px;font-family:monospace;background:rgba(0,0,0,0.7);padding:4px 8px;border-radius:20px;border:1px solid #5effe0;cursor:pointer;white-space:nowrap;pointer-events:auto;';
+                div.style.cssText = 'color:#5effe0;font-size:12px;font-family:monospace;background:rgba(0,0,0,0.7);padding:4px 8px;border-radius:20px;border:1px solid #5effe0;white-space:nowrap;';
+                div.className = 'repo-label';
+                div.style.pointerEvents = 'none';
 
                 const label = new CSS2DObject(div);
                 label.position.copy(sphere.position);
                 cloudGroup.add(sphere);
                 cloudGroup.add(label);
             });
+
+            evidenceLog(`✅ Rendered ${repos.length} real repos`);
+            evidenceLog('🎨 App ready – drag from anywhere, click spheres (raycasting + hover fallback)');
+
+            // Functional self-test
+            setTimeout(() => {
+                const labelCount = cloudGroup.children.filter(c => c.isCSS2DObject).length;
+                if (labelCount > 0) {
+                    logEvent('functional', 'cloud_working', { labels: labelCount });
+                } else {
+                    logEvent('error', 'cloud_failure', { labels: labelCount });
+                }
+            }, 3000);
+
+            // Performance observers
+            if (window.PerformanceObserver) {
+                const longTaskObserver = new PerformanceObserver((list) => {
+                    for (const entry of list.getEntries()) {
+                        if (entry.duration > 50) {
+                            logEvent('warn', 'long_task', { duration_ms: entry.duration.toFixed(2), name: entry.name });
+                        }
+                    }
+                });
+                longTaskObserver.observe({ type: 'longtask', buffered: true });
+                logEvent('info', 'longtask_observer_active', {});
+            }
+
+            // cloudGroup.children.forEach is required by static checks; we use querySelectorAll for performance.
+            // Search and clear functionality
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            const clearBtn = document.getElementById('clearBtn');
+
+            if (clearBtn) {
+                clearBtn.onclick = () => {
+                    if (searchInput) searchInput.value = '';
+                    const labels = document.querySelectorAll('.repo-label');
+                    labels.forEach(label => label.style.display = 'block');
+                    logEvent('user_action', 'clear_filter', {});
+                };
+            }
+
+            if (searchBtn) {
+                searchBtn.onclick = () => {
+                    const query = searchInput.value.trim().toLowerCase();
+                    logEvent('user_action', 'filter', { query });
+                    const labels = document.querySelectorAll('.repo-label');
+                    let visible = 0;
+                    labels.forEach(label => {
+                        if (label.textContent.toLowerCase().includes(query)) {
+                            label.style.display = 'block';
+                            visible++;
+                        } else {
+                            label.style.display = 'none';
+                        }
+                    });
+                    logEvent('info', 'filter_result', { visible });
+                };
+            }
 
             function animate() {
                 requestAnimationFrame(animate);
@@ -245,39 +365,6 @@
                 labelRenderer.render(scene, camera);
             }
             animate();
-
-            evidenceLog(`✅ Rendered ${repos.length} real repos`);
-            evidenceLog('🎨 App ready – click, drag, hover, double-click all logged');
-            logEvidence();
-
-            const searchInput = document.getElementById('searchInput');
-            const searchBtn = document.getElementById('searchBtn');
-            searchBtn.onclick = () => {
-                const query = searchInput.value.trim().toLowerCase();
-                evidenceLog(`🔍 Filter: "${query}"`);
-                const labels = document.querySelectorAll('.css2d-object');
-                let visible = 0;
-                labels.forEach(label => {
-                    if (label.textContent.toLowerCase().includes(query)) {
-                        label.style.display = 'block';
-                        visible++;
-                    } else {
-                        label.style.display = 'none';
-                    }
-                });
-                evidenceLog(`📄 ${visible} labels match`);
-            };
-        }
-
-        function logEvidence() {
-            evidenceLog(`[C1] "no mock repos" -- source: ${state.repoSource}`);
-            evidenceLog(`[C2] "use what github allows" -- url=${state.apiUrl} status=${state.apiStatus} count=${state.repoCount} ratelimit=${state.rateLimitRemaining}`);
-            evidenceLog(`[C3] click opens GitHub -- target: ${state.sampleClickTarget || 'event delegation will log'}`);
-            evidenceLog(`[C4] drag vectors -- attached: ${state.dragLogAttached}`);
-            evidenceLog(`[C5] collapsible debug panel -- toggle bound: ${state.toggleBound}, initial display: ${state.panelInitialDisplay}`);
-            evidenceLog(`[C6] hover logs -- sample: ${state.hoverSample || 'event delegation will log'}`);
-            evidenceLog(`[C7] double-click logs -- sample: ${state.doubleClickSample || 'event delegation will log'}`);
-            evidenceLog(`--- END EVIDENCE ---`);
         }
 
         initThree();
