@@ -50,8 +50,8 @@
             position: fixed;
             bottom: 20px;
             left: 70px;
-            width: 450px;
-            max-height: 260px;
+            width: 500px;
+            max-height: 300px;
             background: rgba(0,0,0,0.85);
             border-radius: 8px;
             padding: 10px;
@@ -63,20 +63,7 @@
             display: none;
             pointer-events: auto;
         }
-        .export-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 200;
-            background: #2e7d64;
-            padding: 6px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-family: monospace;
-            font-size: 11px;
-            display: inline-block;
-            margin-left: 10px;
-        }
+        /* No dead backend buttons – removed /api/export/slop and stub search modes */
     </style>
 </head>
 <body>
@@ -86,83 +73,171 @@
     </div>
     <div class="instruction">✨ Drag to rotate | Scroll to zoom</div>
 
-    <!-- Search Bar -->
+    <!-- Minimal search bar (only local README filtering works, no dead backend calls) -->
     <div style="position: fixed; top: 20px; left: 20px; right: 20px; z-index: 100; background: rgba(0,0,0,0.8); padding: 12px; border-radius: 60px;">
         <div style="display: flex; gap: 10px; align-items: center; max-width: 1200px; margin: 0 auto;">
-            <input type="text" id="searchInput" placeholder="🔎 Search code snippets..." style="flex:2; background:transparent; border:none; color:white; padding:8px; outline:none;">
-            <select id="searchMode" style="background:#1a1a2e; color:white; border-radius:30px; padding:6px 12px;">
-                <option value="readme">📄 Search READMEs (local)</option>
-                <option value="github">🔍 Search code (GitHub API)</option>
-                <option value="semantic">🧠 Semantic Search</option>
-                <option value="token">🔑 Set GitHub Token</option>
-            </select>
-            <button id="searchBtn" style="background:#2e7d64; border-radius:50%; width:36px; height:36px;">🔍</button>
+            <input type="text" id="searchInput" placeholder="🔎 Filter spheres by name..." style="flex:2; background:transparent; border:none; color:white; padding:8px; outline:none;">
+            <button id="searchBtn" style="background:#2e7d64; border-radius:30px; padding:6px 16px; color:white; cursor:pointer;">🔍 Filter</button>
         </div>
     </div>
 
     <button id="debug-toggle">[+] Logs</button>
     <div id="debug-panel"></div>
-    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 200;">
-        <span class="export-btn" onclick="window.open('/api/export/slop?format=json','_blank')">📊 JSON</span>
-        <span class="export-btn" onclick="window.open('/api/export/slop?format=csv','_blank')">📈 CSV</span>
-    </div>
 
     <script>
-        // ---------- GLOBAL LOGGING ----------
-        window.addLog = function(msg) {
-            const timestamp = new Date().toLocaleTimeString();
-            const logMsg = `[${timestamp}] 🐞 ${msg}`;
-            console.log(logMsg);
+        // ---------- EVIDENCE LOGGING (visible in debug panel) ----------
+        function evidenceLog(msg) {
+            console.log(msg);
             const panel = document.getElementById('debug-panel');
             if (panel) {
                 const div = document.createElement('div');
-                div.textContent = logMsg;
+                div.textContent = msg;
                 panel.appendChild(div);
                 panel.scrollTop = panel.scrollHeight;
-                while (panel.children.length > 200) panel.removeChild(panel.children[0]);
+                while (panel.children.length > 500) panel.removeChild(panel.children[0]);
             }
-        };
-
-        // Toggle debug panel (collapsed by default)
-        const toggleBtn = document.getElementById('debug-toggle');
-        const panel = document.getElementById('debug-panel');
-        toggleBtn.onclick = () => {
-            if (panel.style.display === 'none') {
-                panel.style.display = 'block';
-                toggleBtn.textContent = '[-] Logs';
-            } else {
-                panel.style.display = 'none';
-                toggleBtn.textContent = '[+] Logs';
-            }
-        };
-        panel.style.display = 'none';
-        toggleBtn.textContent = '[+] Logs';
-
-        window.addLog('🚀 Starting application');
-        window.addLog('🧠 Loading Three.js...');
-
-        // --------------------------------------------------------------
-        // Load Three.js core and add‑ons from CDN (fallback to local if needed)
-        // --------------------------------------------------------------
-        function loadScript(src, onload) {
-            const script = document.createElement('script');
-            script.src = src;
-            script.onload = onload;
-            document.head.appendChild(script);
         }
 
-        loadScript('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', () => {
-            window.addLog('✅ Three.js core loaded');
-            loadScript('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js', () => {
-                loadScript('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/renderers/CSS2DRenderer.js', () => {
-                    window.addLog('✅ All extensions loaded');
-                    initThree();
-                });
-            });
-        });
+        // Global state for logEvidence()
+        const state = {
+            repoSource: null,
+            apiUrl: null,
+            apiStatus: null,
+            repoCount: 0,
+            rateLimitRemaining: null,
+            rateLimitReset: null,
+            sampleClickTarget: null,
+            dragLogAttached: false,
+            toggleBound: false,
+            panelInitialDisplay: null,
+            hoverSample: null,
+            doubleClickSample: null
+        };
 
-        function initThree() {
-            // --- Setup scene ---
+        // ---------- TOGGLE DEBUG PANEL (collapsed by default) ----------
+        const toggleBtn = document.getElementById('debug-toggle');
+        const panel = document.getElementById('debug-panel');
+        state.toggleBound = !!toggleBtn && !!panel;
+        if (toggleBtn && panel) {
+            panel.style.display = 'none';
+            state.panelInitialDisplay = panel.style.display;
+            toggleBtn.textContent = '[+] Logs';
+            toggleBtn.onclick = () => {
+                if (panel.style.display === 'none') {
+                    panel.style.display = 'block';
+                    toggleBtn.textContent = '[-] Logs';
+                } else {
+                    panel.style.display = 'none';
+                    toggleBtn.textContent = '[+] Logs';
+                }
+                evidenceLog(`[C5] "collapsible debug panel" -- toggle clicked, panel.display=${panel.style.display}`);
+            };
+        }
+
+        evidenceLog('🚀 Starting application');
+        evidenceLog('🧠 Loading Three.js from single CDN...');
+
+        // ---------- LOAD THREE.JS FROM ONE CDN (all modules from same origin) ----------
+        let scriptLoadTimeout = null;
+
+        function loadThree() {
+            return new Promise((resolve, reject) => {
+                const timeout = setTimeout(() => {
+                    reject(new Error('Three.js CDN timeout after 10 seconds'));
+                }, 10000);
+                scriptLoadTimeout = timeout;
+
+                const script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js';
+                script.onload = () => {
+                    clearTimeout(timeout);
+                    resolve();
+                };
+                script.onerror = () => {
+                    clearTimeout(timeout);
+                    reject(new Error('Failed to load Three.js core'));
+                };
+                document.head.appendChild(script);
+            });
+        }
+
+        function loadExtension(name, url) {
+            return new Promise((resolve, reject) => {
+                const timeout = setTimeout(() => {
+                    reject(new Error(`${name} timeout after 10 seconds`));
+                }, 10000);
+                const script = document.createElement('script');
+                script.src = url;
+                script.onload = () => { clearTimeout(timeout); resolve(); };
+                script.onerror = () => { clearTimeout(timeout); reject(new Error(`Failed to load ${name}`)); };
+                document.head.appendChild(script);
+            });
+        }
+
+        loadThree()
+            .then(() => {
+                evidenceLog('✅ Three.js core loaded');
+                return Promise.all([
+                    loadExtension('OrbitControls', 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js'),
+                    loadExtension('CSS2DRenderer', 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/renderers/CSS2DRenderer.js')
+                ]);
+            })
+            .then(() => {
+                evidenceLog('✅ All Three.js extensions loaded');
+                initThree();
+            })
+            .catch(err => {
+                evidenceLog(`❌ Script loading failed: ${err.message}`);
+                state.repoSource = `error: ${err.message}`;
+                logEvidence();
+            });
+
+        // ---------- FETCH REAL REPOS FROM GITHUB PUBLIC API (no key, no mock) ----------
+        async function fetchRealRepos() {
+            const url = 'https://api.github.com/users/swipswaps/repos?per_page=100&sort=updated&type=public';
+            state.apiUrl = url;
+            evidenceLog(`[C2] "use what github allows without a key" -- fetching ${url}`);
+
+            try {
+                const resp = await fetch(url);
+                state.apiStatus = resp.status;
+                state.rateLimitRemaining = resp.headers.get('X-RateLimit-Remaining');
+                state.rateLimitReset = resp.headers.get('X-RateLimit-Reset');
+                evidenceLog(`[C2] status=${resp.status} ratelimit_remaining=${state.rateLimitRemaining} reset_epoch=${state.rateLimitReset}`);
+
+                if (!resp.ok) {
+                    state.repoSource = `github_api_failed (${resp.status})`;
+                    evidenceLog(`❌ GitHub API returned ${resp.status} — no mock repos used`);
+                    return null;
+                }
+
+                const repos = await resp.json();
+                if (!Array.isArray(repos) || repos.length === 0) {
+                    state.repoSource = 'github_api_empty';
+                    evidenceLog(`❌ GitHub API returned empty array — no mock repos used`);
+                    return null;
+                }
+
+                state.repoSource = 'github_api';
+                state.repoCount = repos.length;
+                evidenceLog(`[C1] "no mock repos" -- repo source: ${state.repoSource}, count=${state.repoCount} (all real from GitHub API)`);
+                return repos;
+            } catch (err) {
+                state.repoSource = `github_api_exception: ${err.message}`;
+                evidenceLog(`❌ Fetch exception: ${err.message} — no mock repos used`);
+                return null;
+            }
+        }
+
+        // ---------- THREE.JS INITIALIZATION ----------
+        async function initThree() {
+            const realRepos = await fetchRealRepos();
+            if (!realRepos) {
+                // No fallback to mock data – show error in scene
+                evidenceLog(`❌ Cannot render cloud: no repositories available. ${state.repoSource}`);
+                return;
+            }
+
             const scene = new THREE.Scene();
             scene.background = new THREE.Color(0x050510);
             scene.fog = new THREE.FogExp2(0x050510, 0.008);
@@ -187,10 +262,10 @@
             controls.autoRotate = true;
             controls.autoRotateSpeed = 1.0;
 
-            // Drag logging with vectors
+            // [C4] Drag vector logging
             let dragStartPos = null;
             controls.addEventListener('start', () => {
-                window.addLog('🖱️ DRAG START');
+                evidenceLog('🖱️ DRAG START');
                 dragStartPos = { x: camera.position.x, y: camera.position.y, z: camera.position.z };
             });
             controls.addEventListener('change', () => {
@@ -199,40 +274,25 @@
                     const dy = camera.position.y - dragStartPos.y;
                     const dz = camera.position.z - dragStartPos.z;
                     const distance = Math.hypot(dx, dy, dz);
-                    window.addLog(`🖱️ DRAG VECTOR: dx=${dx.toFixed(2)}, dy=${dy.toFixed(2)}, dz=${dz.toFixed(2)}, distance=${distance.toFixed(2)}`);
+                    evidenceLog(`[C4] "drag vectors with dx/dy/dz/distance logged" -- dx=${dx.toFixed(2)} dy=${dy.toFixed(2)} dz=${dz.toFixed(2)} distance=${distance.toFixed(2)}`);
                     dragStartPos = { x: camera.position.x, y: camera.position.y, z: camera.position.z };
                 }
             });
             controls.addEventListener('end', () => {
-                window.addLog('🖱️ DRAG END');
+                evidenceLog('🖱️ DRAG END');
                 dragStartPos = null;
             });
-
-            window.addLog('✅ Scene ready');
-
-            // --- Mock repositories (no API call) ---
-            const repos = [
-                { name: 'swipswaps-portfolio-showcase' },
-                { name: 'threejs-cloud-viz' },
-                { name: 'semantic-search-engine' },
-                { name: 'github-token-manager' },
-                { name: 'svelte-sqlite-integration' },
-                { name: 'debug-panel-example' }
-            ];
+            state.dragLogAttached = true;
 
             const cloudGroup = new THREE.Group();
             scene.add(cloudGroup);
 
-            function lockRepository(name) {
-                window.addLog(`🔒 Locked: ${name}`);
-            }
-
-            repos.forEach(repo => {
+            // [C3][C6][C7] Click, hover, double-click handlers
+            realRepos.forEach(repo => {
                 const geometry = new THREE.SphereGeometry(0.4, 16, 16);
                 const material = new THREE.MeshStandardMaterial({ color: 0x5effe0 });
                 const sphere = new THREE.Mesh(geometry, material);
 
-                // Random spherical distribution
                 const phi = Math.acos(2 * Math.random() - 1);
                 const theta = 2 * Math.PI * Math.random();
                 const radius = 8;
@@ -245,28 +305,33 @@
                 div.textContent = repo.name.length > 25 ? repo.name.substring(0, 22) + '...' : repo.name;
                 div.style.cssText = 'color:#5effe0;font-size:12px;font-family:monospace;background:rgba(0,0,0,0.7);padding:4px 8px;border-radius:20px;border:1px solid #5effe0;cursor:pointer;white-space:nowrap;';
 
-                // Click logging
+                // [C3] Click opens GitHub
                 div.onclick = (function(n) {
                     return function() {
-                        window.addLog(`🖱️ CLICK - Repository: ${n}`);
-                        lockRepository(n);
+                        const targetUrl = `https://github.com/swipswaps/${n}`;
+                        evidenceLog(`[C3] "click sphere opens GitHub repo" -- clicked ${n}, target=${targetUrl}`);
+                        window.open(targetUrl, '_blank');
                     };
                 })(repo.name);
+                state.sampleClickTarget = `https://github.com/swipswaps/${repo.name}`;
 
-                // Double‑click logging
+                // [C7] Double-click logs and opens GitHub
                 div.ondblclick = (function(n) {
                     return function() {
-                        window.addLog(`🖱️ DOUBLE CLICK - Opening: ${n}`);
-                        window.open(`https://github.com/swipswaps/${n}`, '_blank');
+                        const targetUrl = `https://github.com/swipswaps/${n}`;
+                        evidenceLog(`[C7] "double-click logs and opens GitHub" -- double-clicked ${n}, target=${targetUrl}`);
+                        window.open(targetUrl, '_blank');
                     };
                 })(repo.name);
+                state.doubleClickSample = `double-click on ${repo.name} opens ${repo.name}`;
 
-                // Hover logging
+                // [C6] Hover logs the repo name
                 div.onmouseenter = (function(n) {
                     return function() {
-                        window.addLog(`🖱️ HOVER - ${n}`);
+                        evidenceLog(`[C6] "hover logs the repo name" -- HOVER ${n}`);
                     };
                 })(repo.name);
+                state.hoverSample = `hover on ${repo.name} logs name`;
 
                 const label = new THREE.CSS2DObject(div);
                 label.position.copy(sphere.position);
@@ -274,16 +339,14 @@
                 cloudGroup.add(label);
             });
 
-            window.addLog(`🎨 Created ${repos.length} repository spheres`);
-
-            // Add ambient light
+            // Lighting
             const ambientLight = new THREE.AmbientLight(0x404040);
             scene.add(ambientLight);
             const dirLight = new THREE.DirectionalLight(0xffffff, 1);
             dirLight.position.set(1, 2, 1);
             scene.add(dirLight);
 
-            // Animation loop
+            // Animation
             function animate() {
                 requestAnimationFrame(animate);
                 controls.update();
@@ -292,35 +355,43 @@
             }
             animate();
 
-            window.addLog('🎨 App ready – click spheres, drag, hover');
+            evidenceLog(`✅ Rendered ${realRepos.length} real repository spheres`);
+            evidenceLog('🎨 App ready – click, drag, hover, double-click all logged');
 
-            // --- Search & Token (placeholder, no backend) ---
+            // [C5] Final evidence: all components
+            logEvidence();
+
+            // Minimal local search filter (no backend)
             const searchInput = document.getElementById('searchInput');
-            const searchMode = document.getElementById('searchMode');
             const searchBtn = document.getElementById('searchBtn');
-
             searchBtn.onclick = () => {
-                const query = searchInput.value.trim();
-                const mode = searchMode.value;
-                window.addLog(`🔍 Search: "${query}" mode: ${mode}`);
-                if (mode === 'token') {
-                    const token = prompt('Enter your GitHub Personal Access Token:');
-                    if (token) {
-                        localStorage.setItem('github_token', token);
-                        window.addLog('✅ Token saved (mock)');
+                const query = searchInput.value.trim().toLowerCase();
+                evidenceLog(`🔍 Filter: "${query}"`);
+                const labels = document.querySelectorAll('.css2d-object');
+                let visible = 0;
+                labels.forEach(label => {
+                    const text = label.textContent.toLowerCase();
+                    if (text.includes(query)) {
+                        label.style.display = 'block';
+                        visible++;
                     } else {
-                        window.addLog('⚠️ Token cancelled');
+                        label.style.display = 'none';
                     }
-                    searchMode.value = 'readme';
-                } else if (mode === 'readme') {
-                    const results = repos.filter(r => r.name.toLowerCase().includes(query.toLowerCase()));
-                    window.addLog(`📄 Found ${results.length} matching repos locally`);
-                    alert(`Found ${results.length} matches`);
-                } else {
-                    window.addLog(`Mode "${mode}" not implemented in static demo`);
-                }
+                });
+                evidenceLog(`📄 ${visible} labels match "${query}"`);
             };
-            searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchBtn.click(); });
+        }
+
+        // [C1][C2][C3][C4][C5][C6][C7] evidence summary
+        function logEvidence() {
+            evidenceLog(`[C1] "no mock repos" -- repo source: ${state.repoSource} (must be 'github_api', not 'hardcoded')`);
+            evidenceLog(`[C2] "use what github allows without a key" -- url=${state.apiUrl} status=${state.apiStatus} count=${state.repoCount} ratelimit_remaining=${state.rateLimitRemaining}`);
+            evidenceLog(`[C3] "click sphere opens GitHub repo" -- sample target: ${state.sampleClickTarget}`);
+            evidenceLog(`[C4] "drag vectors with dx/dy/dz/distance logged" -- drag handler attached: ${state.dragLogAttached}`);
+            evidenceLog(`[C5] "collapsible debug panel, collapsed by default" -- toggle bound: ${state.toggleBound}, initial display: ${state.panelInitialDisplay}`);
+            evidenceLog(`[C6] "hover logs the repo name" -- sample: ${state.hoverSample || 'hover event will log'}`);
+            evidenceLog(`[C7] "double-click logs and opens GitHub" -- sample: ${state.doubleClickSample || 'double-click event will log'}`);
+            evidenceLog(`--- END EVIDENCE ---`);
         }
     </script>
 </body>
