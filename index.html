@@ -403,7 +403,7 @@
             repos.forEach(repo => {
                 const color = colorFromName(repo.name);
                 const material = new THREE.MeshStandardMaterial({ color: color });
-                const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.4, 16, 16), material);
+                const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.6, 16, 16), material);
                 const phi = Math.acos(2 * Math.random() - 1);
                 const theta = 2 * Math.PI * Math.random();
                 const radius = 8;
