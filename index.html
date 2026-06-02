@@ -30,6 +30,9 @@
         #ctrl-toggle { position:fixed; bottom:20px; left:300px; background:#0a0a14; border:1px solid #5effe0; border-radius:20px; padding:4px 12px; cursor:pointer; z-index:103; font-size:10px; color:#5effe0; }
         #readme-panel { position:fixed; top:20px; right:20px; width:300px; max-height:400px; background:rgba(0,0,0,0.9); border-radius:12px; border:1px solid #5effe0; z-index:150; pointer-events:auto; color:#ccc; font-size:12px; font-family:monospace; padding:10px; overflow-y:auto; display:none; backdrop-filter:blur(8px); }
         #close-readme { float:right; cursor:pointer; background:#333; padding:2px 8px; border-radius:10px; }
+        #searchContainer { position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.7); padding: 8px 12px; border-radius: 8px; z-index: 100; font-family: monospace; backdrop-filter: blur(4px); border: 1px solid #5effe0; }
+        #fuzzySearchInput { background: #1e1e2f; border: 1px solid #5effe0; color: #5effe0; padding: 6px 30px 6px 12px; border-radius: 6px; font-size: 14px; width: 220px; outline: none; }
+        #fuzzySearchInput:focus { border-color: #ff79c6; box-shadow: 0 0 5px #ff79c6; }
     </style>
     <script type="importmap">
         { "imports": { "three": "https://unpkg.com/three@0.128.0/build/three.module.js", "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/" } }
@@ -38,14 +41,8 @@
 <body>
     <div id="info">🔮 3D Repository Cloud<br><span style="font-size:10px;">Click: README | Double-click: GitHub</span></div>
     <div class="instruction">✨ Drag to rotate | Pinch to zoom</div>
-    <div style="position:fixed; top:20px; left:20px; right:20px; z-index:100; background:rgba(0,0,0,0.8); padding:12px; border-radius:60px;">
-        <div style="display:flex; gap:10px; align-items:center; max-width:1200px; margin:0 auto; flex-wrap:wrap;">
-            <input type="text" id="searchInput" placeholder="🔎 Filter spheres..." style="flex:2; background:transparent; border:none; color:white; padding:8px; min-width:120px;">
-            <button id="clearBtn" style="background:#444; border-radius:30px; padding:6px 16px; color:white; cursor:pointer;">✖ Clear</button>
-            <button id="searchBtn" style="background:#2e7d64; border-radius:30px; padding:6px 16px; color:white; cursor:pointer;">🔍 Filter</button>
-            <button id="similarBtn" style="background:#2e7d64; border-radius:30px; padding:6px 16px; color:white; cursor:pointer;">🔗 Similar</button>
-            <input type="text" id="fuzzySearchInput" placeholder="🔎 Fuzzy search (name)" style="flex:2; background:transparent; border:1px solid #5effe0; color:white; padding:8px; min-width:150px;">
-        </div>
+    <div id="searchContainer">
+        <input type="text" id="fuzzySearchInput" placeholder="🔎 Fuzzy search (name, description, chat logs)">
     </div>
     <div id="minimap-container"><canvas id="minimap-canvas"></canvas></div>
     <div id="ctrl-toggle">🎮 Controls</div>
@@ -67,6 +64,7 @@
         import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
         import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
 
+        // ==================== LOGGING ====================
         let terminalLoggingEnabled = false;
         async function logEvent(level, event, data = {}) {
             const entry = { timestamp: new Date().toISOString(), level, event, data, url: window.location.href };
@@ -80,23 +78,12 @@
                 while (panel.children.length > 500) panel.removeChild(panel.children[0]);
             }
             if (terminalLoggingEnabled) {
-                try {
-                    await fetch('/log', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(entry)
-                    });
-                } catch(e) { /* ignore if server not listening */ }
+                try { await fetch('/log', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(entry) }); } catch(e) {}
             }
         }
         function evidenceLog(msg) { logEvent('info', 'evidence', { message: msg }); }
 
-        (async () => {
-            try {
-                const res = await fetch('/log', { method: 'OPTIONS' });
-                if (res.ok || res.status === 404) terminalLoggingEnabled = true;
-            } catch(e) {}
-        })();
+        (async () => { try { const res = await fetch('/log', { method: 'OPTIONS' }); if (res.ok || res.status === 404) terminalLoggingEnabled = true; } catch(e) {} })();
 
         const toggleBtn = document.getElementById('debug-toggle');
         const debugPanel = document.getElementById('debug-panel');
@@ -109,9 +96,9 @@
                 logEvent('info', 'debug_toggle', { display: debugPanel.style.display });
             };
         }
+        evidenceLog('[C1] Starting application');
 
-        evidenceLog('🚀 Starting application with self-test');
-
+        // ==================== SELF-TEST ====================
         let selfTestResults = [];
         function assertTest(condition, name, details = {}) {
             if (condition) {
@@ -127,14 +114,16 @@
             assertTest(typeof THREE !== 'undefined', 'THREE loaded');
             assertTest(typeof OrbitControls !== 'undefined', 'OrbitControls loaded');
             assertTest(typeof CSS2DRenderer !== 'undefined', 'CSS2DRenderer loaded');
-            assertTest(document.getElementById('minimap-container') !== null, 'Minimap container exists');
+            assertTest(document.getElementById('minimap-container') !== null, 'Minimap exists');
             assertTest(document.getElementById('control-panel') !== null, 'Control panel exists');
             assertTest(document.getElementById('similarBtn') !== null, 'Similar button exists');
-            assertTest(document.getElementById('fuzzySearchInput') !== null, 'Fuzzy search input exists');
+            assertTest(document.getElementById('fuzzySearchInput') !== null, 'Fuzzy search exists');
             assertTest(document.getElementById('searchInput') !== null, 'Search input exists');
             logEvent('info', 'self_test_complete', { pass: selfTestResults.filter(r => r.status === 'PASS').length, total: selfTestResults.length });
         }
 
+        // ==================== GITHUB API ====================
+        let repoMetadata = [];
         async function fetchRealRepos() {
             const url = 'https://api.github.com/users/swipswaps/repos?per_page=100&sort=updated&type=public';
             logEvent('info', 'github_api_fetch', { url });
@@ -145,10 +134,12 @@
                 if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
                 const repos = await resp.json();
                 logEvent('info', 'github_api_count', { count: repos.length });
+                repoMetadata = repos.map(r => ({ name: r.name, description: r.description || '' }));
                 return repos;
             } catch(err) { logEvent('error', 'github_api_exception', { message: err.message }); return null; }
         }
 
+        // ==================== README FETCH (UTF-8 SAFE) ====================
         async function fetchReadme(repoName) {
             const url = `https://api.github.com/repos/swipswaps/${repoName}/readme`;
             try {
@@ -168,19 +159,9 @@
             } catch(e) { return "Error loading README."; }
         }
 
-        let currentSimilarLines = [];
+        // ==================== SIMILARITY & CHAT LOG SEARCH ====================
         let similarityData = null;
-        async function loadSimilarityData() {
-            try {
-                const response = await fetch('./similarity.json');
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                similarityData = await response.json();
-                logEvent('info', 'similarity_data_loaded', { repos: Object.keys(similarityData).length });
-            } catch (err) {
-                logEvent('error', 'similarity_data_failed', { message: err.message });
-                similarityData = null;
-            }
-        }
+        let currentSimilarLines = [];
         function findSimilarRepos(repoName, limit = 5) {
             if (!similarityData || !similarityData[repoName]) return [];
             return similarityData[repoName].slice(0, limit);
@@ -206,6 +187,62 @@
             });
         }
 
+        async function loadSimilarityData() {
+            try {
+                const response = await fetch('./similarity.json');
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                similarityData = await response.json();
+                logEvent('info', 'similarity_data_loaded', { repos: Object.keys(similarityData).length });
+            } catch (err) {
+                logEvent('error', 'similarity_data_failed', { message: err.message });
+                similarityData = null;
+            }
+        }
+
+        // ==================== ENHANCED SEARCH ====================
+        // Universal reset function (defined after cloudGroup is created)
+        function resetAllVisibility() {
+            if (!window.cloudGroup) return;
+            window.cloudGroup.children.forEach(child => {
+                if (child.isMesh) child.visible = true;
+                if (child.isCSS2DObject) child.visible = true;
+            });
+        }
+
+        // Fuzzy search (the only search)
+        let _fuzzyDebounceTimer = null;
+        const DEBOUNCE_MS = 300;
+
+        function fuzzySearchRepos(cloudGroupRef) {
+            const query = document.getElementById('fuzzySearchInput').value.trim().toLowerCase();
+            logEvent('user_action', 'fuzzy_search', { query });
+            if (!cloudGroupRef) {
+                logEvent('error', 'fuzzy_search_no_cloudgroup', {});
+                return;
+            }
+            const meshes = cloudGroupRef.children.filter(c => c.isMesh);
+            const labels = cloudGroupRef.children.filter(c => c.isCSS2DObject && c.userData && c.userData.repoName);
+            if (!query) {
+                resetAllVisibility();
+                logEvent('info', 'fuzzy_search_result', { query: '', visible: meshes.length });
+                return;
+            }
+            let visible = 0;
+            meshes.forEach(mesh => {
+                const repoName = mesh.userData.name;
+                const meta = repoMetadata.find(m => m.name === repoName);
+                const desc = meta ? meta.description.toLowerCase() : '';
+                const chatSnippet = (similarityData && similarityData[repoName]) ? JSON.stringify(similarityData[repoName]).toLowerCase() : '';
+                const match = repoName.toLowerCase().includes(query) || desc.includes(query) || chatSnippet.includes(query);
+                mesh.visible = match;
+                const labelObj = labels.find(l => l.userData.repoName === repoName);
+                if (labelObj) labelObj.visible = match;
+                if (match) visible++;
+            });
+            logEvent('info', 'fuzzy_search_result', { query, visible });
+        }
+
+        // ==================== THREE.JS ====================
         async function initThree() {
             const repos = await fetchRealRepos();
             if (!repos) { evidenceLog('❌ Failed to load repos'); return; }
@@ -291,11 +328,15 @@
             const cloudGroup = new THREE.Group();
             scene.add(cloudGroup);
 
+            // Expose cloudGroup globally for reset function and property test
+            window.cloudGroup = cloudGroup;
+
             const readmePanel = document.getElementById('readme-panel');
             const readmeContent = document.getElementById('readme-content');
             const closeReadme = document.getElementById('close-readme');
             if (closeReadme) closeReadme.onclick = () => readmePanel.style.display = 'none';
 
+            // Click handler (canvas-scoped)
             renderer.domElement.addEventListener('click', async (event) => {
                 const rect = renderer.domElement.getBoundingClientRect();
                 mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
@@ -322,6 +363,7 @@
                 }
             });
 
+            // Double-click (native)
             renderer.domElement.addEventListener('dblclick', async (event) => {
                 const rect = renderer.domElement.getBoundingClientRect();
                 mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
@@ -337,6 +379,7 @@
                 }
             });
 
+            // Hover with RAF
             let rafId = null;
             renderer.domElement.addEventListener('mousemove', (event) => {
                 if (rafId) return;
@@ -394,53 +437,59 @@
                 div.className = 'repo-label';
                 div.style.pointerEvents = 'none';
                 const label = new CSS2DObject(div);
+                label.userData = { repoName: repo.name };
                 label.position.copy(sphere.position);
                 cloudGroup.add(sphere);
                 cloudGroup.add(label);
             });
 
             evidenceLog(`✅ Rendered ${repos.length} real repos`);
-            evidenceLog('🎨 App ready: tap for README, double-tap opens GitHub, Similar button draws lines');
-
-            const searchInput = document.getElementById('searchInput');
-            const searchBtn = document.getElementById('searchBtn');
-            const clearBtn = document.getElementById('clearBtn');
-            if (clearBtn) clearBtn.onclick = () => { if(searchInput) searchInput.value=''; document.querySelectorAll('.repo-label').forEach(lbl=>lbl.style.display='block'); logEvent('user_action','clear_filter',{}); };
-            if (searchBtn) searchBtn.onclick = () => { const q=searchInput.value.trim().toLowerCase(); logEvent('user_action','filter',{query:q}); let v=0; document.querySelectorAll('.repo-label').forEach(lbl=>{ if(lbl.textContent.toLowerCase().includes(q)) { lbl.style.display='block'; v++; } else lbl.style.display='none'; }); logEvent('info','filter_result',{visible:v}); };
-            if (searchInput) searchInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') searchBtn.click(); });
+            evidenceLog('🎨 App ready: search includes descriptions & chat logs');
 
             const fuzzyInput = document.getElementById('fuzzySearchInput');
+
+            // --- Clear button (×) inside fuzzy input ---
             if (fuzzyInput) {
-                fuzzyInput.addEventListener('input', (e) => {
-                    const query = e.target.value.trim().toLowerCase();
-                    if (!query) {
-                        document.querySelectorAll('.repo-label').forEach(lbl => lbl.style.display = 'block');
+                const container = fuzzyInput.parentElement;
+                if (container) {
+                    container.style.position = 'relative';
+                    fuzzyInput.style.paddingRight = '30px';
+                    const clearBtn = document.createElement('button');
+                    clearBtn.textContent = '×';
+                    clearBtn.className = 'fuzzy-clear-btn';
+                    clearBtn.style.cssText = 'position:absolute; right:8px; top:50%; transform:translateY(-50%); background:none; border:none; color:#5effe0; font-size:18px; cursor:pointer; display:none;';
+                    container.appendChild(clearBtn);
+                    fuzzyInput.addEventListener('input', () => {
+                        clearBtn.style.display = fuzzyInput.value ? 'block' : 'none';
+                    });
+                    clearBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        resetAllVisibility();
+                        fuzzyInput.value = '';
+                        clearBtn.style.display = 'none';
+                        fuzzyInput.focus();
+                        logEvent('user_action', 'fuzzy_clear_button_clicked', {});
+                    });
+                }
+            }
+
+            // Debounced fuzzy search listener
+            if (fuzzyInput) {
+                fuzzyInput.addEventListener('input', () => {
+                    const val = fuzzyInput.value.trim();
+                    if (val === "") {
+                        resetAllVisibility();
+                        const total = cloudGroup.children.filter(c => c.isMesh).length;
+                        logEvent('info', 'fuzzy_search_result', { query: '', visible: total });
                         return;
                     }
-                    let visible = 0;
-                    document.querySelectorAll('.repo-label').forEach(lbl => {
-                        if (lbl.textContent.toLowerCase().includes(query)) {
-                            lbl.style.display = 'block';
-                            visible++;
-                        } else {
-                            lbl.style.display = 'none';
-                        }
-                    });
-                    logEvent('info', 'fuzzy_search_result', { query, visible });
+                    clearTimeout(_fuzzyDebounceTimer);
+                    _fuzzyDebounceTimer = setTimeout(() => fuzzySearchRepos(cloudGroup), DEBOUNCE_MS);
                 });
             }
 
             const similarBtn = document.getElementById('similarBtn');
-            if (similarBtn) {
-                similarBtn.onclick = () => {
-                    if (window._lastClickedRepo) {
-                        drawSimilarityLines(window._lastClickedRepo);
-                    } else {
-                        logEvent('warn', 'similar_no_repo_selected', {});
-                        alert('Click a repository first, then press Similar');
-                    }
-                };
-            }
+            if (similarBtn) similarBtn.onclick = () => { if (window._lastClickedRepo) drawSimilarityLines(window._lastClickedRepo); else alert('Click a repository first'); };
 
             await loadSimilarityData();
             runSelfTest();
