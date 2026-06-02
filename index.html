@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>3D Code Portfolio – SwipSwaps</title>
     <style>
-        /* (all styles unchanged – same as before) */
         body { margin: 0; overflow: hidden; font-family: monospace; user-select: none; touch-action: pan-x pan-y; }
         canvas { display: block; cursor: grab; touch-action: none; }
         canvas:active { cursor: grabbing; }
@@ -31,6 +30,9 @@
         #ctrl-toggle { position:fixed; bottom:20px; left:300px; background:#0a0a14; border:1px solid #5effe0; border-radius:20px; padding:4px 12px; cursor:pointer; z-index:103; font-size:10px; color:#5effe0; }
         #readme-panel { position:fixed; top:20px; right:20px; width:300px; max-height:400px; background:rgba(0,0,0,0.9); border-radius:12px; border:1px solid #5effe0; z-index:150; pointer-events:auto; color:#ccc; font-size:12px; font-family:monospace; padding:10px; overflow-y:auto; display:none; backdrop-filter:blur(8px); }
         #close-readme { float:right; cursor:pointer; background:#333; padding:2px 8px; border-radius:10px; }
+        #searchContainer { position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.7); padding: 8px 12px; border-radius: 8px; z-index: 100; font-family: monospace; backdrop-filter: blur(4px); border: 1px solid #5effe0; }
+        #fuzzySearchInput { background: #1e1e2f; border: 1px solid #5effe0; color: #5effe0; padding: 6px 30px 6px 12px; border-radius: 6px; font-size: 14px; width: 220px; outline: none; }
+        #fuzzySearchInput:focus { border-color: #ff79c6; box-shadow: 0 0 5px #ff79c6; }
     </style>
     <script type="importmap">
         { "imports": { "three": "https://unpkg.com/three@0.128.0/build/three.module.js", "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/" } }
@@ -39,14 +41,8 @@
 <body>
     <div id="info">🔮 3D Repository Cloud<br><span style="font-size:10px;">Click: README | Double-click: GitHub</span></div>
     <div class="instruction">✨ Drag to rotate | Pinch to zoom</div>
-    <div style="position:fixed; top:20px; left:20px; right:20px; z-index:100; background:rgba(0,0,0,0.8); padding:12px; border-radius:60px;">
-        <div style="display:flex; gap:10px; align-items:center; max-width:1200px; margin:0 auto; flex-wrap:wrap;">
-            <input type="text" id="searchInput" placeholder="🔎 Filter spheres by name or description..." style="flex:2; background:transparent; border:none; color:white; padding:8px; min-width:120px;">
-            <button id="clearBtn" style="background:#444; border-radius:30px; padding:6px 16px; color:white; cursor:pointer;">✖ Clear</button>
-            <button id="searchBtn" style="background:#2e7d64; border-radius:30px; padding:6px 16px; color:white; cursor:pointer;">🔍 Filter</button>
-            <button id="similarBtn" style="background:#2e7d64; border-radius:30px; padding:6px 16px; color:white; cursor:pointer;">🔗 Similar</button>
-            <input type="text" id="fuzzySearchInput" placeholder="🔎 Fuzzy search (name, description, chat logs)" style="flex:2; background:transparent; border:1px solid #5effe0; color:white; padding:8px; min-width:150px;">
-        </div>
+    <div id="searchContainer">
+        <input type="text" id="fuzzySearchInput" placeholder="🔎 Fuzzy search (name, description, chat logs)">
     </div>
     <div id="minimap-container"><canvas id="minimap-canvas"></canvas></div>
     <div id="ctrl-toggle">🎮 Controls</div>
@@ -165,7 +161,6 @@
 
         // ==================== SIMILARITY & CHAT LOG SEARCH ====================
         let similarityData = null;
-        // *** ADDED MISSING FUNCTIONS ***
         let currentSimilarLines = [];
         function findSimilarRepos(repoName, limit = 5) {
             if (!similarityData || !similarityData[repoName]) return [];
@@ -205,34 +200,18 @@
         }
 
         // ==================== ENHANCED SEARCH ====================
-        function filterRepos(cloudGroupRef) {
-            const query = document.getElementById('searchInput').value.trim().toLowerCase();
-            logEvent('user_action', 'filter', { query });
-            if (!cloudGroupRef) {
-                logEvent('error', 'filter_no_cloudgroup', {});
-                return;
-            }
-            const meshes = cloudGroupRef.children.filter(c => c.isMesh);
-            const labels = cloudGroupRef.children.filter(c => c.isCSS2DObject && c.userData && c.userData.repoName);
-            if (!query) {
-                resetAllVisibility();
-                logEvent('info', 'filter_result', { visible: meshes.length });
-                return;
-            }
-            let visible = 0;
-            meshes.forEach(mesh => {
-                const repoName = mesh.userData.name;
-                const meta = repoMetadata.find(m => m.name === repoName);
-                const desc = meta ? meta.description.toLowerCase() : '';
-                const chatSnippet = (similarityData && similarityData[repoName]) ? JSON.stringify(similarityData[repoName]).toLowerCase() : '';
-                const match = repoName.toLowerCase().includes(query) || desc.includes(query) || chatSnippet.includes(query);
-                mesh.visible = match;
-                const labelObj = labels.find(l => l.userData.repoName === repoName);
-                if (labelObj) labelObj.visible = match;
-                if (match) visible++;
+        // Universal reset function (defined after cloudGroup is created)
+        function resetAllVisibility() {
+            if (!window.cloudGroup) return;
+            window.cloudGroup.children.forEach(child => {
+                if (child.isMesh) child.visible = true;
+                if (child.isCSS2DObject) child.visible = true;
             });
-            logEvent('info', 'filter_result', { visible });
         }
+
+        // Fuzzy search (the only search)
+        let _fuzzyDebounceTimer = null;
+        const DEBOUNCE_MS = 300;
 
         function fuzzySearchRepos(cloudGroupRef) {
             const query = document.getElementById('fuzzySearchInput').value.trim().toLowerCase();
@@ -349,6 +328,9 @@
             const cloudGroup = new THREE.Group();
             scene.add(cloudGroup);
 
+            // Expose cloudGroup globally for reset function and property test
+            window.cloudGroup = cloudGroup;
+
             const readmePanel = document.getElementById('readme-panel');
             const readmeContent = document.getElementById('readme-content');
             const closeReadme = document.getElementById('close-readme');
@@ -464,52 +446,49 @@
             evidenceLog(`✅ Rendered ${repos.length} real repos`);
             evidenceLog('🎨 App ready: search includes descriptions & chat logs');
 
-            const searchInput = document.getElementById('searchInput');
-            const searchBtn = document.getElementById('searchBtn');
-            const clearBtn = document.getElementById('clearBtn');
             const fuzzyInput = document.getElementById('fuzzySearchInput');
-        let _fuzzyDebounceTimer = null;
-        const DEBOUNCE_MS = 300;
-        // Clear button (direct reset)
-        if (fuzzyInput) {
-            const container = fuzzyInput.parentElement;
-            if (container) {
-                container.style.position = 'relative';
-                fuzzyInput.style.paddingRight = '30px';
-                const clearBtn = document.createElement('button');
-                clearBtn.textContent = '×';
-                clearBtn.className = 'fuzzy-clear-btn';
-                clearBtn.style.cssText = 'position:absolute; right:8px; top:50%; transform:translateY(-50%); background:none; border:none; color:#5effe0; font-size:18px; cursor:pointer; display:none;';
-                container.appendChild(clearBtn);
+
+            // --- Clear button (×) inside fuzzy input ---
+            if (fuzzyInput) {
+                const container = fuzzyInput.parentElement;
+                if (container) {
+                    container.style.position = 'relative';
+                    fuzzyInput.style.paddingRight = '30px';
+                    const clearBtn = document.createElement('button');
+                    clearBtn.textContent = '×';
+                    clearBtn.className = 'fuzzy-clear-btn';
+                    clearBtn.style.cssText = 'position:absolute; right:8px; top:50%; transform:translateY(-50%); background:none; border:none; color:#5effe0; font-size:18px; cursor:pointer; display:none;';
+                    container.appendChild(clearBtn);
+                    fuzzyInput.addEventListener('input', () => {
+                        clearBtn.style.display = fuzzyInput.value ? 'block' : 'none';
+                    });
+                    clearBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        resetAllVisibility();
+                        fuzzyInput.value = '';
+                        clearBtn.style.display = 'none';
+                        fuzzyInput.focus();
+                        logEvent('user_action', 'fuzzy_clear_button_clicked', {});
+                    });
+                }
+            }
+
+            // Debounced fuzzy search listener
+            if (fuzzyInput) {
                 fuzzyInput.addEventListener('input', () => {
-                    clearBtn.style.display = fuzzyInput.value ? 'block' : 'none';
-                });
-                clearBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    resetAllVisibility();
-                    fuzzyInput.value = '';
-                    clearBtn.style.display = 'none';
-                    fuzzyInput.focus();
-                    logEvent('user_action', 'clear_button_clicked_reset', {});
+                    const val = fuzzyInput.value.trim();
+                    if (val === "") {
+                        resetAllVisibility();
+                        const total = cloudGroup.children.filter(c => c.isMesh).length;
+                        logEvent('info', 'fuzzy_search_result', { query: '', visible: total });
+                        return;
+                    }
+                    clearTimeout(_fuzzyDebounceTimer);
+                    _fuzzyDebounceTimer = setTimeout(() => fuzzySearchRepos(cloudGroup), DEBOUNCE_MS);
                 });
             }
-        }
-            const similarBtn = document.getElementById('similarBtn');
 
-            if (clearBtn) clearBtn.onclick = () => { if(searchInput) searchInput.value=''; if(fuzzyInput) fuzzyInput.value=''; document.querySelectorAll('.repo-label').forEach(lbl=>lbl.style.display='block'); logEvent('user_action','clear_filter',{}); };
-            if (searchBtn) searchBtn.onclick = () => filterRepos(cloudGroup);
-            if (searchInput) searchInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') filterRepos(cloudGroup); });
-            if (fuzzyInput) fuzzyInput.addEventListener('input', () => {
-                const val = fuzzyInput.value.trim();
-                if (val === "") {
-                    resetAllVisibility();
-                    const total = cloudGroup ? cloudGroup.children.filter(c => c.isMesh).length : 100;
-                    logEvent('info', 'fuzzy_search_result', { query: '', visible: total });
-                    return;
-                }
-                clearTimeout(_fuzzyDebounceTimer);
-                _fuzzyDebounceTimer = setTimeout(() => fuzzySearchRepos(cloudGroup), DEBOUNCE_MS);
-            });
+            const similarBtn = document.getElementById('similarBtn');
             if (similarBtn) similarBtn.onclick = () => { if (window._lastClickedRepo) drawSimilarityLines(window._lastClickedRepo); else alert('Click a repository first'); };
 
             await loadSimilarityData();
@@ -526,15 +505,6 @@
         }
 
         initThree();
-    
-        // Universal reset – shows all spheres and CSS2D labels
-        function resetAllVisibility() {
-            if (!window.cloudGroup) return;
-            window.cloudGroup.children.forEach(child => {
-                if (child.isMesh) child.visible = true;
-                if (child.isCSS2DObject) child.visible = true;
-            });
-        }
-</script>
+    </script>
 </body>
 </html>
