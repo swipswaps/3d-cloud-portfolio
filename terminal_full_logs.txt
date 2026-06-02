@@ -1,0 +1,302 @@
+
+DevTools listening on ws://127.0.0.1:46443/devtools/browser/b162d2d5-dfe9-4a02-885d-0e0f0a8444c5
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+[72919:72919:0528/091111.837504:ERROR:media/gpu/vaapi/vaapi_wrapper.cc:1695] vaInitialize failed: unknown libva error
+[NETWORK RESP] 200 http://localhost:8080/
+[RESPONSE BODY] <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>3D Code Portfolio – SwipSwaps</title>
+    <style>
+        body { margin: 0; overflow: hidden; font-family: monospace; user-select: none; }
+        canvas { display: block; }
+        #debug-toggle {
+            position: fixed; bottom:20px; left:20px; z-index:101; background:#0a0a14;
+            border:1px solid #5effe0; border-
+[BROWSER LOG] 🚀 Starting application (http://localhost:8080/:57:20)
+[BROWSER LOG] 🧠 Loading Three.js via import map (http://localhost:8080/:57:20)
+[BROWSER LOG] [C2] fetching https://api.github.com/users/swipswaps/repos?per_page=100&sort=updated&type=public (http://localhost:8080/:57:20)
+[NETWORK RESP] 404 http://localhost:8080/favicon.ico
+[BROWSER ERROR] Failed to load resource: the server responded with a status of 404 (File not found) (http://localhost:8080/favicon.ico:undefined:undefined)
+[RESPONSE BODY] <!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+            :root {
+                color-scheme: light dark;
+            }
+        </style>
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>
+
+[BROWSER LOG] [C5] toggle clicked, panel.display=block (http://localhost:8080/:57:20)
+[NETWORK RESP] 200 https://api.github.com/users/swipswaps/repos?per_page=100&sort=updated&type=public
+[BROWSER LOG] [C2] status=200 ratelimit_remaining=59 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C1] repo source: github_api, count=100 (real from GitHub) (http://localhost:8080/:57:20)
+[BROWSER LOG] ✅ Rendered 100 real repos (http://localhost:8080/:57:20)
+[BROWSER LOG] 🎨 App ready – click, drag, hover, double-click all logged (http://localhost:8080/:57:20)
+[BROWSER LOG] [C1] "no mock repos" -- source: github_api (http://localhost:8080/:57:20)
+[BROWSER LOG] [C2] "use what github allows" -- url=https://api.github.com/users/swipswaps/repos?per_page=100&sort=updated&type=public status=200 count=100 ratelimit=59 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C3] click opens GitHub -- target: https://github.com/swipswaps/python-advanced-ocr (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vectors -- attached: true (http://localhost:8080/:57:20)
+[BROWSER LOG] [C5] collapsible debug panel -- toggle bound: true, initial display: none (http://localhost:8080/:57:20)
+[BROWSER LOG] [C6] hover logs -- sample: hover on python-advanced-ocr logs name (http://localhost:8080/:57:20)
+[BROWSER LOG] [C7] double-click logs -- sample: double-click on python-advanced-ocr opens GitHub (http://localhost:8080/:57:20)
+[BROWSER LOG] --- END EVIDENCE --- (http://localhost:8080/:57:20)
+[RESPONSE BODY] [
+  {
+    "id": 1251652091,
+    "node_id": "R_kgDOSpqx-w",
+    "name": "3d-cloud-portfolio",
+    "full_name": "swipswaps/3d-cloud-portfolio",
+    "private": false,
+    "owner": {
+      "login": "swipswaps",
+      "id": 15093666,
+      "node_id": "MDQ6VXNlcjE1MDkzNjY2",
+      "avatar_url": "https://avatars.githubusercontent.com/u/15093666?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/swipswaps",
+      "html_url": "https://github.com/swipswaps",
+      "followers_url": "
+[72879:72899:0528/091114.976419:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: DEPRECATED_ENDPOINT
+[72879:72899:0528/091114.986699:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR
+[BROWSER LOG] 🖱️ DRAG START (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.03 dy=0.00 dz=0.02 distance=0.04 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.03 dy=0.00 dz=0.02 distance=0.04 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.03 dy=0.00 dz=0.02 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.04 dy=0.01 dz=0.02 distance=0.05 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.04 dy=0.01 dz=0.02 distance=0.04 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.07 dy=0.06 dz=0.02 distance=0.10 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.07 dy=0.06 dz=0.01 distance=0.09 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.10 dy=0.10 dz=0.02 distance=0.14 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.10 dy=0.09 dz=0.02 distance=0.14 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.15 dy=0.15 dz=0.02 distance=0.22 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.15 dy=0.14 dz=0.02 distance=0.21 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.21 dy=0.20 dz=0.03 distance=0.29 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.20 dy=0.19 dz=0.02 distance=0.28 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.22 dy=0.21 dz=0.02 distance=0.30 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.21 dy=0.19 dz=0.02 distance=0.28 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.23 dy=0.20 dz=0.03 distance=0.31 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.22 dy=0.19 dz=0.02 distance=0.29 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.23 dy=0.20 dz=0.01 distance=0.30 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.22 dy=0.19 dz=0.01 distance=0.29 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.21 dy=0.18 dz=0.01 distance=0.27 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.25 dy=0.20 dz=0.01 distance=0.31 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.23 dy=0.19 dz=0.01 distance=0.30 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.22 dy=0.18 dz=0.01 distance=0.28 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.21 dy=0.17 dz=0.00 distance=0.27 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.20 dy=0.16 dz=-0.00 distance=0.25 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.19 dy=0.15 dz=-0.00 distance=0.24 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.18 dy=0.14 dz=-0.01 distance=0.23 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.17 dy=0.13 dz=-0.01 distance=0.22 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.16 dy=0.13 dz=-0.01 distance=0.21 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.15 dy=0.12 dz=-0.01 distance=0.20 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.15 dy=0.11 dz=-0.01 distance=0.18 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.14 dy=0.11 dz=-0.01 distance=0.18 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.13 dy=0.10 dz=-0.01 distance=0.17 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.12 dy=0.10 dz=-0.01 distance=0.16 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.12 dy=0.09 dz=-0.01 distance=0.15 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.11 dy=0.09 dz=-0.01 distance=0.14 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.11 dy=0.08 dz=-0.01 distance=0.13 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.10 dy=0.08 dz=-0.01 distance=0.13 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.10 dy=0.07 dz=-0.01 distance=0.12 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.09 dy=0.07 dz=-0.01 distance=0.12 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.09 dy=0.07 dz=-0.01 distance=0.11 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.08 dy=0.06 dz=-0.01 distance=0.10 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.08 dy=0.06 dz=-0.01 distance=0.10 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.07 dy=0.06 dz=-0.01 distance=0.09 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.07 dy=0.05 dz=-0.01 distance=0.09 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.07 dy=0.05 dz=-0.01 distance=0.08 (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG END (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG START (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.04 dy=0.00 dz=0.01 distance=0.04 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.04 dy=0.00 dz=0.01 distance=0.04 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.03 dy=0.00 dz=0.01 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.03 dy=0.00 dz=0.01 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.03 dy=0.00 dz=0.00 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.03 dy=0.00 dz=0.00 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG END (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG START (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.03 dy=0.00 dz=0.01 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.03 dy=0.00 dz=0.00 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.03 dy=0.00 dz=0.00 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.02 dy=0.00 dz=0.00 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.02 dy=0.00 dz=0.00 distance=0.02 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.02 dy=0.00 dz=0.00 distance=0.02 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.02 dy=0.00 dz=0.00 distance=0.02 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.02 dy=0.00 dz=0.00 distance=0.02 (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG END (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG START (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.03 dy=0.00 dz=0.01 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.03 dy=0.00 dz=0.01 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.03 dy=0.00 dz=0.01 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.03 dy=0.00 dz=0.00 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.03 dy=0.00 dz=0.00 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.03 dy=0.00 dz=0.00 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.02 dy=0.00 dz=0.00 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG END (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG START (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.03 dy=0.00 dz=0.00 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.02 dy=0.00 dz=0.00 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.02 dy=0.00 dz=0.00 distance=0.02 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.02 dy=0.00 dz=0.00 distance=0.02 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.02 dy=0.00 dz=0.00 distance=0.02 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.02 dy=0.00 dz=0.00 distance=0.02 (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG END (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG START (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.03 dy=0.00 dz=0.00 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.02 dy=-0.01 dz=0.01 distance=0.02 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.02 dy=-0.01 dz=0.01 distance=0.02 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.02 dy=-0.01 dz=0.01 distance=0.02 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.02 dy=-0.01 dz=0.01 distance=0.02 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.02 dy=-0.01 dz=0.01 distance=0.02 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.02 dy=-0.01 dz=0.01 distance=0.02 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.01 dy=-0.01 dz=0.01 distance=0.02 (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG END (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG START (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.03 dy=-0.00 dz=0.00 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=0.01 dy=-0.00 dz=0.00 distance=0.01 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=0.01 dy=-0.00 dz=0.00 distance=0.01 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=0.03 dy=-0.00 dz=-0.00 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=0.03 dy=-0.00 dz=-0.00 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=0.12 dy=-0.00 dz=-0.01 distance=0.12 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=0.11 dy=-0.00 dz=-0.01 distance=0.11 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=0.17 dy=0.01 dz=-0.02 distance=0.17 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=0.16 dy=0.01 dz=-0.02 distance=0.16 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=0.20 dy=0.01 dz=-0.02 distance=0.20 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=0.19 dy=0.01 dz=-0.03 distance=0.19 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=0.18 dy=0.01 dz=-0.03 distance=0.18 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=0.18 dy=0.02 dz=-0.04 distance=0.19 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=0.17 dy=0.02 dz=-0.04 distance=0.18 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=0.16 dy=0.02 dz=-0.03 distance=0.17 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=0.09 dy=0.03 dz=-0.03 distance=0.10 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=0.08 dy=0.03 dz=-0.03 distance=0.09 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.14 dy=0.02 dz=0.00 distance=0.14 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.13 dy=0.02 dz=0.00 distance=0.13 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.41 dy=0.02 dz=0.03 distance=0.41 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.39 dy=0.02 dz=0.03 distance=0.39 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.60 dy=-0.00 dz=0.05 distance=0.60 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.57 dy=-0.00 dz=0.03 distance=0.57 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.70 dy=-0.02 dz=0.04 distance=0.70 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.66 dy=-0.02 dz=0.01 distance=0.66 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.71 dy=-0.05 dz=0.01 distance=0.71 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.68 dy=-0.04 dz=-0.02 distance=0.68 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.69 dy=-0.04 dz=-0.04 distance=0.69 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.65 dy=-0.04 dz=-0.06 distance=0.66 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.64 dy=-0.05 dz=-0.07 distance=0.65 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.61 dy=-0.05 dz=-0.08 distance=0.62 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.69 dy=-0.07 dz=-0.11 distance=0.70 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.66 dy=-0.06 dz=-0.12 distance=0.67 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.72 dy=-0.08 dz=-0.15 distance=0.74 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.68 dy=-0.08 dz=-0.17 distance=0.71 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.65 dy=-0.08 dz=-0.18 distance=0.67 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.61 dy=-0.07 dz=-0.19 distance=0.64 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.58 dy=-0.07 dz=-0.20 distance=0.61 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.59 dy=-0.07 dz=-0.23 distance=0.64 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.56 dy=-0.06 dz=-0.23 distance=0.61 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.59 dy=-0.06 dz=-0.27 distance=0.65 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.55 dy=-0.06 dz=-0.27 distance=0.62 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.61 dy=-0.07 dz=-0.32 distance=0.69 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.57 dy=-0.06 dz=-0.32 distance=0.66 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.59 dy=-0.08 dz=-0.35 distance=0.69 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.55 dy=-0.08 dz=-0.35 distance=0.66 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.53 dy=-0.07 dz=-0.35 distance=0.64 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.49 dy=-0.07 dz=-0.35 distance=0.61 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.46 dy=-0.07 dz=-0.34 distance=0.58 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.43 dy=-0.06 dz=-0.34 distance=0.55 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.40 dy=-0.06 dz=-0.33 distance=0.52 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.37 dy=-0.06 dz=-0.32 distance=0.50 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.35 dy=-0.06 dz=-0.32 distance=0.47 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.33 dy=-0.05 dz=-0.31 distance=0.45 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.30 dy=-0.05 dz=-0.30 distance=0.43 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.28 dy=-0.05 dz=-0.29 distance=0.41 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.27 dy=-0.05 dz=-0.28 distance=0.39 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.25 dy=-0.04 dz=-0.27 distance=0.37 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.23 dy=-0.04 dz=-0.26 distance=0.35 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.22 dy=-0.04 dz=-0.25 distance=0.33 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.20 dy=-0.04 dz=-0.24 distance=0.32 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.19 dy=-0.04 dz=-0.23 distance=0.30 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.18 dy=-0.03 dz=-0.22 distance=0.29 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.17 dy=-0.03 dz=-0.21 distance=0.27 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.16 dy=-0.03 dz=-0.21 distance=0.26 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.13 dy=-0.03 dz=-0.18 distance=0.22 (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG END (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG START (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.04 dy=-0.01 dz=-0.08 distance=0.09 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.04 dy=-0.01 dz=-0.08 distance=0.09 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.04 dy=-0.01 dz=-0.07 distance=0.08 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.03 dy=-0.01 dz=-0.07 distance=0.08 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.03 dy=-0.01 dz=-0.07 distance=0.08 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.03 dy=-0.01 dz=-0.06 distance=0.07 (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG END (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG START (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.02 dy=-0.00 dz=-0.05 distance=0.06 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.02 dy=-0.00 dz=-0.05 distance=0.06 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.02 dy=-0.00 dz=-0.05 distance=0.05 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.02 dy=-0.00 dz=-0.05 distance=0.05 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.02 dy=-0.00 dz=-0.04 distance=0.05 (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG END (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG START (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.01 dy=-0.00 dz=-0.04 distance=0.04 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.01 dy=-0.00 dz=-0.04 distance=0.04 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.01 dy=-0.00 dz=-0.03 distance=0.04 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.01 dy=-0.00 dz=-0.03 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.01 dy=-0.00 dz=-0.03 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.01 dy=-0.00 dz=-0.03 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.01 dy=-0.00 dz=-0.03 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG END (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG START (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.01 dy=-0.00 dz=-0.04 distance=0.04 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.01 dy=-0.00 dz=-0.04 distance=0.04 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.01 dy=-0.00 dz=-0.03 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.01 dy=-0.00 dz=-0.03 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.01 dy=-0.00 dz=-0.03 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.01 dy=-0.00 dz=-0.03 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG END (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG START (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.01 dy=-0.00 dz=-0.04 distance=0.04 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.01 dy=-0.00 dz=-0.04 distance=0.04 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.01 dy=-0.00 dz=-0.03 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.00 dy=-0.00 dz=-0.03 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.00 dy=-0.00 dz=-0.03 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.00 dy=-0.00 dz=-0.03 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG END (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG START (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.00 dy=-0.00 dz=-0.04 distance=0.04 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.00 dy=-0.00 dz=-0.04 distance=0.04 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.00 dy=-0.00 dz=-0.03 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.00 dy=-0.00 dz=-0.03 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.00 dy=-0.00 dz=-0.03 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.00 dy=-0.00 dz=-0.03 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] [C4] drag vector: dx=-0.00 dy=-0.00 dz=-0.03 distance=0.03 (http://localhost:8080/:57:20)
+[BROWSER LOG] 🖱️ DRAG END (http://localhost:8080/:57:20)
+file:///home/owner/Documents/be971609-17d6-4ba5-8840-e41e6b2d5191/cloud-portfolio-pages/node_modules/puppeteer-core/lib/puppeteer/common/QueryHandler.js:211
+                const waitForSelectorError = new (error instanceof TimeoutError ? TimeoutError : Error)(`Waiting for selector \`${selector}\` failed`);
+                                             ^
+
+TimeoutError: Waiting for selector `.css2d-object` failed
+    at CSSQueryHandler.waitFor (file:///home/owner/Documents/be971609-17d6-4ba5-8840-e41e6b2d5191/cloud-portfolio-pages/node_modules/puppeteer-core/lib/puppeteer/common/QueryHandler.js:211:46)
+    at async CdpFrame.waitForSelector (file:///home/owner/Documents/be971609-17d6-4ba5-8840-e41e6b2d5191/cloud-portfolio-pages/node_modules/puppeteer-core/lib/puppeteer/api/Frame.js:541:21)
+    at async CdpPage.waitForSelector (file:///home/owner/Documents/be971609-17d6-4ba5-8840-e41e6b2d5191/cloud-portfolio-pages/node_modules/puppeteer-core/lib/puppeteer/api/Page.js:1387:20)
+    at async /home/owner/Documents/be971609-17d6-4ba5-8840-e41e6b2d5191/cloud-portfolio-pages/full_capture.cjs:42:3 {
+  cause: TimeoutError: Waiting failed: 10000ms exceeded
+      at new WaitTask (file:///home/owner/Documents/be971609-17d6-4ba5-8840-e41e6b2d5191/cloud-portfolio-pages/node_modules/puppeteer-core/lib/puppeteer/common/WaitTask.js:46:34)
+      at IsolatedWorld.waitForFunction (file:///home/owner/Documents/be971609-17d6-4ba5-8840-e41e6b2d5191/cloud-portfolio-pages/node_modules/puppeteer-core/lib/puppeteer/api/Realm.js:49:26)
+      at CSSQueryHandler.waitFor (file:///home/owner/Documents/be971609-17d6-4ba5-8840-e41e6b2d5191/cloud-portfolio-pages/node_modules/puppeteer-core/lib/puppeteer/common/QueryHandler.js:176:95)
+      at async CdpFrame.waitForSelector (file:///home/owner/Documents/be971609-17d6-4ba5-8840-e41e6b2d5191/cloud-portfolio-pages/node_modules/puppeteer-core/lib/puppeteer/api/Frame.js:541:21)
+      at async CdpPage.waitForSelector (file:///home/owner/Documents/be971609-17d6-4ba5-8840-e41e6b2d5191/cloud-portfolio-pages/node_modules/puppeteer-core/lib/puppeteer/api/Page.js:1387:20)
+      at async /home/owner/Documents/be971609-17d6-4ba5-8840-e41e6b2d5191/cloud-portfolio-pages/full_capture.cjs:42:3
+}
+
+Node.js v22.22.0

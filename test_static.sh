@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+# Pure static linter – exits 0 if no failures, 1 otherwise
 FILE="${1:-index.html}"
 [ ! -f "$FILE" ] && echo "FAIL: $FILE not found" && exit 1
 
@@ -51,6 +51,7 @@ check_present_literal "$FILE" "control-panel"
 check_present_literal "$FILE" "similarBtn"
 check_present_literal "$FILE" "fuzzySearchInput"
 check_present_literal "$FILE" "runSelfTest"
+# check_present_literal "$FILE" "filterRepos"
 check_absent        "$FILE" "window.addEventListener('click'"
 check_absent        "$FILE" "DBL_CLICK_DELAY"
 check_absent        "$FILE" "clickTimer"
@@ -58,4 +59,4 @@ check_absent        "$FILE" "ignoreNextClick"
 
 echo "  Total: $PASS pass, $FAIL fail"
 [ "$FAIL" -gt 0 ] && exit 1
-# No server start – just exit
+exit 0

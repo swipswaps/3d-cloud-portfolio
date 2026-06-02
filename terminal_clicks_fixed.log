@@ -1,0 +1,303 @@
+
+DevTools listening on ws://127.0.0.1:46275/devtools/browser/21f72474-4441-401e-83f9-4bda1ef7a1c7
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+[75088:75088:0528/092604.739939:ERROR:media/gpu/vaapi/vaapi_wrapper.cc:1695] vaInitialize failed: unknown libva error
+🚀 Starting application
+🧠 Loading Three.js via import map
+[C2] fetching https://api.github.com/users/swipswaps/repos?per_page=100&sort=updated&type=public
+Failed to load resource: the server responded with a status of 404 (File not found)
+[C5] toggle clicked, panel.display=block
+
+=== NOW CLICK ON SPHERES – YOU WILL SEE CLICK LOGS ===
+
+[C2] status=200 ratelimit_remaining=56
+[C1] repo source: github_api, count=100 (real from GitHub)
+✅ Rendered 100 real repos
+🎨 App ready – click, drag, hover, double-click all logged
+[C1] "no mock repos" -- source: github_api
+[C2] "use what github allows" -- url=https://api.github.com/users/swipswaps/repos?per_page=100&sort=updated&type=public status=200 count=100 ratelimit=56
+[C3] click opens GitHub -- target: event delegation will log
+[C4] drag vectors -- attached: true
+[C5] collapsible debug panel -- toggle bound: true, initial display: none
+[C6] hover logs -- sample: event delegation will log
+[C7] double-click logs -- sample: event delegation will log
+--- END EVIDENCE ---
+🖱️ HOVER - bcm4331-forensic-contr
+🖱️ DRAG START
+[C4] drag vector: dx=-0.03 dy=0.00 dz=0.02 distance=0.04
+[C4] drag vector: dx=-0.03 dy=0.00 dz=0.02 distance=0.04
+[C4] drag vector: dx=-0.03 dy=0.00 dz=0.02 distance=0.03
+[C4] drag vector: dx=-0.03 dy=0.00 dz=0.02 distance=0.03
+[C4] drag vector: dx=-0.03 dy=0.00 dz=0.02 distance=0.03
+[C4] drag vector: dx=-0.04 dy=0.03 dz=0.01 distance=0.05
+[C4] drag vector: dx=-0.04 dy=0.02 dz=0.01 distance=0.05
+🖱️ HOVER - Twitter-Sentiment-Anal
+[C4] drag vector: dx=-0.22 dy=0.19 dz=0.05 distance=0.29
+[C4] drag vector: dx=-0.21 dy=0.18 dz=0.04 distance=0.28
+[C4] drag vector: dx=-0.20 dy=0.17 dz=0.04 distance=0.27
+🖱️ HOVER - vscode-llm-multi-provider
+[C4] drag vector: dx=-0.60 dy=0.41 dz=0.15 distance=0.74
+[C4] drag vector: dx=-0.57 dy=0.39 dz=0.12 distance=0.70
+[C4] drag vector: dx=-0.54 dy=0.36 dz=0.10 distance=0.66
+[C4] drag vector: dx=-0.85 dy=0.42 dz=0.19 distance=0.97
+[C4] drag vector: dx=-0.81 dy=0.39 dz=0.15 distance=0.91
+[C4] drag vector: dx=-0.89 dy=0.38 dz=0.15 distance=0.98
+[C4] drag vector: dx=-0.84 dy=0.36 dz=0.10 distance=0.92
+🖱️ HOVER - bcm4331-fedora-offline
+[C4] drag vector: dx=-0.88 dy=0.34 dz=0.09 distance=0.95
+[C4] drag vector: dx=-0.83 dy=0.32 dz=0.05 distance=0.89
+[C4] drag vector: dx=-0.79 dy=0.30 dz=0.01 distance=0.84
+[C4] drag vector: dx=-0.74 dy=0.28 dz=-0.02 distance=0.80
+[C4] drag vector: dx=-0.71 dy=0.27 dz=-0.04 distance=0.76
+[C4] drag vector: dx=-0.67 dy=0.25 dz=-0.06 distance=0.72
+[C4] drag vector: dx=-0.63 dy=0.24 dz=-0.08 distance=0.68
+[C4] drag vector: dx=-0.59 dy=0.23 dz=-0.10 distance=0.64
+[C4] drag vector: dx=-0.56 dy=0.21 dz=-0.11 distance=0.61
+🖱️ HOVER - quality-gates
+[C4] drag vector: dx=-0.52 dy=0.20 dz=-0.12 distance=0.57
+[C4] drag vector: dx=-0.49 dy=0.19 dz=-0.13 distance=0.54
+[C4] drag vector: dx=-0.46 dy=0.18 dz=-0.13 distance=0.51
+[C4] drag vector: dx=-0.43 dy=0.17 dz=-0.13 distance=0.48
+🖱️ HOVER - Data-Alchemy
+[C4] drag vector: dx=-0.41 dy=0.16 dz=-0.14 distance=0.46
+[C4] drag vector: dx=-0.38 dy=0.14 dz=-0.13 distance=0.43
+[C4] drag vector: dx=-0.36 dy=0.13 dz=-0.13 distance=0.40
+[C4] drag vector: dx=-0.34 dy=0.11 dz=-0.12 distance=0.38
+[C4] drag vector: dx=-0.32 dy=0.11 dz=-0.12 distance=0.36
+[C4] drag vector: dx=-0.27 dy=0.05 dz=-0.07 distance=0.28
+[C4] drag vector: dx=-0.26 dy=0.05 dz=-0.07 distance=0.27
+[C4] drag vector: dx=-0.21 dy=-0.02 dz=-0.01 distance=0.21
+[C4] drag vector: dx=-0.20 dy=-0.02 dz=-0.01 distance=0.20
+[C4] drag vector: dx=-0.13 dy=-0.09 dz=0.05 distance=0.16
+[C4] drag vector: dx=-0.13 dy=-0.08 dz=0.05 distance=0.16
+[C4] drag vector: dx=-0.06 dy=-0.20 dz=0.15 distance=0.26
+[C4] drag vector: dx=-0.06 dy=-0.19 dz=0.14 distance=0.24
+[C4] drag vector: dx=0.02 dy=-0.30 dz=0.24 distance=0.39
+[C4] drag vector: dx=0.02 dy=-0.29 dz=0.23 distance=0.37
+[C4] drag vector: dx=0.06 dy=-0.33 dz=0.25 distance=0.42
+[C4] drag vector: dx=0.06 dy=-0.31 dz=0.23 distance=0.40
+🖱️ HOVER - Twitter-Sentiment-Anal
+[C4] drag vector: dx=0.08 dy=-0.34 dz=0.25 distance=0.42
+[C4] drag vector: dx=0.08 dy=-0.32 dz=0.23 distance=0.40
+🖱️ HOVER - hasciicam
+[C4] drag vector: dx=0.12 dy=-0.36 dz=0.25 distance=0.45
+[C4] drag vector: dx=0.12 dy=-0.34 dz=0.23 distance=0.43
+[C4] drag vector: dx=0.17 dy=-0.38 dz=0.25 distance=0.48
+[C4] drag vector: dx=0.17 dy=-0.36 dz=0.23 distance=0.46
+[C4] drag vector: dx=0.20 dy=-0.36 dz=0.22 distance=0.47
+[C4] drag vector: dx=0.19 dy=-0.34 dz=0.21 distance=0.44
+[C4] drag vector: dx=0.22 dy=-0.34 dz=0.20 distance=0.45
+[C4] drag vector: dx=0.22 dy=-0.33 dz=0.18 distance=0.43
+[C4] drag vector: dx=0.22 dy=-0.32 dz=0.17 distance=0.43
+[C4] drag vector: dx=0.21 dy=-0.31 dz=0.16 distance=0.41
+[C4] drag vector: dx=0.26 dy=-0.32 dz=0.16 distance=0.44
+[C4] drag vector: dx=0.25 dy=-0.31 dz=0.15 distance=0.42
+🖱️ HOVER - macbook-keyboard-heal
+[C4] drag vector: dx=0.24 dy=-0.29 dz=0.13 distance=0.40
+[C4] drag vector: dx=0.23 dy=-0.28 dz=0.12 distance=0.38
+[C4] drag vector: dx=0.22 dy=-0.27 dz=0.11 distance=0.36
+[C4] drag vector: dx=0.21 dy=-0.26 dz=0.10 distance=0.34
+🖱️ HOVER - docker-cheat-sheet
+[C4] drag vector: dx=0.20 dy=-0.24 dz=0.09 distance=0.33
+[C4] drag vector: dx=0.19 dy=-0.23 dz=0.08 distance=0.31
+[C4] drag vector: dx=0.18 dy=-0.22 dz=0.08 distance=0.30
+[C4] drag vector: dx=0.17 dy=-0.21 dz=0.07 distance=0.28
+[C4] drag vector: dx=0.17 dy=-0.20 dz=0.06 distance=0.27
+[C4] drag vector: dx=0.16 dy=-0.19 dz=0.06 distance=0.26
+[C4] drag vector: dx=0.15 dy=-0.18 dz=0.05 distance=0.24
+[C4] drag vector: dx=0.14 dy=-0.17 dz=0.05 distance=0.23
+[C4] drag vector: dx=0.14 dy=-0.17 dz=0.04 distance=0.22
+[C4] drag vector: dx=0.13 dy=-0.16 dz=0.04 distance=0.21
+[C4] drag vector: dx=0.13 dy=-0.15 dz=0.04 distance=0.20
+[C4] drag vector: dx=0.12 dy=-0.14 dz=0.03 distance=0.19
+[C4] drag vector: dx=0.11 dy=-0.14 dz=0.03 distance=0.18
+🖱️ DRAG END
+🖱️ HOVER - LECDS-Configurator
+🖱️ HOVER - amdgpu-hdmi-diagnostic
+🖱️ HOVER - Archive-OmniDash
+🖱️ CLICK - Repository: Archive-OmniDash
+🔒 Locked: Archive-OmniDash
+🖱️ HOVER - firefox_fix
+🖱️ CLICK - Repository: firefox_fix
+🔒 Locked: firefox_fix
+🖱️ HOVER - Forensic-Latency-Analyzer
+🖱️ HOVER - firefox_fix
+🖱️ CLICK - Repository: firefox_fix
+🔒 Locked: firefox_fix
+🖱️ HOVER - baresipy
+🖱️ CLICK - Repository: baresipy
+🔒 Locked: baresipy
+🖱️ CLICK - Repository: baresipy
+🔒 Locked: baresipy
+🖱️ DOUBLE CLICK - Opening: baresipy
+🖱️ HOVER - paddle-ocr-2
+🖱️ HOVER - sys-inspector
+🖱️ HOVER - Debian-13-Proxmox
+🖱️ HOVER - DockerOCR-Clone
+🖱️ HOVER - baresipy
+🖱️ HOVER - sys-inspector
+🖱️ CLICK - Repository: sys-inspector
+🔒 Locked: sys-inspector
+🖱️ CLICK - Repository: sys-inspector
+🔒 Locked: sys-inspector
+🖱️ CLICK - Repository: sys-inspector
+🔒 Locked: sys-inspector
+🖱️ HOVER - Forensic-Latency-Analyzer
+🖱️ HOVER - sys-inspector
+🖱️ HOVER - Forensic-Latency-Analyzer
+🖱️ HOVER - sys-inspector
+🖱️ HOVER - baresipy
+🖱️ HOVER - DockerOCR-Clone
+🖱️ HOVER - autofdo-fedora43-pipeline
+🖱️ HOVER - sys-inspector
+🖱️ HOVER - autofdo-fedora43-pipeline
+🖱️ HOVER - marketplace-bulk-edito
+🖱️ CLICK - Repository: marketplace-bulk-edito
+🔒 Locked: marketplace-bulk-edito
+🖱️ HOVER - GEMMA_4_FORGE_FEDORA_43-
+🖱️ HOVER - marketplace-bulk-edito
+🖱️ HOVER - btrfs_CoW_self-healing
+🖱️ HOVER - bcm4331-fedora-network
+🖱️ HOVER - font-render-selfheal
+🖱️ HOVER - Deterministic-Network-
+🖱️ HOVER - font-render-selfheal
+🖱️ HOVER - bcm4331-fedora-network
+🖱️ HOVER - marketplace-bulk-edito
+🖱️ HOVER - GEMMA_4_FORGE_FEDORA_43-
+🖱️ HOVER - receipts-ocr
+🖱️ HOVER - Solar-Farm-Feasibility
+🖱️ HOVER - amdgpu-hdmi-diagnostic
+🖱️ HOVER - Debian-13-Proxmox
+🖱️ DRAG START
+[C4] drag vector: dx=-0.00 dy=0.00 dz=-0.04 distance=0.04
+[C4] drag vector: dx=-0.00 dy=0.00 dz=-0.04 distance=0.04
+[C4] drag vector: dx=-0.00 dy=0.00 dz=-0.04 distance=0.04
+[C4] drag vector: dx=-0.00 dy=0.00 dz=-0.04 distance=0.04
+[C4] drag vector: dx=-0.00 dy=0.00 dz=-0.04 distance=0.04
+[C4] drag vector: dx=-0.00 dy=0.00 dz=-0.06 distance=0.06
+[C4] drag vector: dx=-0.00 dy=0.00 dz=-0.06 distance=0.06
+[C4] drag vector: dx=0.00 dy=0.06 dz=-0.11 distance=0.12
+[C4] drag vector: dx=0.00 dy=0.05 dz=-0.11 distance=0.12
+🖱️ HOVER - amdgpu-hdmi-diagnostic
+[C4] drag vector: dx=0.07 dy=0.47 dz=-0.35 distance=0.59
+[C4] drag vector: dx=0.08 dy=0.44 dz=-0.33 distance=0.56
+[C4] drag vector: dx=0.09 dy=0.42 dz=-0.32 distance=0.53
+[C4] drag vector: dx=0.09 dy=0.40 dz=-0.30 distance=0.50
+🖱️ HOVER - macbook-keyboard-heal
+[C4] drag vector: dx=0.31 dy=1.12 dz=-0.74 distance=1.38
+[C4] drag vector: dx=0.36 dy=1.05 dz=-0.68 distance=1.30
+🖱️ HOVER - docker-cheat-sheet
+[C4] drag vector: dx=0.42 dy=1.03 dz=-0.71 distance=1.31
+[C4] drag vector: dx=0.45 dy=0.96 dz=-0.65 distance=1.24
+[C4] drag vector: dx=0.51 dy=0.92 dz=-0.75 distance=1.30
+[C4] drag vector: dx=0.54 dy=0.86 dz=-0.68 distance=1.22
+🖱️ HOVER - linfo
+[C4] drag vector: dx=0.63 dy=0.82 dz=-0.91 distance=1.37
+[C4] drag vector: dx=0.65 dy=0.76 dz=-0.82 distance=1.29
+🖱️ HOVER - Debian-13-Proxmox
+[C4] drag vector: dx=0.73 dy=0.71 dz=-0.93 distance=1.38
+[C4] drag vector: dx=0.75 dy=0.66 dz=-0.82 distance=1.29
+🖱️ HOVER - Archive-OmniDash
+[C4] drag vector: dx=0.90 dy=0.62 dz=-1.06 distance=1.52
+[C4] drag vector: dx=0.91 dy=0.57 dz=-0.93 distance=1.42
+[C4] drag vector: dx=1.01 dy=0.52 dz=-0.98 distance=1.50
+[C4] drag vector: dx=1.01 dy=0.49 dz=-0.84 distance=1.40
+🖱️ HOVER - ansible-for-nsxt
+[C4] drag vector: dx=1.02 dy=0.43 dz=-0.77 distance=1.35
+[C4] drag vector: dx=1.00 dy=0.40 dz=-0.65 distance=1.26
+[C4] drag vector: dx=1.04 dy=0.36 dz=-0.64 distance=1.27
+[C4] drag vector: dx=1.01 dy=0.33 dz=-0.53 distance=1.19
+🖱️ HOVER - -Optimizer_OS-v.29-Adv
+[C4] drag vector: dx=1.09 dy=0.25 dz=-0.61 distance=1.27
+[C4] drag vector: dx=1.06 dy=0.24 dz=-0.50 distance=1.20
+[C4] drag vector: dx=1.08 dy=0.18 dz=-0.49 distance=1.20
+[C4] drag vector: dx=1.05 dy=0.17 dz=-0.39 distance=1.13
+🖱️ HOVER - -Broadcom-BCM4331-Fore
+[C4] drag vector: dx=1.02 dy=0.15 dz=-0.32 distance=1.08
+[C4] drag vector: dx=0.98 dy=0.14 dz=-0.25 distance=1.02
+🖱️ HOVER - -Optimizer_OS-v.29-Adv
+[C4] drag vector: dx=0.93 dy=0.13 dz=-0.18 distance=0.96
+[C4] drag vector: dx=0.89 dy=0.13 dz=-0.12 distance=0.90
+[C4] drag vector: dx=0.84 dy=0.12 dz=-0.07 distance=0.85
+[C4] drag vector: dx=0.79 dy=0.11 dz=-0.03 distance=0.80
+[C4] drag vector: dx=0.75 dy=0.11 dz=0.01 distance=0.76
+[C4] drag vector: dx=0.71 dy=0.10 dz=0.04 distance=0.71
+[C4] drag vector: dx=0.66 dy=0.09 dz=0.06 distance=0.67
+[C4] drag vector: dx=0.62 dy=0.09 dz=0.08 distance=0.64
+[C4] drag vector: dx=0.59 dy=0.08 dz=0.10 distance=0.60
+[C4] drag vector: dx=0.55 dy=0.08 dz=0.11 distance=0.57
+[C4] drag vector: dx=0.49 dy=0.05 dz=0.09 distance=0.50
+[C4] drag vector: dx=0.46 dy=0.05 dz=0.10 distance=0.48
+[C4] drag vector: dx=0.29 dy=-0.03 dz=-0.01 distance=0.29
+[C4] drag vector: dx=0.27 dy=-0.03 dz=-0.01 distance=0.27
+🖱️ HOVER - pc-nrfconnect-launcher
+[C4] drag vector: dx=0.05 dy=-0.12 dz=-0.14 distance=0.19
+[C4] drag vector: dx=0.05 dy=-0.11 dz=-0.14 distance=0.18
+[C4] drag vector: dx=-0.15 dy=-0.17 dz=-0.23 distance=0.32
+[C4] drag vector: dx=-0.14 dy=-0.16 dz=-0.22 distance=0.31
+[C4] drag vector: dx=-0.28 dy=-0.22 dz=-0.29 distance=0.46
+[C4] drag vector: dx=-0.27 dy=-0.21 dz=-0.27 distance=0.44
+🖱️ HOVER - bcm4331-fedora-offline
+[C4] drag vector: dx=-0.33 dy=-0.23 dz=-0.29 distance=0.50
+[C4] drag vector: dx=-0.33 dy=-0.22 dz=-0.26 distance=0.48
+🖱️ HOVER - lecds-preview
+[C4] drag vector: dx=-0.40 dy=-0.25 dz=-0.28 distance=0.54
+[C4] drag vector: dx=-0.39 dy=-0.24 dz=-0.25 distance=0.52
+[C4] drag vector: dx=-0.46 dy=-0.26 dz=-0.26 distance=0.58
+[C4] drag vector: dx=-0.44 dy=-0.25 dz=-0.23 distance=0.56
+[C4] drag vector: dx=-0.64 dy=-0.27 dz=-0.22 distance=0.73
+[C4] drag vector: dx=-0.62 dy=-0.26 dz=-0.19 distance=0.70
+[C4] drag vector: dx=-0.81 dy=-0.31 dz=-0.18 distance=0.88
+[C4] drag vector: dx=-0.78 dy=-0.30 dz=-0.14 distance=0.85
+[C4] drag vector: dx=-0.81 dy=-0.29 dz=-0.09 distance=0.86
+[C4] drag vector: dx=-0.78 dy=-0.28 dz=-0.05 distance=0.83
+🖱️ HOVER - Solar-Farm-Feasibility
+[C4] drag vector: dx=-0.77 dy=-0.28 dz=-0.02 distance=0.82
+[C4] drag vector: dx=-0.74 dy=-0.27 dz=0.01 distance=0.78
+[C4] drag vector: dx=-0.70 dy=-0.26 dz=0.04 distance=0.75
+[C4] drag vector: dx=-0.67 dy=-0.25 dz=0.07 distance=0.72
+[C4] drag vector: dx=-0.64 dy=-0.23 dz=0.09 distance=0.69
+[C4] drag vector: dx=-0.61 dy=-0.22 dz=0.10 distance=0.66
+[C4] drag vector: dx=-0.58 dy=-0.21 dz=0.12 distance=0.63
+[C4] drag vector: dx=-0.55 dy=-0.21 dz=0.13 distance=0.60
+[C4] drag vector: dx=-0.52 dy=-0.20 dz=0.14 distance=0.57
+[C4] drag vector: dx=-0.49 dy=-0.19 dz=0.14 distance=0.55
+[C4] drag vector: dx=-0.47 dy=-0.18 dz=0.15 distance=0.52
+🖱️ HOVER - Pro-Video-Reverser
+[C4] drag vector: dx=-0.44 dy=-0.17 dz=0.15 distance=0.50
+[C4] drag vector: dx=-0.42 dy=-0.16 dz=0.16 distance=0.47
+[C4] drag vector: dx=-0.39 dy=-0.16 dz=0.16 distance=0.45
+[C4] drag vector: dx=-0.37 dy=-0.15 dz=0.16 distance=0.43
+[C4] drag vector: dx=-0.35 dy=-0.14 dz=0.16 distance=0.41
+[C4] drag vector: dx=-0.33 dy=-0.14 dz=0.16 distance=0.39
+[C4] drag vector: dx=-0.31 dy=-0.13 dz=0.15 distance=0.37
+[C4] drag vector: dx=-0.29 dy=-0.11 dz=0.16 distance=0.35
+[C4] drag vector: dx=-0.28 dy=-0.11 dz=0.15 distance=0.33
+🖱️ HOVER - firefox_fix
+[C4] drag vector: dx=-0.24 dy=-0.08 dz=0.15 distance=0.30
+[C4] drag vector: dx=-0.23 dy=-0.07 dz=0.15 distance=0.28
+[C4] drag vector: dx=-0.20 dy=-0.04 dz=0.15 distance=0.25
+[C4] drag vector: dx=-0.19 dy=-0.04 dz=0.14 distance=0.24
+[C4] drag vector: dx=-0.18 dy=-0.04 dz=0.14 distance=0.22
+[C4] drag vector: dx=-0.14 dy=-0.01 dz=0.12 distance=0.19
+[C4] drag vector: dx=-0.13 dy=-0.01 dz=0.12 distance=0.18
+[C4] drag vector: dx=-0.12 dy=-0.01 dz=0.11 distance=0.17
+[C4] drag vector: dx=-0.12 dy=-0.01 dz=0.11 distance=0.16
+[C4] drag vector: dx=-0.11 dy=-0.01 dz=0.10 distance=0.15
+[C4] drag vector: dx=-0.10 dy=-0.01 dz=0.10 distance=0.14
+[C4] drag vector: dx=-0.10 dy=-0.01 dz=0.09 distance=0.14
+[C4] drag vector: dx=-0.09 dy=-0.01 dz=0.09 distance=0.13
+[C4] drag vector: dx=-0.09 dy=-0.01 dz=0.09 distance=0.12
+[C4] drag vector: dx=-0.08 dy=-0.01 dz=0.08 distance=0.12
+[C4] drag vector: dx=-0.08 dy=-0.01 dz=0.08 distance=0.11
+[C4] drag vector: dx=-0.06 dy=0.00 dz=0.07 distance=0.09
+🖱️ DRAG END
+🖱️ CLICK - Repository: firefox_fix
+🔒 Locked: firefox_fix
+🖱️ HOVER - librealsense
+🖱️ HOVER - receipts-ocr
+🖱️ HOVER - LECDS-Configurator
+🖱️ HOVER - DockerOCR
+🖱️ HOVER - linfo
+🖱️ HOVER - Debian-13-Proxmox
+🖱️ HOVER - sys-inspector

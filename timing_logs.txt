@@ -1,0 +1,14 @@
+
+DevTools listening on ws://127.0.0.1:41145/devtools/browser/273ed17d-f8b0-403f-9104-e2d8d61164de
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+[77073:77073:0528/095438.012185:ERROR:media/gpu/vaapi/vaapi_wrapper.cc:1695] vaInitialize failed: unknown libva error
+Failed to load resource: the server responded with a status of 404 (File not found)
+
+=== 🔍 PERFORMANCE DIAGNOSTIC – CLICK THEN DRAG ===
+1. Click once on a sphere
+2. Immediately drag the cloud
+3. Watch for TIMING and PERF logs
+
+[77033:77053:0528/095440.749047:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR
+[77033:77053:0528/095440.751557:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR
+[77033:77053:0528/095440.753722:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR

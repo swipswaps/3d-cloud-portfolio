@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "playwright": "^1.60.0",
+    "puppeteer": "^25.1.0"
+  },
+  "name": "cloud-portfolio-pages",
+  "version": "1.0.0",
+  "description": "[owner@192.168.1.152-20260529-121102 cloud-portfolio-pages]$ cp README.md ../notes/README.bak && xclip -sel clip -o |tee README.md # 3D Repository Cloud – SwipSwaps Portfolio",
+  "main": "build_similarity.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swipswaps/3d-cloud-portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/swipswaps/3d-cloud-portfolio/issues"
+  },
+  "homepage": "https://github.com/swipswaps/3d-cloud-portfolio#readme",
+  "devDependencies": {
+    "fast-check": "^4.8.0"
+  }
+}

@@ -1,0 +1,189 @@
+
+DevTools listening on ws://127.0.0.1:46529/devtools/browser/afee0579-d0f1-438d-8fe0-c2d5ec456a85
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+[74520:74520:0528/092053.397698:ERROR:media/gpu/vaapi/vaapi_wrapper.cc:1695] vaInitialize failed: unknown libva error
+🚀 Starting application
+🧠 Loading Three.js via import map
+[C2] fetching https://api.github.com/users/swipswaps/repos?per_page=100&sort=updated&type=public
+Failed to load resource: the server responded with a status of 404 (File not found)
+[C5] toggle clicked, panel.display=block
+
+=== 🖱️ NOW INTERACT WITH THE BROWSER ===
+Click spheres, drag, double-click, hover...
+Press Ctrl+C in this terminal when done.
+
+[C2] status=200 ratelimit_remaining=59
+[C1] repo source: github_api, count=100 (real from GitHub)
+✅ Rendered 100 real repos
+🎨 App ready – click, drag, hover, double-click all logged
+[C1] "no mock repos" -- source: github_api
+[C2] "use what github allows" -- url=https://api.github.com/users/swipswaps/repos?per_page=100&sort=updated&type=public status=200 count=100 ratelimit=59
+[C3] click opens GitHub -- target: https://github.com/swipswaps/python-advanced-ocr
+[C4] drag vectors -- attached: true
+[C5] collapsible debug panel -- toggle bound: true, initial display: none
+[C6] hover logs -- sample: hover on python-advanced-ocr logs name
+[C7] double-click logs -- sample: double-click on python-advanced-ocr opens GitHub
+--- END EVIDENCE ---
+[74478:74498:0528/092056.664856:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR
+[74478:74498:0528/092056.665807:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR
+[74478:74498:0528/092056.666607:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR
+🖱️ DRAG START
+[C4] drag vector: dx=-0.03 dy=-0.00 dz=0.02 distance=0.04
+[C4] drag vector: dx=-0.04 dy=0.04 dz=0.01 distance=0.05
+[C4] drag vector: dx=-0.04 dy=0.04 dz=0.01 distance=0.05
+[C4] drag vector: dx=-0.10 dy=0.17 dz=-0.02 distance=0.19
+[C4] drag vector: dx=-0.09 dy=0.16 dz=-0.02 distance=0.18
+[C4] drag vector: dx=-0.34 dy=0.45 dz=-0.00 distance=0.56
+[C4] drag vector: dx=-0.33 dy=0.42 dz=-0.01 distance=0.53
+[C4] drag vector: dx=-0.52 dy=0.68 dz=-0.05 distance=0.86
+[C4] drag vector: dx=-0.50 dy=0.63 dz=-0.08 distance=0.81
+[C4] drag vector: dx=-0.75 dy=0.91 dz=-0.15 distance=1.19
+[C4] drag vector: dx=-0.71 dy=0.85 dz=-0.20 distance=1.12
+[C4] drag vector: dx=-0.78 dy=0.88 dz=-0.25 distance=1.20
+[C4] drag vector: dx=-0.73 dy=0.81 dz=-0.29 distance=1.13
+[C4] drag vector: dx=-0.71 dy=0.78 dz=-0.34 distance=1.10
+[C4] drag vector: dx=-0.66 dy=0.72 dz=-0.36 distance=1.04
+[C4] drag vector: dx=-0.63 dy=0.67 dz=-0.39 distance=1.00
+[C4] drag vector: dx=-0.59 dy=0.62 dz=-0.41 distance=0.94
+[C4] drag vector: dx=-0.54 dy=0.57 dz=-0.42 distance=0.89
+[C4] drag vector: dx=-0.50 dy=0.53 dz=-0.43 distance=0.84
+[C4] drag vector: dx=-0.47 dy=0.48 dz=-0.43 distance=0.80
+[C4] drag vector: dx=-0.43 dy=0.45 dz=-0.43 distance=0.75
+[C4] drag vector: dx=-0.40 dy=0.41 dz=-0.43 distance=0.71
+[C4] drag vector: dx=-0.36 dy=0.38 dz=-0.42 distance=0.67
+[C4] drag vector: dx=-0.33 dy=0.35 dz=-0.42 distance=0.64
+[C4] drag vector: dx=-0.31 dy=0.32 dz=-0.41 distance=0.60
+[C4] drag vector: dx=-0.28 dy=0.30 dz=-0.40 distance=0.57
+[C4] drag vector: dx=-0.26 dy=0.27 dz=-0.39 distance=0.54
+[C4] drag vector: dx=-0.24 dy=0.25 dz=-0.38 distance=0.51
+[C4] drag vector: dx=-0.20 dy=0.23 dz=-0.36 distance=0.47
+[C4] drag vector: dx=-0.19 dy=0.21 dz=-0.34 distance=0.44
+[C4] drag vector: dx=-0.12 dy=0.14 dz=-0.24 distance=0.30
+[C4] drag vector: dx=-0.11 dy=0.13 dz=-0.23 distance=0.29
+[C4] drag vector: dx=-0.02 dy=0.03 dz=-0.05 distance=0.07
+[C4] drag vector: dx=-0.02 dy=0.03 dz=-0.05 distance=0.06
+[C4] drag vector: dx=-0.01 dy=0.00 dz=-0.00 distance=0.01
+[C4] drag vector: dx=-0.01 dy=0.00 dz=-0.00 distance=0.01
+[C4] drag vector: dx=0.08 dy=-0.10 dz=0.18 distance=0.22
+[C4] drag vector: dx=0.08 dy=-0.09 dz=0.17 distance=0.21
+[C4] drag vector: dx=0.10 dy=-0.13 dz=0.23 distance=0.28
+[C4] drag vector: dx=0.10 dy=-0.13 dz=0.21 distance=0.27
+[C4] drag vector: dx=0.12 dy=-0.14 dz=0.24 distance=0.30
+[C4] drag vector: dx=0.11 dy=-0.14 dz=0.22 distance=0.29
+[C4] drag vector: dx=0.13 dy=-0.15 dz=0.23 distance=0.30
+[C4] drag vector: dx=0.13 dy=-0.14 dz=0.22 distance=0.29
+[C4] drag vector: dx=0.16 dy=-0.18 dz=0.27 distance=0.36
+[C4] drag vector: dx=0.15 dy=-0.18 dz=0.25 distance=0.34
+[C4] drag vector: dx=0.17 dy=-0.21 dz=0.29 distance=0.40
+[C4] drag vector: dx=0.17 dy=-0.21 dz=0.27 distance=0.38
+[C4] drag vector: dx=0.16 dy=-0.20 dz=0.25 distance=0.36
+[C4] drag vector: dx=0.16 dy=-0.19 dz=0.24 distance=0.34
+[C4] drag vector: dx=0.15 dy=-0.19 dz=0.22 distance=0.33
+[C4] drag vector: dx=0.15 dy=-0.18 dz=0.21 distance=0.31
+[C4] drag vector: dx=0.14 dy=-0.17 dz=0.19 distance=0.30
+[C4] drag vector: dx=0.14 dy=-0.17 dz=0.18 distance=0.28
+[C4] drag vector: dx=0.13 dy=-0.16 dz=0.17 distance=0.27
+[C4] drag vector: dx=0.13 dy=-0.15 dz=0.16 distance=0.25
+[C4] drag vector: dx=0.12 dy=-0.15 dz=0.15 distance=0.24
+[C4] drag vector: dx=0.12 dy=-0.14 dz=0.14 distance=0.23
+[C4] drag vector: dx=0.11 dy=-0.14 dz=0.13 distance=0.22
+[C4] drag vector: dx=0.11 dy=-0.13 dz=0.12 distance=0.21
+[C4] drag vector: dx=0.10 dy=-0.12 dz=0.12 distance=0.20
+[C4] drag vector: dx=0.10 dy=-0.12 dz=0.11 distance=0.19
+[C4] drag vector: dx=0.09 dy=-0.11 dz=0.10 distance=0.18
+🖱️ DRAG END
+🖱️ DRAG START
+[C4] drag vector: dx=0.02 dy=-0.05 dz=0.04 distance=0.06
+[C4] drag vector: dx=0.02 dy=-0.04 dz=0.04 distance=0.06
+[C4] drag vector: dx=0.02 dy=-0.04 dz=0.04 distance=0.06
+[C4] drag vector: dx=0.02 dy=-0.04 dz=0.03 distance=0.05
+[C4] drag vector: dx=0.01 dy=-0.04 dz=0.03 distance=0.05
+[C4] drag vector: dx=0.01 dy=-0.04 dz=0.03 distance=0.05
+[C4] drag vector: dx=0.01 dy=-0.03 dz=0.03 distance=0.05
+[C4] drag vector: dx=0.01 dy=-0.03 dz=0.03 distance=0.04
+[C4] drag vector: dx=0.01 dy=-0.03 dz=0.03 distance=0.04
+[C4] drag vector: dx=0.01 dy=-0.03 dz=0.02 distance=0.04
+[C4] drag vector: dx=0.01 dy=-0.03 dz=0.02 distance=0.04
+[C4] drag vector: dx=0.01 dy=-0.03 dz=0.02 distance=0.04
+[C4] drag vector: dx=0.01 dy=-0.03 dz=0.02 distance=0.03
+[C4] drag vector: dx=0.01 dy=-0.02 dz=0.02 distance=0.03
+[C4] drag vector: dx=0.01 dy=-0.02 dz=0.02 distance=0.03
+[C4] drag vector: dx=0.01 dy=-0.02 dz=0.02 distance=0.03
+[C4] drag vector: dx=0.01 dy=-0.02 dz=0.02 distance=0.03
+🖱️ DRAG END
+🖱️ DRAG START
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.01 distance=0.03
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.01 distance=0.03
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.01 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.01 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.01 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.01 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.01 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.01 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.01 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.01 distance=0.02
+🖱️ DRAG END
+🖱️ DRAG START
+[C4] drag vector: dx=-0.03 dy=-0.00 dz=0.01 distance=0.03
+[C4] drag vector: dx=-0.03 dy=-0.00 dz=0.01 distance=0.03
+[C4] drag vector: dx=-0.03 dy=-0.00 dz=0.01 distance=0.03
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.01 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.01 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.01 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.01 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.01 distance=0.02
+🖱️ DRAG END
+🖱️ DRAG START
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.01 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.01 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+🖱️ DRAG END
+🖱️ DRAG START
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+🖱️ DRAG END
+🖱️ DRAG START
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+🖱️ DRAG END
+🖱️ DRAG START
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+🖱️ DRAG END
+🖱️ DRAG START
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.02
+[C4] drag vector: dx=-0.03 dy=-0.00 dz=0.00 distance=0.03
+[C4] drag vector: dx=-0.02 dy=-0.00 dz=0.00 distance=0.03
+[C4] drag vector: dx=-0.09 dy=-0.00 dz=0.02 distance=0.09
+[C4] drag vector: dx=-0.08 dy=-0.00 dz=0.01 distance=0.08
+[C4] drag vector: dx=-0.11 dy=-0.00 dz=0.02 distance=0.11
+[C4] drag vector: dx=-0.10 dy=-0.00 dz=0.02 distance=0.11
+[C4] drag vector: dx=-0.13 dy=-0.00 dz=0.02 distance=0.13
+🖱️ DRAG END
+🖱️ DRAG START
+[C4] drag vector: dx=-0.09 dy=-0.00 dz=0.01 distance=0.09
+[C4] drag vector: dx=-0.09 dy=-0.00 dz=0.01 distance=0.09
+🖱️ DRAG END
+[74478:74478:0528/092103.454161:ERROR:ui/gfx/x/atom_cache.cc:234] Add application/vnd.portal.filetransfer to kAtomsToCache
+[74478:74478:0528/092103.455269:ERROR:ui/gfx/x/atom_cache.cc:234] Add application/vnd.portal.files to kAtomsToCache
+[74478:74498:0528/092120.686025:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: DEPRECATED_ENDPOINT

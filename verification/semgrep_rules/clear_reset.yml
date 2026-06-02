@@ -1,0 +1,17 @@
+rules:
+  - id: missing-reset-all-visibility
+    pattern: |
+      $BTN.addEventListener('click', (e) => {
+        ...
+        $BTN.value = '';
+        ...
+      })
+    pattern-not: |
+      $BTN.addEventListener('click', (e) => {
+        ...
+        resetAllVisibility();
+        ...
+      })
+    message: "Clear button click handler should call resetAllVisibility()"
+    languages: [javascript]
+    severity: ERROR

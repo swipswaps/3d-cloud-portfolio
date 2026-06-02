@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+# Pure static linter – exits 0 if no failures, 1 otherwise
+FILE="${1:-index.html}"
+[ ! -f "$FILE" ] && echo "FAIL: $FILE not found" && exit 1
+
+PASS=0; FAIL=0
+
+check_present_literal() {
+    if grep -qF -- "$2" "$1"; then
+        echo "  PASS: $2"
+        PASS=$((PASS+1))
+    else
+        echo "  FAIL: $2"
+        FAIL=$((FAIL+1))
+    fi
+}
+
+check_present_regex() {
+    if grep -qE -- "$2" "$1"; then
+        echo "  PASS: $2"
+        PASS=$((PASS+1))
+    else
+        echo "  FAIL: $2"
+        FAIL=$((FAIL+1))
+    fi
+}
+
+check_absent() {
+    if ! grep -qF -- "$2" "$1"; then
+        echo "  PASS: $2"
+        PASS=$((PASS+1))
+    else
+        echo "  FAIL: $2"
+        FAIL=$((FAIL+1))
+    fi
+}
+
+echo "==================================================================="
+echo "STATIC CHECKS on $FILE"
+echo "==================================================================="
+check_present_literal "$FILE" "Click: README | Double-click: GitHub"
+check_present_literal "$FILE" "fetchRealRepos"
+check_present_literal "$FILE" "https://api.github.com/users/swipswaps/repos"
+check_present_literal "$FILE" "logEvent"
+check_present_literal "$FILE" "renderer.domElement.addEventListener('click'"
+check_present_literal "$FILE" "renderer.domElement.addEventListener('dblclick'"
+check_present_regex  "$FILE" "window\.open.*noopener,noreferrer"
+check_present_literal "$FILE" "TextDecoder"
+check_present_literal "$FILE" "#minimap-container"
+check_present_literal "$FILE" "control-panel"
+check_present_literal "$FILE" "similarBtn"
+check_present_literal "$FILE" "fuzzySearchInput"
+check_present_literal "$FILE" "runSelfTest"
+check_present_literal "$FILE" "filterRepos"
+check_absent        "$FILE" "window.addEventListener('click'"
+check_absent        "$FILE" "DBL_CLICK_DELAY"
+check_absent        "$FILE" "clickTimer"
+check_absent        "$FILE" "ignoreNextClick"
+
+echo "  Total: $PASS pass, $FAIL fail"
+[ "$FAIL" -gt 0 ] && exit 1
+exit 0

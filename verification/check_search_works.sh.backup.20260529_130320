@@ -1,0 +1,52 @@
+#!/bin/bash
+# T011: Mechanical compliance gate – verify that search filtering works
+# Uses Puppeteer to simulate a search and checks that the correct labels become visible/hidden
+
+echo "Checking search functionality..."
+
+# Start server if not already running
+if ! curl -s http://localhost:8765 >/dev/null 2>&1; then
+    python3 server_with_logs.py > /tmp/server_logs.txt 2>&1 &
+    SERVER_PID=$!
+    sleep 2
+else
+    SERVER_PID=""
+fi
+
+# Run Puppeteer test
+node << 'NODEEOF'
+const puppeteer = require('puppeteer');
+(async () => {
+    const browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+    await page.goto('http://localhost:8765/index.html', { waitUntil: 'networkidle2' });
+    await page.waitForSelector('.repo-label');
+
+    // Get all repo names
+    const labels = await page.$$eval('.repo-label', els => els.map(el => el.textContent));
+    const testRepo = labels.find(l => l.toLowerCase().includes('docker')) || labels[0];
+    const searchTerm = testRepo.substring(0, 5);
+
+    // Type search term into exact search input and click filter
+    await page.type('#searchInput', searchTerm);
+    await page.click('#searchBtn');
+
+    // Wait for filter to apply
+    await page.waitForTimeout(500);
+    const visible = await page.$$eval('.repo-label', els => els.filter(el => el.style.display !== 'none').length);
+    const all = labels.length;
+
+    if (visible < all && visible > 0) {
+        console.log('PASS: Search filtering works');
+        process.exit(0);
+    } else {
+        console.log(`FAIL: Search filtering broken – visible=${visible}, total=${all}`);
+        process.exit(1);
+    }
+    await browser.close();
+})();
+NODEEOF
+
+SEARCH_RESULT=$?
+if [ -n "$SERVER_PID" ]; then kill $SERVER_PID 2>/dev/null; fi
+exit $SEARCH_RESULT

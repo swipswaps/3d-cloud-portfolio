@@ -1,0 +1,106 @@
+#!/usr/bin/env node
+// Property‑based test for search invariants using fast-check
+// Citations: skills_0030 best_practice_libraries – Property‑Based Testing,
+//            T015/T016 (Evidence‑bearing logs), R045 (summary line)
+// Run: node verification/property_test_search.js (server must be running)
+
+const fc = require('fast-check');
+const { chromium } = require('playwright');
+
+async function getVisibleCount(page) {
+    return await page.$$eval('.repo-label', els =>
+        els.filter(el => {
+            const display = el.style.display || getComputedStyle(el).display;
+            return display !== 'none';
+        }).length
+    );
+}
+
+async function resetSearch(page, totalBefore) {
+    await page.fill('#fuzzySearchInput', '');
+    let attempts = 0;
+    while (await getVisibleCount(page) !== totalBefore && attempts < 50) {
+        await page.waitForTimeout(100);
+        attempts++;
+    }
+    if (await getVisibleCount(page) !== totalBefore) {
+        throw new Error(`Reset failed: visible count ${await getVisibleCount(page)} != ${totalBefore}`);
+    }
+}
+
+async function runTest() {
+    let browser;
+    try {
+        browser = await chromium.launch({ headless: true });
+        const page = await browser.newPage();
+        await page.goto('http://localhost:8765/index.html', { waitUntil: 'networkidle' });
+        await page.waitForSelector('.repo-label', { timeout: 10000 });
+
+        const totalBefore = await getVisibleCount(page);
+        console.log(`📊 Total repos unfiltered: ${totalBefore}`);
+
+        let runs = 0;
+        // Property: applying any search term never increases visible count,
+        // and the actual visible count matches the console event.
+        await fc.assert(
+            fc.asyncProperty(fc.string(), async (term) => {
+                runs++;
+                await resetSearch(page, totalBefore);
+                const before = await getVisibleCount(page);
+                if (before !== totalBefore) {
+                    throw new Error(`Before count ${before} != ${totalBefore} – reset failed`);
+                }
+
+                let expectedCount = null;
+                if (term === '') {
+                    await page.fill('#fuzzySearchInput', term);
+                    await page.waitForTimeout(500);
+                    expectedCount = totalBefore;
+                } else {
+                    let visibleCount = null;
+                    const consolePromise = new Promise((resolve) => {
+                        const handler = (msg) => {
+                            const text = msg.text();
+                            if (text.includes('"fuzzy_search_result"')) {
+                                try {
+                                    const json = JSON.parse(text);
+                                    if (json.event === 'fuzzy_search_result' && json.data && json.data.visible !== undefined) {
+                                        visibleCount = json.data.visible;
+                                        page.off('console', handler);
+                                        resolve();
+                                    }
+                                } catch(e) {}
+                            }
+                        };
+                        page.on('console', handler);
+                    });
+                    await page.fill('#fuzzySearchInput', term);
+                    await Promise.race([consolePromise, page.waitForTimeout(2000)]);
+                    if (visibleCount === null) {
+                        throw new Error(`No console event for term "${term}"`);
+                    }
+                    expectedCount = visibleCount;
+                    await page.waitForTimeout(200);
+                }
+
+                const after = await getVisibleCount(page);
+                console.log(`[P1:${runs}] "${term}" → before=${before}, after=${after}, expected=${expectedCount}`);
+
+                if (term === '') {
+                    return after === totalBefore;
+                } else {
+                    return after === expectedCount && after <= before;
+                }
+            })
+        );
+        console.log(`✅ P1 complete: ${runs} runs, all ≤ TOTAL`); // R045
+
+    } catch (err) {
+        console.error('❌ Property test failed:', err.message);
+        process.exit(1);
+    } finally {
+        if (browser) await browser.close();
+    }
+}
+
+runTest().catch(console.error);

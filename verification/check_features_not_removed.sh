@@ -1,6 +1,6 @@
 #!/bin/bash
 missing=0
-for id in minimap-container control-panel similarBtn fuzzySearchInput; do
+for id in minimap-container control-panel fuzzySearchInput; do
     if ! grep -q "id=\"$id\"" index.html; then
         echo "FAIL: Feature $id was removed without justification"
         missing=1

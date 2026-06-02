@@ -1,0 +1,2961 @@
+{
+  "605204": [
+    {
+      "repo": "addon-g2c3d",
+      "score": 0.0916133609184277
+    },
+    {
+      "repo": "active_merchant",
+      "score": 0.08505593317777728
+    },
+    {
+      "repo": "about-me",
+      "score": 0.08504394269840881
+    },
+    {
+      "repo": "AddBlenderCustomPropertiesFromCSV",
+      "score": 0.07730285343684802
+    },
+    {
+      "repo": "2D-Pose-Estimation",
+      "score": 0.07445067051337917
+    },
+    {
+      "repo": "a2python-webserver",
+      "score": 0.05988977252366563
+    },
+    {
+      "repo": "3d_pose_baseline_pytorch",
+      "score": 0.05642382743715229
+    },
+    {
+      "repo": "advanced-python3",
+      "score": 0.051933900731937425
+    },
+    {
+      "repo": "2048-python",
+      "score": 0.051176612051840625
+    }
+  ],
+  "-Broadcom-BCM4331-Forensic-Controller-Unified-v39.8-": [
+    {
+      "repo": "-Optimizer_OS-v.29-Advanced-Fedora-Forensic-Tuning-Suite-",
+      "score": 0.2411085585837582
+    },
+    {
+      "repo": "about-me",
+      "score": 0.08393525864326623
+    },
+    {
+      "repo": "A2J",
+      "score": 0.0808307630679795
+    },
+    {
+      "repo": "AI-ChatBot",
+      "score": 0.07470723933669328
+    },
+    {
+      "repo": "active_merchant",
+      "score": 0.07411829805868624
+    },
+    {
+      "repo": "4nonimizer",
+      "score": 0.06951220790884814
+    },
+    {
+      "repo": "3D-Multi-Person-Pose",
+      "score": 0.06477510433397335
+    },
+    {
+      "repo": "3dmm_cnn",
+      "score": 0.06309162549368684
+    },
+    {
+      "repo": "addon-g2c3d",
+      "score": 0.05451600836327878
+    },
+    {
+      "repo": "adonis-apollo-server",
+      "score": 0.05107783818305039
+    }
+  ],
+  "-Git-Worktree-Masterclass-TUI": [
+    {
+      "repo": "agkozak-zsh-prompt",
+      "score": 0.09766727768461492
+    },
+    {
+      "repo": "3d-game-shaders-for-beginners",
+      "score": 0.05703461277464937
+    },
+    {
+      "repo": "aaPanel",
+      "score": 0.054779736981792185
+    },
+    {
+      "repo": "3dv_tutorial",
+      "score": 0.05233169565182085
+    }
+  ],
+  "-Optimizer_OS-v.29-Advanced-Fedora-Forensic-Tuning-Suite-": [
+    {
+      "repo": "-Broadcom-BCM4331-Forensic-Controller-Unified-v39.8-",
+      "score": 0.2411085585837582
+    },
+    {
+      "repo": "aeropress-me-app",
+      "score": 0.1090618891148305
+    },
+    {
+      "repo": "active_merchant",
+      "score": 0.09040394504050814
+    },
+    {
+      "repo": "Advanced-Video",
+      "score": 0.07820558011790962
+    },
+    {
+      "repo": "ActivityExtractor",
+      "score": 0.0771162603224107
+    },
+    {
+      "repo": "Add-Time-Lapse-To-Gcode",
+      "score": 0.06470017218398649
+    },
+    {
+      "repo": "accelerator-core-js",
+      "score": 0.055360073384373966
+    },
+    {
+      "repo": "AI-ChatBot",
+      "score": 0.054612165241062854
+    },
+    {
+      "repo": "about-me",
+      "score": 0.052230949818620184
+    },
+    {
+      "repo": "agent",
+      "score": 0.05074581196324647
+    }
+  ],
+  "-Security": [
+    {
+      "repo": "agent",
+      "score": 0.4351883897561451
+    }
+  ],
+  ".dotfiles": [
+    {
+      "repo": ".tmux",
+      "score": 0.1459838073400049
+    },
+    {
+      "repo": "acme.sh",
+      "score": 0.09415723299047762
+    },
+    {
+      "repo": "A-to-Z-Resources-for-Students",
+      "score": 0.06857595913845718
+    },
+    {
+      "repo": "AdaptiveTableLayout",
+      "score": 0.06810582998919547
+    },
+    {
+      "repo": "AI-ChatBot",
+      "score": 0.06645658329767494
+    },
+    {
+      "repo": "02_Box_Modelling",
+      "score": 0.05232666220284265
+    }
+  ],
+  ".tmux": [
+    {
+      "repo": ".dotfiles",
+      "score": 0.1459838073400049
+    },
+    {
+      "repo": "404-js13k-2020",
+      "score": 0.07612999299039122
+    },
+    {
+      "repo": "aes67-linux-daemon",
+      "score": 0.06980910438901747
+    }
+  ],
+  "0-orchestrator": [
+    {
+      "repo": "adonis-graphql-server",
+      "score": 0.092707875231682
+    },
+    {
+      "repo": "2017-Hestia-Server",
+      "score": 0.07579905935623694
+    },
+    {
+      "repo": "adonis-apollo-server",
+      "score": 0.06366302617298333
+    },
+    {
+      "repo": "addon-g2c3d",
+      "score": 0.057375749753573936
+    },
+    {
+      "repo": "adonis-scheduler",
+      "score": 0.055021137844755395
+    }
+  ],
+  "02_Box_Modelling": [
+    {
+      "repo": "07-Glitch-Garden-Original",
+      "score": 0.24066662575135586
+    },
+    {
+      "repo": "AddBlenderCustomPropertiesFromCSV",
+      "score": 0.15257325558945137
+    },
+    {
+      "repo": "addon-g2c3d",
+      "score": 0.11882052316692139
+    },
+    {
+      "repo": "adonis-js-from-scratch",
+      "score": 0.09273247766754643
+    },
+    {
+      "repo": "2Dmapping",
+      "score": 0.08476062439165216
+    },
+    {
+      "repo": "active_merchant",
+      "score": 0.06284452228403295
+    },
+    {
+      "repo": ".dotfiles",
+      "score": 0.05232666220284265
+    },
+    {
+      "repo": "AdaptiveTableLayout",
+      "score": 0.05071452132103144
+    }
+  ],
+  "07-Glitch-Garden-Original": [
+    {
+      "repo": "02_Box_Modelling",
+      "score": 0.24066662575135586
+    },
+    {
+      "repo": "A-to-Z-Resources-for-Students",
+      "score": 0.09711627902711957
+    },
+    {
+      "repo": "adonis-js-from-scratch",
+      "score": 0.08463607342892747
+    },
+    {
+      "repo": "adonis-acl",
+      "score": 0.08386772522401019
+    },
+    {
+      "repo": "3d-game-shaders-for-beginners",
+      "score": 0.07792482901746817
+    },
+    {
+      "repo": "adaptnlp",
+      "score": 0.07076487309208472
+    },
+    {
+      "repo": "active_merchant",
+      "score": 0.0643970312114461
+    },
+    {
+      "repo": "addon-g2c3d",
+      "score": 0.062269942613747034
+    },
+    {
+      "repo": "2D-Pose-Estimation",
+      "score": 0.05510357632887437
+    },
+    {
+      "repo": "2Dmapping",
+      "score": 0.05449864795360917
+    }
+  ],
+  "0rc": [
+    {
+      "repo": "A-to-Z-Resources-for-Students",
+      "score": 0.06522686408717657
+    },
+    {
+      "repo": "2Dmapping",
+      "score": 0.05442130283428382
+    },
+    {
+      "repo": "2D-Pose-Estimation",
+      "score": 0.050232807382715974
+    }
+  ],
+  "1337cazador": [
+    {
+      "repo": "acme-tiny",
+      "score": 0.07893189674180512
+    },
+    {
+      "repo": "4nonimizer",
+      "score": 0.07154540817190154
+    },
+    {
+      "repo": "ActivityExtractor",
+      "score": 0.06985692501764088
+    },
+    {
+      "repo": "3dmm_cnn",
+      "score": 0.0677128485283938
+    }
+  ],
+  "2.5D-Visual-Sound": [
+    {
+      "repo": "a2python-webserver",
+      "score": 0.1421563983429127
+    }
+  ],
+  "2017-Hestia-Server": [
+    {
+      "repo": "adonis-graphql-server",
+      "score": 0.3059044917024912
+    },
+    {
+      "repo": "adonis-apollo-server",
+      "score": 0.23917735283271896
+    },
+    {
+      "repo": "2017-tfm-david-pascual",
+      "score": 0.18675681492958465
+    },
+    {
+      "repo": "addons",
+      "score": 0.12598087170527428
+    },
+    {
+      "repo": "agent-1",
+      "score": 0.12304215925502579
+    },
+    {
+      "repo": "aedes",
+      "score": 0.0980905244663119
+    },
+    {
+      "repo": "addon-node-red",
+      "score": 0.09329127119096926
+    },
+    {
+      "repo": "ADC",
+      "score": 0.09177084070536391
+    },
+    {
+      "repo": "aenea",
+      "score": 0.09107375869367501
+    },
+    {
+      "repo": "7DaystoDieServer",
+      "score": 0.08351847788234078
+    }
+  ],
+  "2017-tfm-david-pascual": [
+    {
+      "repo": "2017-Hestia-Server",
+      "score": 0.1867568149295846
+    }
+  ],
+  "2019-wuhan-coronavirus-data": [
+    {
+      "repo": "advanced-python3",
+      "score": 0.07805326459861321
+    },
+    {
+      "repo": "ADF_BigQuery",
+      "score": 0.07396628909922943
+    },
+    {
+      "repo": "2020-george-floyd-protests",
+      "score": 0.055356802449735704
+    }
+  ],
+  "2020-george-floyd-protests": [
+    {
+      "repo": "404-js13k-2020",
+      "score": 0.12944424565796822
+    },
+    {
+      "repo": "ADF_BigQuery",
+      "score": 0.06267603611916354
+    },
+    {
+      "repo": "adonis-js-from-scratch",
+      "score": 0.056698306413441556
+    },
+    {
+      "repo": "2019-wuhan-coronavirus-data",
+      "score": 0.055356802449735704
+    },
+    {
+      "repo": "7DaystoDieServer",
+      "score": 0.05304697527187067
+    }
+  ],
+  "2048-python": [
+    {
+      "repo": "agent-python-pytest",
+      "score": 0.06967278284445245
+    },
+    {
+      "repo": "AddBlenderCustomPropertiesFromCSV",
+      "score": 0.06873134151010055
+    },
+    {
+      "repo": "a2python-webserver",
+      "score": 0.062475684483817115
+    },
+    {
+      "repo": "advanced-python3",
+      "score": 0.056959824519083345
+    },
+    {
+      "repo": "605204",
+      "score": 0.051176612051840625
+    }
+  ],
+  "2D-Pose-Estimation": [
+    {
+      "repo": "3d_pose_baseline_pytorch",
+      "score": 0.2018531030970376
+    },
+    {
+      "repo": "3d-pose-baseline-pytorch",
+      "score": 0.18766189216936682
+    },
+    {
+      "repo": "3d-pose-baseline",
+      "score": 0.16733853925903278
+    },
+    {
+      "repo": "2Dmapping",
+      "score": 0.1500859746176885
+    },
+    {
+      "repo": "3D-Multi-Person-Pose",
+      "score": 0.12967243705630277
+    },
+    {
+      "repo": "6DOF-Rotary-Stewart-Motion-Simulator",
+      "score": 0.1228714749927339
+    },
+    {
+      "repo": "AetherSource",
+      "score": 0.11605611771321801
+    },
+    {
+      "repo": "3D-Face-Movements",
+      "score": 0.1108748123710592
+    },
+    {
+      "repo": "A2J",
+      "score": 0.09702555694194781
+    },
+    {
+      "repo": "about-me",
+      "score": 0.09187116370002864
+    }
+  ],
+  "2Dmapping": [
+    {
+      "repo": "2D-Pose-Estimation",
+      "score": 0.1500859746176885
+    },
+    {
+      "repo": "aenea",
+      "score": 0.13020146846938932
+    },
+    {
+      "repo": "02_Box_Modelling",
+      "score": 0.08476062439165216
+    },
+    {
+      "repo": "3d-game-shaders-for-beginners",
+      "score": 0.08081015684613099
+    },
+    {
+      "repo": "Add-Time-Lapse-To-Gcode",
+      "score": 0.073691133571084
+    },
+    {
+      "repo": "aeropress-me-app",
+      "score": 0.058232614249930245
+    },
+    {
+      "repo": "adonis-acl",
+      "score": 0.056168991392977555
+    },
+    {
+      "repo": "07-Glitch-Garden-Original",
+      "score": 0.05449864795360917
+    },
+    {
+      "repo": "0rc",
+      "score": 0.05442130283428381
+    }
+  ],
+  "360Controller-n": [
+    {
+      "repo": "Adapt",
+      "score": 0.10185952591968532
+    },
+    {
+      "repo": "adonis-drive-google",
+      "score": 0.09446812657599896
+    }
+  ],
+  "3d-cloud-portfolio": [
+    {
+      "repo": "3d-pose-baseline-pytorch",
+      "score": 0.10479942701530301
+    },
+    {
+      "repo": "3d-pose-baseline",
+      "score": 0.09344988920871114
+    },
+    {
+      "repo": "3D-Face-Movements",
+      "score": 0.09123746102475033
+    },
+    {
+      "repo": "3D-Multi-Person-Pose",
+      "score": 0.08207277935643666
+    },
+    {
+      "repo": "3d_cube",
+      "score": 0.08161248464151331
+    },
+    {
+      "repo": "3d_pose_baseline_pytorch",
+      "score": 0.07629550432327792
+    },
+    {
+      "repo": "3d-game-shaders-for-beginners",
+      "score": 0.07591565149022908
+    },
+    {
+      "repo": "3dv_tutorial",
+      "score": 0.07063133569274238
+    },
+    {
+      "repo": "3d_Pose_Estimation_ROS_CPU",
+      "score": 0.06117049163145426
+    },
+    {
+      "repo": "3dmm_cnn",
+      "score": 0.05324114602137673
+    }
+  ],
+  "3D-Face-Movements": [
+    {
+      "repo": "2D-Pose-Estimation",
+      "score": 0.1108748123710592
+    },
+    {
+      "repo": "3d-cloud-portfolio",
+      "score": 0.09123746102475033
+    },
+    {
+      "repo": "3d-pose-baseline-pytorch",
+      "score": 0.08526932756195976
+    },
+    {
+      "repo": "3d-pose-baseline",
+      "score": 0.07603485477456738
+    },
+    {
+      "repo": "3D-Multi-Person-Pose",
+      "score": 0.07418173409962887
+    },
+    {
+      "repo": "3d-game-shaders-for-beginners",
+      "score": 0.06861659513674805
+    },
+    {
+      "repo": "3d_cube",
+      "score": 0.06640300739625805
+    },
+    {
+      "repo": "3d_pose_baseline_pytorch",
+      "score": 0.0620769109056489
+    },
+    {
+      "repo": "3d_Pose_Estimation_ROS_CPU",
+      "score": 0.06080686743701422
+    },
+    {
+      "repo": "3dv_tutorial",
+      "score": 0.05746832885941885
+    }
+  ],
+  "3d-game-shaders-for-beginners": [
+    {
+      "repo": "ActionRPGGame",
+      "score": 0.10130748092732694
+    },
+    {
+      "repo": "3D-Multi-Person-Pose",
+      "score": 0.09895646015882889
+    },
+    {
+      "repo": "A2J",
+      "score": 0.09083605105564105
+    },
+    {
+      "repo": "3d-pose-baseline-pytorch",
+      "score": 0.08507870203479652
+    },
+    {
+      "repo": "2Dmapping",
+      "score": 0.08081015684613099
+    },
+    {
+      "repo": "3d-pose-baseline",
+      "score": 0.08013554866680044
+    },
+    {
+      "repo": "07-Glitch-Garden-Original",
+      "score": 0.07792482901746817
+    },
+    {
+      "repo": "3d-cloud-portfolio",
+      "score": 0.07591565149022908
+    },
+    {
+      "repo": "activitywatch",
+      "score": 0.07439223032196339
+    },
+    {
+      "repo": "3dv_tutorial",
+      "score": 0.07331774948136606
+    }
+  ],
+  "3D-Multi-Person-Pose": [
+    {
+      "repo": "3d-pose-baseline-pytorch",
+      "score": 0.2383663899701426
+    },
+    {
+      "repo": "3d-pose-baseline",
+      "score": 0.21255185613312166
+    },
+    {
+      "repo": "3d_pose_baseline_pytorch",
+      "score": 0.19907081810329422
+    },
+    {
+      "repo": "2D-Pose-Estimation",
+      "score": 0.12967243705630274
+    },
+    {
+      "repo": "A2J",
+      "score": 0.11187915145835829
+    },
+    {
+      "repo": "3d-game-shaders-for-beginners",
+      "score": 0.09895646015882888
+    },
+    {
+      "repo": "3d-cloud-portfolio",
+      "score": 0.08207277935643666
+    },
+    {
+      "repo": "3D-Face-Movements",
+      "score": 0.07418173409962887
+    },
+    {
+      "repo": "-Broadcom-BCM4331-Forensic-Controller-Unified-v39.8-",
+      "score": 0.06477510433397335
+    },
+    {
+      "repo": "3d_cube",
+      "score": 0.05973291357985627
+    }
+  ],
+  "3d-pose-baseline": [
+    {
+      "repo": "3d-pose-baseline-pytorch",
+      "score": 0.6138968175174486
+    },
+    {
+      "repo": "3d_pose_baseline_pytorch",
+      "score": 0.5549114437161592
+    },
+    {
+      "repo": "3D-Multi-Person-Pose",
+      "score": 0.21255185613312166
+    },
+    {
+      "repo": "2D-Pose-Estimation",
+      "score": 0.16733853925903278
+    },
+    {
+      "repo": "A2J",
+      "score": 0.14644424241435838
+    },
+    {
+      "repo": "3d-cloud-portfolio",
+      "score": 0.09344988920871114
+    },
+    {
+      "repo": "3dv_tutorial",
+      "score": 0.08272576442928051
+    },
+    {
+      "repo": "3d-game-shaders-for-beginners",
+      "score": 0.08013554866680044
+    },
+    {
+      "repo": "3D-Face-Movements",
+      "score": 0.07603485477456738
+    },
+    {
+      "repo": "3d_Pose_Estimation_ROS_CPU",
+      "score": 0.07168048728624657
+    }
+  ],
+  "3d-pose-baseline-pytorch": [
+    {
+      "repo": "3d_pose_baseline_pytorch",
+      "score": 0.8491121746977052
+    },
+    {
+      "repo": "3d-pose-baseline",
+      "score": 0.6138968175174486
+    },
+    {
+      "repo": "3D-Multi-Person-Pose",
+      "score": 0.2383663899701426
+    },
+    {
+      "repo": "2D-Pose-Estimation",
+      "score": 0.18766189216936682
+    },
+    {
+      "repo": "A2J",
+      "score": 0.15881981003215737
+    },
+    {
+      "repo": "3d-cloud-portfolio",
+      "score": 0.10479942701530301
+    },
+    {
+      "repo": "3D-Face-Movements",
+      "score": 0.08526932756195976
+    },
+    {
+      "repo": "3d-game-shaders-for-beginners",
+      "score": 0.08507870203479652
+    },
+    {
+      "repo": "3dv_tutorial",
+      "score": 0.083861015780226
+    },
+    {
+      "repo": "3d_Pose_Estimation_ROS_CPU",
+      "score": 0.08038611987007145
+    }
+  ],
+  "3dmm_cnn": [
+    {
+      "repo": "adaptnlp",
+      "score": 0.08011562833951451
+    },
+    {
+      "repo": "A2J",
+      "score": 0.0678482116670066
+    },
+    {
+      "repo": "1337cazador",
+      "score": 0.06771284852839378
+    },
+    {
+      "repo": "-Broadcom-BCM4331-Forensic-Controller-Unified-v39.8-",
+      "score": 0.06309162549368684
+    },
+    {
+      "repo": "3d-pose-baseline-pytorch",
+      "score": 0.05685137138909453
+    },
+    {
+      "repo": "Add-Time-Lapse-To-Gcode",
+      "score": 0.05467389144719586
+    },
+    {
+      "repo": "3d-cloud-portfolio",
+      "score": 0.05324114602137673
+    },
+    {
+      "repo": "4nonimizer",
+      "score": 0.05313106211890889
+    },
+    {
+      "repo": "3D-Face-Movements",
+      "score": 0.052924657330232515
+    },
+    {
+      "repo": "3d-pose-baseline",
+      "score": 0.05069449813784189
+    }
+  ],
+  "3dv_tutorial": [
+    {
+      "repo": "about-me",
+      "score": 0.11133715380601332
+    },
+    {
+      "repo": "3d-pose-baseline-pytorch",
+      "score": 0.083861015780226
+    },
+    {
+      "repo": "3d-pose-baseline",
+      "score": 0.08272576442928052
+    },
+    {
+      "repo": "adonis-scheduler",
+      "score": 0.08034083881371672
+    },
+    {
+      "repo": "3d_pose_baseline_pytorch",
+      "score": 0.07404699900626208
+    },
+    {
+      "repo": "3d-game-shaders-for-beginners",
+      "score": 0.07331774948136607
+    },
+    {
+      "repo": "3d-cloud-portfolio",
+      "score": 0.07063133569274238
+    },
+    {
+      "repo": "Add-Time-Lapse-To-Gcode",
+      "score": 0.0619816473118245
+    },
+    {
+      "repo": "acmetool",
+      "score": 0.058821637315587996
+    },
+    {
+      "repo": "3D-Face-Movements",
+      "score": 0.05746832885941885
+    }
+  ],
+  "3d_cube": [
+    {
+      "repo": "3d-cloud-portfolio",
+      "score": 0.08161248464151331
+    },
+    {
+      "repo": "3d-pose-baseline-pytorch",
+      "score": 0.07627346321411745
+    },
+    {
+      "repo": "3d-pose-baseline",
+      "score": 0.06801322192232193
+    },
+    {
+      "repo": "3D-Face-Movements",
+      "score": 0.06640300739625805
+    },
+    {
+      "repo": "3D-Multi-Person-Pose",
+      "score": 0.05973291357985627
+    },
+    {
+      "repo": "3d_pose_baseline_pytorch",
+      "score": 0.05552818854204546
+    },
+    {
+      "repo": "3d-game-shaders-for-beginners",
+      "score": 0.05525173005449954
+    },
+    {
+      "repo": "3dv_tutorial",
+      "score": 0.05140578281919141
+    }
+  ],
+  "3d_pose_baseline_pytorch": [
+    {
+      "repo": "3d-pose-baseline-pytorch",
+      "score": 0.8491121746977052
+    },
+    {
+      "repo": "3d-pose-baseline",
+      "score": 0.5549114437161592
+    },
+    {
+      "repo": "2D-Pose-Estimation",
+      "score": 0.2018531030970376
+    },
+    {
+      "repo": "3D-Multi-Person-Pose",
+      "score": 0.19907081810329422
+    },
+    {
+      "repo": "A2J",
+      "score": 0.15392587576241096
+    },
+    {
+      "repo": "3rdpartycookiecheck",
+      "score": 0.07753139036273429
+    },
+    {
+      "repo": "3d-cloud-portfolio",
+      "score": 0.07629550432327792
+    },
+    {
+      "repo": "3d_Pose_Estimation_ROS_CPU",
+      "score": 0.07542439822582112
+    },
+    {
+      "repo": "3dv_tutorial",
+      "score": 0.07404699900626208
+    },
+    {
+      "repo": "3d-game-shaders-for-beginners",
+      "score": 0.07222400626015055
+    }
+  ],
+  "3d_Pose_Estimation_ROS_CPU": [
+    {
+      "repo": "3d-pose-baseline-pytorch",
+      "score": 0.08038611987007147
+    },
+    {
+      "repo": "3d_pose_baseline_pytorch",
+      "score": 0.07542439822582112
+    },
+    {
+      "repo": "3d-pose-baseline",
+      "score": 0.07168048728624657
+    },
+    {
+      "repo": "3d-cloud-portfolio",
+      "score": 0.061170491631454264
+    },
+    {
+      "repo": "3D-Face-Movements",
+      "score": 0.06080686743701423
+    },
+    {
+      "repo": "3D-Multi-Person-Pose",
+      "score": 0.05469889843997681
+    },
+    {
+      "repo": "3d-game-shaders-for-beginners",
+      "score": 0.05059536844529987
+    }
+  ],
+  "3LAS": [
+    {
+      "repo": "AetherSource",
+      "score": 0.0773724573928589
+    },
+    {
+      "repo": "accelerator-core-ios",
+      "score": 0.07701924504968963
+    },
+    {
+      "repo": "accelerator-core-js",
+      "score": 0.07291260091527411
+    },
+    {
+      "repo": "ActivityExtractor",
+      "score": 0.07060211237302699
+    }
+  ],
+  "3rdpartycookiecheck": [
+    {
+      "repo": "activity-browser",
+      "score": 0.13429024843837337
+    },
+    {
+      "repo": "3d_pose_baseline_pytorch",
+      "score": 0.07753139036273429
+    },
+    {
+      "repo": "3d-pose-baseline-pytorch",
+      "score": 0.05324920132487518
+    }
+  ],
+  "404-js13k-2020": [
+    {
+      "repo": "2020-george-floyd-protests",
+      "score": 0.12944424565796822
+    },
+    {
+      "repo": ".tmux",
+      "score": 0.0761299929903912
+    }
+  ],
+  "4nonimizer": [
+    {
+      "repo": "active_merchant",
+      "score": 0.08501896324380578
+    },
+    {
+      "repo": "adonis-js-from-scratch",
+      "score": 0.07167877199334673
+    },
+    {
+      "repo": "1337cazador",
+      "score": 0.07154540817190154
+    },
+    {
+      "repo": "-Broadcom-BCM4331-Forensic-Controller-Unified-v39.8-",
+      "score": 0.06951220790884816
+    },
+    {
+      "repo": "7DaystoDieServer",
+      "score": 0.06177951553018433
+    },
+    {
+      "repo": "about-me",
+      "score": 0.061641759638025824
+    },
+    {
+      "repo": "aeropress-me-app",
+      "score": 0.05929608072253636
+    },
+    {
+      "repo": "acme-tiny",
+      "score": 0.05664517492787802
+    },
+    {
+      "repo": "AddBlenderCustomPropertiesFromCSV",
+      "score": 0.05650167093105518
+    },
+    {
+      "repo": "A2J",
+      "score": 0.05632258829909686
+    }
+  ],
+  "6DOF-Rotary-Stewart-Motion-Simulator": [
+    {
+      "repo": "2D-Pose-Estimation",
+      "score": 0.1228714749927339
+    },
+    {
+      "repo": "about-me",
+      "score": 0.05764472795738666
+    }
+  ],
+  "7DaystoDieServer": [
+    {
+      "repo": "aedes",
+      "score": 0.13006031148071912
+    },
+    {
+      "repo": "acme.sh",
+      "score": 0.1228132394680259
+    },
+    {
+      "repo": "adonis-graphql-server",
+      "score": 0.10214929700732416
+    },
+    {
+      "repo": "ADC",
+      "score": 0.09637966643799874
+    },
+    {
+      "repo": "aenea",
+      "score": 0.08513093367844513
+    },
+    {
+      "repo": "2017-Hestia-Server",
+      "score": 0.08351847788234076
+    },
+    {
+      "repo": "addon-g2c3d",
+      "score": 0.08020738018474954
+    },
+    {
+      "repo": "adonis-apollo-server",
+      "score": 0.07014650430373302
+    },
+    {
+      "repo": "Add-Time-Lapse-To-Gcode",
+      "score": 0.06729145724579833
+    },
+    {
+      "repo": "AdminLTE",
+      "score": 0.06276058238175783
+    }
+  ],
+  "A-OK": [
+    {
+      "repo": "aenea",
+      "score": 0.07116572842439349
+    },
+    {
+      "repo": "aaPanel",
+      "score": 0.06985261055711371
+    },
+    {
+      "repo": "aenea-grammars",
+      "score": 0.06492316277727213
+    }
+  ],
+  "A-to-Z-Resources-for-Students": [
+    {
+      "repo": "AI-ChatBot",
+      "score": 0.12410302373106905
+    },
+    {
+      "repo": "07-Glitch-Garden-Original",
+      "score": 0.09711627902711957
+    },
+    {
+      "repo": ".dotfiles",
+      "score": 0.06857595913845718
+    },
+    {
+      "repo": "0rc",
+      "score": 0.06522686408717655
+    },
+    {
+      "repo": "about-me",
+      "score": 0.060841947189075624
+    },
+    {
+      "repo": "Add-Time-Lapse-To-Gcode",
+      "score": 0.05036182665018591
+    }
+  ],
+  "A-Track": [
+    {
+      "repo": "activitywatch",
+      "score": 0.1567314931115203
+    },
+    {
+      "repo": "addon-g2c3d",
+      "score": 0.15301925268484184
+    },
+    {
+      "repo": "3d_pose_baseline_pytorch",
+      "score": 0.054902284763232584
+    }
+  ],
+  "a-universe-from-nothing": [
+    {
+      "repo": "adonis-js-from-scratch",
+      "score": 0.069307538315698
+    },
+    {
+      "repo": "active_merchant",
+      "score": 0.060835587427598085
+    },
+    {
+      "repo": "aenea",
+      "score": 0.05223721479516212
+    },
+    {
+      "repo": "addon-g2c3d",
+      "score": 0.05133376075890443
+    }
+  ],
+  "A2J": [
+    {
+      "repo": "3d-pose-baseline-pytorch",
+      "score": 0.15881981003215737
+    },
+    {
+      "repo": "3d_pose_baseline_pytorch",
+      "score": 0.15392587576241099
+    },
+    {
+      "repo": "3d-pose-baseline",
+      "score": 0.14644424241435836
+    },
+    {
+      "repo": "3D-Multi-Person-Pose",
+      "score": 0.11187915145835829
+    },
+    {
+      "repo": "2D-Pose-Estimation",
+      "score": 0.09702555694194781
+    },
+    {
+      "repo": "3d-game-shaders-for-beginners",
+      "score": 0.09083605105564103
+    },
+    {
+      "repo": "-Broadcom-BCM4331-Forensic-Controller-Unified-v39.8-",
+      "score": 0.0808307630679795
+    },
+    {
+      "repo": "3dmm_cnn",
+      "score": 0.0678482116670066
+    },
+    {
+      "repo": "4nonimizer",
+      "score": 0.056322588299096844
+    },
+    {
+      "repo": "3dv_tutorial",
+      "score": 0.055813910613960196
+    }
+  ],
+  "a2python-webserver": [
+    {
+      "repo": "2.5D-Visual-Sound",
+      "score": 0.1421563983429127
+    },
+    {
+      "repo": "AeroEditor",
+      "score": 0.12802326995058178
+    },
+    {
+      "repo": "active_merchant",
+      "score": 0.11846931728313008
+    },
+    {
+      "repo": "ActivityExtractor",
+      "score": 0.08791602198598915
+    },
+    {
+      "repo": "agent-python-pytest",
+      "score": 0.08153504009640544
+    },
+    {
+      "repo": "ADC",
+      "score": 0.08100209133099423
+    },
+    {
+      "repo": "advanced-python3",
+      "score": 0.06665761559167382
+    },
+    {
+      "repo": "2048-python",
+      "score": 0.062475684483817115
+    },
+    {
+      "repo": "605204",
+      "score": 0.05988977252366563
+    }
+  ],
+  "a2utils": [
+    {
+      "repo": "aes67-linux-daemon",
+      "score": 0.08114232906775708
+    },
+    {
+      "repo": "aerojump.nvim",
+      "score": 0.058227865516532
+    },
+    {
+      "repo": "AI-ChatBot",
+      "score": 0.05492320594942224
+    }
+  ],
+  "aaPanel": [
+    {
+      "repo": "aenea-grammars",
+      "score": 0.09750477808008197
+    },
+    {
+      "repo": "adonisjs-hackathon-starter",
+      "score": 0.0781579310154145
+    },
+    {
+      "repo": "accelerator-core-js",
+      "score": 0.07158416806796693
+    },
+    {
+      "repo": "A-OK",
+      "score": 0.06985261055711371
+    },
+    {
+      "repo": "AdminLTE",
+      "score": 0.06637461071946328
+    },
+    {
+      "repo": "Ackee",
+      "score": 0.06454436937420129
+    },
+    {
+      "repo": "ADC",
+      "score": 0.055622600207032136
+    },
+    {
+      "repo": "-Git-Worktree-Masterclass-TUI",
+      "score": 0.054779736981792185
+    },
+    {
+      "repo": "ActivityExtractor",
+      "score": 0.05141687848535527
+    }
+  ],
+  "about-me": [
+    {
+      "repo": "active_merchant",
+      "score": 0.16938316131459907
+    },
+    {
+      "repo": "AI-ChatBot",
+      "score": 0.13104286847686403
+    },
+    {
+      "repo": "3dv_tutorial",
+      "score": 0.1113371538060133
+    },
+    {
+      "repo": "accelerator-screen-sharing-js",
+      "score": 0.10532532544219779
+    },
+    {
+      "repo": "2D-Pose-Estimation",
+      "score": 0.09187116370002864
+    },
+    {
+      "repo": "AdminLTE",
+      "score": 0.0887081783427219
+    },
+    {
+      "repo": "605204",
+      "score": 0.08504394269840881
+    },
+    {
+      "repo": "-Broadcom-BCM4331-Forensic-Controller-Unified-v39.8-",
+      "score": 0.08393525864326623
+    },
+    {
+      "repo": "adonis-js-from-scratch",
+      "score": 0.07599590339388695
+    },
+    {
+      "repo": "aeropress-me-app",
+      "score": 0.07361193218195501
+    }
+  ],
+  "acat": [],
+  "accelerator-core-ios": [
+    {
+      "repo": "accelerator-screen-sharing-js",
+      "score": 0.3356265720338679
+    },
+    {
+      "repo": "accelerator-core-js",
+      "score": 0.3274488826173805
+    },
+    {
+      "repo": "Advanced-Video",
+      "score": 0.15854867242081527
+    },
+    {
+      "repo": "3LAS",
+      "score": 0.07701924504968963
+    }
+  ],
+  "accelerator-core-js": [
+    {
+      "repo": "accelerator-core-ios",
+      "score": 0.3274488826173805
+    },
+    {
+      "repo": "accelerator-screen-sharing-js",
+      "score": 0.32549533135089936
+    },
+    {
+      "repo": "activitywatch",
+      "score": 0.17073737238536396
+    },
+    {
+      "repo": "Advanced-Video",
+      "score": 0.15009490251958812
+    },
+    {
+      "repo": "Add-Time-Lapse-To-Gcode",
+      "score": 0.10998942099989362
+    },
+    {
+      "repo": "adonis-scheduler",
+      "score": 0.10170424136585703
+    },
+    {
+      "repo": "adonis-js-from-scratch",
+      "score": 0.10162778467107256
+    },
+    {
+      "repo": "aeropress-me-app",
+      "score": 0.09068513904251717
+    },
+    {
+      "repo": "3LAS",
+      "score": 0.07291260091527411
+    },
+    {
+      "repo": "aaPanel",
+      "score": 0.07158416806796693
+    }
+  ],
+  "accelerator-screen-sharing-js": [
+    {
+      "repo": "accelerator-core-ios",
+      "score": 0.33562657203386786
+    },
+    {
+      "repo": "accelerator-core-js",
+      "score": 0.3254953313508994
+    },
+    {
+      "repo": "adonis-scheduler",
+      "score": 0.15545134555748272
+    },
+    {
+      "repo": "adonis-js-from-scratch",
+      "score": 0.10663733211177004
+    },
+    {
+      "repo": "about-me",
+      "score": 0.10532532544219779
+    },
+    {
+      "repo": "adonis-apollo-server",
+      "score": 0.07758445406607967
+    },
+    {
+      "repo": "adaptnlp",
+      "score": 0.06415077566394943
+    },
+    {
+      "repo": "Ackee",
+      "score": 0.06172347863434369
+    }
+  ],
+  "Ackee": [
+    {
+      "repo": "adonis-apollo-server",
+      "score": 0.13472640301086636
+    },
+    {
+      "repo": "addon-node-red",
+      "score": 0.10798562601080279
+    },
+    {
+      "repo": "acmetool",
+      "score": 0.07654683958150615
+    },
+    {
+      "repo": "activitywatch",
+      "score": 0.06844371893942497
+    },
+    {
+      "repo": "aaPanel",
+      "score": 0.06454436937420129
+    },
+    {
+      "repo": "accelerator-screen-sharing-js",
+      "score": 0.06172347863434369
+    },
+    {
+      "repo": "aedes",
+      "score": 0.055471711325746464
+    }
+  ],
+  "acme-tiny": [
+    {
+      "repo": "acmetool",
+      "score": 0.2316980184681361
+    },
+    {
+      "repo": "acme.sh",
+      "score": 0.1651760753266761
+    },
+    {
+      "repo": "acme.sh-debian",
+      "score": 0.10315067986647625
+    },
+    {
+      "repo": "1337cazador",
+      "score": 0.07893189674180512
+    },
+    {
+      "repo": "ActivityExtractor",
+      "score": 0.06239653745040939
+    },
+    {
+      "repo": "4nonimizer",
+      "score": 0.05664517492787799
+    },
+    {
+      "repo": "7DaystoDieServer",
+      "score": 0.054439755847727825
+    },
+    {
+      "repo": "AddBlenderCustomPropertiesFromCSV",
+      "score": 0.054064715586598325
+    },
+    {
+      "repo": "3D-Face-Movements",
+      "score": 0.05008011710267953
+    }
+  ],
+  "acme.sh": [
+    {
+      "repo": "acme.sh-debian",
+      "score": 0.3787795497757765
+    },
+    {
+      "repo": "acme-tiny",
+      "score": 0.16517607532667614
+    },
+    {
+      "repo": "7DaystoDieServer",
+      "score": 0.1228132394680259
+    },
+    {
+      "repo": "acmetool",
+      "score": 0.1155910668944161
+    },
+    {
+      "repo": ".dotfiles",
+      "score": 0.09415723299047761
+    },
+    {
+      "repo": "aenea",
+      "score": 0.07886768873274211
+    },
+    {
+      "repo": "3d-game-shaders-for-beginners",
+      "score": 0.05719290749851158
+    },
+    {
+      "repo": "AddBlenderCustomPropertiesFromCSV",
+      "score": 0.05357032661292007
+    }
+  ],
+  "acme.sh-debian": [
+    {
+      "repo": "acme.sh",
+      "score": 0.37877954977577644
+    },
+    {
+      "repo": "acme-tiny",
+      "score": 0.10315067986647625
+    },
+    {
+      "repo": "acmetool",
+      "score": 0.09665293927971073
+    },
+    {
+      "repo": "ADAM",
+      "score": 0.07544668841366461
+    },
+    {
+      "repo": "about-me",
+      "score": 0.06286593787319861
+    },
+    {
+      "repo": "active_merchant",
+      "score": 0.059268486569272555
+    },
+    {
+      "repo": "ADC",
+      "score": 0.05414135117360883
+    }
+  ],
+  "acmetool": [
+    {
+      "repo": "acme-tiny",
+      "score": 0.2316980184681361
+    },
+    {
+      "repo": "acme.sh",
+      "score": 0.11559106689441612
+    },
+    {
+      "repo": "acme.sh-debian",
+      "score": 0.09665293927971073
+    },
+    {
+      "repo": "Ackee",
+      "score": 0.07654683958150615
+    },
+    {
+      "repo": "3dv_tutorial",
+      "score": 0.058821637315587996
+    }
+  ],
+  "action": [
+    {
+      "repo": "ActionRPGGame",
+      "score": 0.20204024821464106
+    },
+    {
+      "repo": "aedes",
+      "score": 0.09510219500144379
+    },
+    {
+      "repo": "adonis-acl",
+      "score": 0.08080848214778412
+    }
+  ],
+  "ActionRPGGame": [
+    {
+      "repo": "action",
+      "score": 0.20204024821464106
+    },
+    {
+      "repo": "adonisjs-hackathon-starter",
+      "score": 0.1094218648488773
+    },
+    {
+      "repo": "3d-game-shaders-for-beginners",
+      "score": 0.10130748092732694
+    },
+    {
+      "repo": "AdminLTE",
+      "score": 0.08302120491758098
+    }
+  ],
+  "active_merchant": [
+    {
+      "repo": "about-me",
+      "score": 0.1693831613145991
+    },
+    {
+      "repo": "adonis-js-from-scratch",
+      "score": 0.16215168460066184
+    },
+    {
+      "repo": "a2python-webserver",
+      "score": 0.11846931728313008
+    },
+    {
+      "repo": "adaptnlp",
+      "score": 0.10541183410759995
+    },
+    {
+      "repo": "AdaptiveTableLayout",
+      "score": 0.09685259057445589
+    },
+    {
+      "repo": "-Optimizer_OS-v.29-Advanced-Fedora-Forensic-Tuning-Suite-",
+      "score": 0.09040394504050817
+    },
+    {
+      "repo": "addon-g2c3d",
+      "score": 0.08573633812937063
+    },
+    {
+      "repo": "605204",
+      "score": 0.0850559331777773
+    },
+    {
+      "repo": "4nonimizer",
+      "score": 0.08501896324380577
+    },
+    {
+      "repo": "aerojump.nvim",
+      "score": 0.07855645118028927
+    }
+  ],
+  "activity-browser": [
+    {
+      "repo": "3rdpartycookiecheck",
+      "score": 0.13429024843837337
+    },
+    {
+      "repo": "ActivityExtractor",
+      "score": 0.10117899388952412
+    }
+  ],
+  "ActivityExtractor": [
+    {
+      "repo": "addon-g2c3d",
+      "score": 0.11020955691539622
+    },
+    {
+      "repo": "activity-browser",
+      "score": 0.10117899388952412
+    },
+    {
+      "repo": "Add-Time-Lapse-To-Gcode",
+      "score": 0.09309815263456274
+    },
+    {
+      "repo": "adonis-drive-google",
+      "score": 0.09002915902668215
+    },
+    {
+      "repo": "a2python-webserver",
+      "score": 0.08791602198598915
+    },
+    {
+      "repo": "-Optimizer_OS-v.29-Advanced-Fedora-Forensic-Tuning-Suite-",
+      "score": 0.07711626032241069
+    },
+    {
+      "repo": "3LAS",
+      "score": 0.07060211237302699
+    },
+    {
+      "repo": "1337cazador",
+      "score": 0.06985692501764086
+    },
+    {
+      "repo": "AeroEditor",
+      "score": 0.0664448090050012
+    },
+    {
+      "repo": "active_merchant",
+      "score": 0.06459425557475203
+    }
+  ],
+  "activitywatch": [
+    {
+      "repo": "accelerator-core-js",
+      "score": 0.17073737238536396
+    },
+    {
+      "repo": "A-Track",
+      "score": 0.15673149311152032
+    },
+    {
+      "repo": "Add-Time-Lapse-To-Gcode",
+      "score": 0.09351121300445353
+    },
+    {
+      "repo": "3d-game-shaders-for-beginners",
+      "score": 0.0743922303219634
+    },
+    {
+      "repo": "ADC",
+      "score": 0.06910068906211903
+    },
+    {
+      "repo": "Ackee",
+      "score": 0.06844371893942497
+    },
+    {
+      "repo": "AI-ChatBot",
+      "score": 0.06519029145581702
+    },
+    {
+      "repo": "7DaystoDieServer",
+      "score": 0.056664351341862505
+    }
+  ],
+  "Adafruit_PixelDust": [
+    {
+      "repo": "adaptnlp",
+      "score": 0.06642880658352761
+    },
+    {
+      "repo": "adonis-scheduler",
+      "score": 0.06500685152933336
+    },
+    {
+      "repo": "AdaptiveTableLayout",
+      "score": 0.06261970439400484
+    },
+    {
+      "repo": "aenea",
+      "score": 0.05411851206264453
+    }
+  ],
+  "ADAM": [
+    {
+      "repo": "acme.sh-debian",
+      "score": 0.07544668841366461
+    }
+  ],
+  "Adapt": [
+    {
+      "repo": "aes67-linux-daemon",
+      "score": 0.10819636414994617
+    },
+    {
+      "repo": "agent",
+      "score": 0.1026645322878303
+    },
+    {
+      "repo": "360Controller-n",
+      "score": 0.10185952591968535
+    },
+    {
+      "repo": "agent-1",
+      "score": 0.0726754155474972
+    }
+  ],
+  "AdaptiveTableLayout": [
+    {
+      "repo": "AddBlenderCustomPropertiesFromCSV",
+      "score": 0.11101410021093303
+    },
+    {
+      "repo": "active_merchant",
+      "score": 0.09685259057445589
+    },
+    {
+      "repo": "AI-ChatBot",
+      "score": 0.06969028834881276
+    },
+    {
+      "repo": ".dotfiles",
+      "score": 0.06810582998919548
+    },
+    {
+      "repo": "Adafruit_PixelDust",
+      "score": 0.06261970439400484
+    },
+    {
+      "repo": "adaptnlp",
+      "score": 0.062377476818381135
+    },
+    {
+      "repo": "adonis-scheduler",
+      "score": 0.06196522526833124
+    },
+    {
+      "repo": "aenea",
+      "score": 0.05584889716834232
+    },
+    {
+      "repo": "7DaystoDieServer",
+      "score": 0.053391176285320904
+    },
+    {
+      "repo": "02_Box_Modelling",
+      "score": 0.05071452132103145
+    }
+  ],
+  "adaptnlp": [
+    {
+      "repo": "adonis-scheduler",
+      "score": 0.14497038559332195
+    },
+    {
+      "repo": "adonis-js-from-scratch",
+      "score": 0.12023201689319565
+    },
+    {
+      "repo": "ADSP_Tutorials",
+      "score": 0.10796861134291205
+    },
+    {
+      "repo": "active_merchant",
+      "score": 0.10541183410759992
+    },
+    {
+      "repo": "3dmm_cnn",
+      "score": 0.08011562833951451
+    },
+    {
+      "repo": "about-me",
+      "score": 0.07324415150637922
+    },
+    {
+      "repo": "07-Glitch-Garden-Original",
+      "score": 0.07076487309208472
+    },
+    {
+      "repo": "Adafruit_PixelDust",
+      "score": 0.06642880658352761
+    },
+    {
+      "repo": "addon-g2c3d",
+      "score": 0.0646448455399936
+    },
+    {
+      "repo": "accelerator-screen-sharing-js",
+      "score": 0.06415077566394943
+    }
+  ],
+  "ADC": [
+    {
+      "repo": "adonis-js-from-scratch",
+      "score": 0.10058012348340721
+    },
+    {
+      "repo": "adonis-graphql-server",
+      "score": 0.09858101738527754
+    },
+    {
+      "repo": "7DaystoDieServer",
+      "score": 0.09637966643799875
+    },
+    {
+      "repo": "aeropress-me-app",
+      "score": 0.09410086858466847
+    },
+    {
+      "repo": "2017-Hestia-Server",
+      "score": 0.09177084070536391
+    },
+    {
+      "repo": "a2python-webserver",
+      "score": 0.08100209133099424
+    },
+    {
+      "repo": "adonis-apollo-server",
+      "score": 0.07707759810427699
+    },
+    {
+      "repo": "activitywatch",
+      "score": 0.06910068906211901
+    },
+    {
+      "repo": "aedes",
+      "score": 0.0661802625800983
+    },
+    {
+      "repo": "about-me",
+      "score": 0.06488658762122476
+    }
+  ],
+  "Add-Time-Lapse-To-Gcode": [
+    {
+      "repo": "accelerator-core-js",
+      "score": 0.10998942099989363
+    },
+    {
+      "repo": "activitywatch",
+      "score": 0.09351121300445352
+    },
+    {
+      "repo": "ActivityExtractor",
+      "score": 0.09309815263456273
+    },
+    {
+      "repo": "addon-g2c3d",
+      "score": 0.07898941430733689
+    },
+    {
+      "repo": "2Dmapping",
+      "score": 0.073691133571084
+    },
+    {
+      "repo": "7DaystoDieServer",
+      "score": 0.06729145724579834
+    },
+    {
+      "repo": "aeropress-me-app",
+      "score": 0.06639972389436491
+    },
+    {
+      "repo": "addons",
+      "score": 0.06562034394936823
+    },
+    {
+      "repo": "-Optimizer_OS-v.29-Advanced-Fedora-Forensic-Tuning-Suite-",
+      "score": 0.06470017218398648
+    },
+    {
+      "repo": "3d-game-shaders-for-beginners",
+      "score": 0.062239290206689356
+    }
+  ],
+  "AddBlenderCustomPropertiesFromCSV": [
+    {
+      "repo": "02_Box_Modelling",
+      "score": 0.15257325558945137
+    },
+    {
+      "repo": "AdaptiveTableLayout",
+      "score": 0.11101410021093303
+    },
+    {
+      "repo": "aenea-grammars",
+      "score": 0.10661780538640508
+    },
+    {
+      "repo": "addons",
+      "score": 0.09137723712637404
+    },
+    {
+      "repo": "addon-g2c3d",
+      "score": 0.08447457830607663
+    },
+    {
+      "repo": "605204",
+      "score": 0.07730285343684802
+    },
+    {
+      "repo": "advanced-python3",
+      "score": 0.06974839724721618
+    },
+    {
+      "repo": "2048-python",
+      "score": 0.06873134151010055
+    },
+    {
+      "repo": "addon-node-red",
+      "score": 0.0676666107643798
+    },
+    {
+      "repo": "Add-Time-Lapse-To-Gcode",
+      "score": 0.06102192786008303
+    }
+  ],
+  "addon-g2c3d": [
+    {
+      "repo": "A-Track",
+      "score": 0.15301925268484187
+    },
+    {
+      "repo": "02_Box_Modelling",
+      "score": 0.11882052316692139
+    },
+    {
+      "repo": "ActivityExtractor",
+      "score": 0.11020955691539622
+    },
+    {
+      "repo": "adonis-js-from-scratch",
+      "score": 0.1089131232908139
+    },
+    {
+      "repo": "adonis-drive-google",
+      "score": 0.10208643101183544
+    },
+    {
+      "repo": "605204",
+      "score": 0.09161336091842771
+    },
+    {
+      "repo": "active_merchant",
+      "score": 0.08573633812937063
+    },
+    {
+      "repo": "AddBlenderCustomPropertiesFromCSV",
+      "score": 0.08447457830607662
+    },
+    {
+      "repo": "7DaystoDieServer",
+      "score": 0.08020738018474954
+    },
+    {
+      "repo": "Add-Time-Lapse-To-Gcode",
+      "score": 0.07898941430733689
+    }
+  ],
+  "addon-node-red": [
+    {
+      "repo": "addons",
+      "score": 0.3581412959449524
+    },
+    {
+      "repo": "adonis-apollo-server",
+      "score": 0.13573450535191262
+    },
+    {
+      "repo": "aedes",
+      "score": 0.11133333906801482
+    },
+    {
+      "repo": "Ackee",
+      "score": 0.10798562601080279
+    },
+    {
+      "repo": "2017-Hestia-Server",
+      "score": 0.09329127119096925
+    },
+    {
+      "repo": "AddBlenderCustomPropertiesFromCSV",
+      "score": 0.0676666107643798
+    },
+    {
+      "repo": "aeropress-me-app",
+      "score": 0.05897578635561999
+    }
+  ],
+  "addons": [
+    {
+      "repo": "addon-node-red",
+      "score": 0.35814129594495236
+    },
+    {
+      "repo": "2017-Hestia-Server",
+      "score": 0.12598087170527425
+    },
+    {
+      "repo": "AddBlenderCustomPropertiesFromCSV",
+      "score": 0.09137723712637404
+    },
+    {
+      "repo": "Add-Time-Lapse-To-Gcode",
+      "score": 0.06562034394936823
+    }
+  ],
+  "ADF_BigQuery": [
+    {
+      "repo": "adonis-drive-google",
+      "score": 0.11123168153879337
+    },
+    {
+      "repo": "2019-wuhan-coronavirus-data",
+      "score": 0.07396628909922943
+    },
+    {
+      "repo": "2020-george-floyd-protests",
+      "score": 0.06267603611916354
+    },
+    {
+      "repo": "ActivityExtractor",
+      "score": 0.05797029279774345
+    },
+    {
+      "repo": "addon-g2c3d",
+      "score": 0.05526214836138848
+    },
+    {
+      "repo": "advanced-python3",
+      "score": 0.0549990047669544
+    },
+    {
+      "repo": "active_merchant",
+      "score": 0.051339906751812804
+    }
+  ],
+  "AdminLTE": [
+    {
+      "repo": "about-me",
+      "score": 0.0887081783427219
+    },
+    {
+      "repo": "ActionRPGGame",
+      "score": 0.08302120491758098
+    },
+    {
+      "repo": "aaPanel",
+      "score": 0.06637461071946328
+    },
+    {
+      "repo": "7DaystoDieServer",
+      "score": 0.06276058238175783
+    }
+  ],
+  "adonis-acl": [
+    {
+      "repo": "adonis-drive-google",
+      "score": 0.14075317784134403
+    },
+    {
+      "repo": "adonis-js-from-scratch",
+      "score": 0.1141987698771857
+    },
+    {
+      "repo": "adonis-apollo-server",
+      "score": 0.08422834058446611
+    },
+    {
+      "repo": "07-Glitch-Garden-Original",
+      "score": 0.08386772522401019
+    },
+    {
+      "repo": "action",
+      "score": 0.08080848214778412
+    },
+    {
+      "repo": "adonis-scheduler",
+      "score": 0.07705001069083335
+    },
+    {
+      "repo": "adonis-graphql-server",
+      "score": 0.07181802542382626
+    },
+    {
+      "repo": "adonis-support-ticket",
+      "score": 0.07067582541978248
+    },
+    {
+      "repo": "2Dmapping",
+      "score": 0.056168991392977555
+    }
+  ],
+  "adonis-apollo-server": [
+    {
+      "repo": "adonis-graphql-server",
+      "score": 0.6703036774646238
+    },
+    {
+      "repo": "2017-Hestia-Server",
+      "score": 0.23917735283271896
+    },
+    {
+      "repo": "adonisjs-hackathon-starter",
+      "score": 0.1717867848242277
+    },
+    {
+      "repo": "aedes",
+      "score": 0.1521108618554677
+    },
+    {
+      "repo": "addon-node-red",
+      "score": 0.13573450535191262
+    },
+    {
+      "repo": "Ackee",
+      "score": 0.13472640301086636
+    },
+    {
+      "repo": "adonis-js-from-scratch",
+      "score": 0.13275450803458433
+    },
+    {
+      "repo": "adonis-scheduler",
+      "score": 0.13242789967249236
+    },
+    {
+      "repo": "adonis-support-ticket",
+      "score": 0.11361543267079859
+    },
+    {
+      "repo": "adonis-drive-google",
+      "score": 0.1088021580190009
+    }
+  ],
+  "adonis-drive-google": [
+    {
+      "repo": "adonis-acl",
+      "score": 0.14075317784134403
+    },
+    {
+      "repo": "adonis-js-from-scratch",
+      "score": 0.13690890630178482
+    },
+    {
+      "repo": "ADF_BigQuery",
+      "score": 0.11123168153879337
+    },
+    {
+      "repo": "adonis-apollo-server",
+      "score": 0.1088021580190009
+    },
+    {
+      "repo": "addon-g2c3d",
+      "score": 0.10208643101183544
+    },
+    {
+      "repo": "adonis-scheduler",
+      "score": 0.09952953341331575
+    },
+    {
+      "repo": "360Controller-n",
+      "score": 0.09446812657599897
+    },
+    {
+      "repo": "ActivityExtractor",
+      "score": 0.09002915902668215
+    },
+    {
+      "repo": "adonis-graphql-server",
+      "score": 0.08610011582527688
+    },
+    {
+      "repo": "adonis-support-ticket",
+      "score": 0.08473077223690281
+    }
+  ],
+  "adonis-graphql-server": [
+    {
+      "repo": "adonis-apollo-server",
+      "score": 0.6703036774646238
+    },
+    {
+      "repo": "2017-Hestia-Server",
+      "score": 0.3059044917024912
+    },
+    {
+      "repo": "adonisjs-hackathon-starter",
+      "score": 0.14746471893646068
+    },
+    {
+      "repo": "agent-1",
+      "score": 0.13217293366184474
+    },
+    {
+      "repo": "aenea",
+      "score": 0.10837672925960239
+    },
+    {
+      "repo": "adonis-scheduler",
+      "score": 0.10561226494480508
+    },
+    {
+      "repo": "aedes",
+      "score": 0.10536967541563877
+    },
+    {
+      "repo": "adonis-support-ticket",
+      "score": 0.10434430424795471
+    },
+    {
+      "repo": "7DaystoDieServer",
+      "score": 0.10214929700732416
+    },
+    {
+      "repo": "ADC",
+      "score": 0.09858101738527754
+    }
+  ],
+  "adonis-js-from-scratch": [
+    {
+      "repo": "adonis-scheduler",
+      "score": 0.17406668687676308
+    },
+    {
+      "repo": "active_merchant",
+      "score": 0.16215168460066184
+    },
+    {
+      "repo": "adonis-drive-google",
+      "score": 0.13690890630178482
+    },
+    {
+      "repo": "adonis-apollo-server",
+      "score": 0.13275450803458433
+    },
+    {
+      "repo": "adaptnlp",
+      "score": 0.12023201689319565
+    },
+    {
+      "repo": "adonis-acl",
+      "score": 0.1141987698771857
+    },
+    {
+      "repo": "addon-g2c3d",
+      "score": 0.1089131232908139
+    },
+    {
+      "repo": "accelerator-screen-sharing-js",
+      "score": 0.10663733211177005
+    },
+    {
+      "repo": "accelerator-core-js",
+      "score": 0.10162778467107257
+    },
+    {
+      "repo": "ADC",
+      "score": 0.10058012348340718
+    }
+  ],
+  "adonis-scheduler": [
+    {
+      "repo": "adonis-js-from-scratch",
+      "score": 0.17406668687676308
+    },
+    {
+      "repo": "adonisjs-hackathon-starter",
+      "score": 0.15714631815614474
+    },
+    {
+      "repo": "accelerator-screen-sharing-js",
+      "score": 0.15545134555748272
+    },
+    {
+      "repo": "adaptnlp",
+      "score": 0.14497038559332195
+    },
+    {
+      "repo": "adonis-apollo-server",
+      "score": 0.13242789967249236
+    },
+    {
+      "repo": "adonis-graphql-server",
+      "score": 0.10561226494480506
+    },
+    {
+      "repo": "adonis-support-ticket",
+      "score": 0.10393259847200603
+    },
+    {
+      "repo": "accelerator-core-js",
+      "score": 0.10170424136585703
+    },
+    {
+      "repo": "adonis-drive-google",
+      "score": 0.09952953341331575
+    },
+    {
+      "repo": "3dv_tutorial",
+      "score": 0.0803408388137167
+    }
+  ],
+  "adonis-support-ticket": [
+    {
+      "repo": "adonisjs-hackathon-starter",
+      "score": 0.14511942746441664
+    },
+    {
+      "repo": "adonis-apollo-server",
+      "score": 0.11361543267079861
+    },
+    {
+      "repo": "adonis-graphql-server",
+      "score": 0.10434430424795471
+    },
+    {
+      "repo": "adonis-scheduler",
+      "score": 0.10393259847200605
+    },
+    {
+      "repo": "adonis-drive-google",
+      "score": 0.08473077223690281
+    },
+    {
+      "repo": "adonis-acl",
+      "score": 0.07067582541978248
+    },
+    {
+      "repo": "adonis-js-from-scratch",
+      "score": 0.06874551685863312
+    },
+    {
+      "repo": "addon-g2c3d",
+      "score": 0.05724987971229526
+    },
+    {
+      "repo": "accelerator-core-js",
+      "score": 0.052418709086510154
+    },
+    {
+      "repo": "aeropress-me-app",
+      "score": 0.050796610411042976
+    }
+  ],
+  "adonisjs-hackathon-starter": [
+    {
+      "repo": "adonis-apollo-server",
+      "score": 0.1717867848242277
+    },
+    {
+      "repo": "adonis-scheduler",
+      "score": 0.15714631815614474
+    },
+    {
+      "repo": "adonis-graphql-server",
+      "score": 0.14746471893646065
+    },
+    {
+      "repo": "adonis-support-ticket",
+      "score": 0.1451194274644166
+    },
+    {
+      "repo": "ActionRPGGame",
+      "score": 0.1094218648488773
+    },
+    {
+      "repo": "aaPanel",
+      "score": 0.0781579310154145
+    },
+    {
+      "repo": "aenea-grammars",
+      "score": 0.0755854285678316
+    },
+    {
+      "repo": "agent-python-pytest",
+      "score": 0.07300158724134441
+    },
+    {
+      "repo": "ADC",
+      "score": 0.05542744119698693
+    },
+    {
+      "repo": "accelerator-core-js",
+      "score": 0.05464132192664865
+    }
+  ],
+  "ADSP_Tutorials": [
+    {
+      "repo": "Advanced-Video",
+      "score": 0.2224199759322013
+    },
+    {
+      "repo": "adaptnlp",
+      "score": 0.10796861134291205
+    },
+    {
+      "repo": "advanced-python3",
+      "score": 0.09367524989094173
+    }
+  ],
+  "advanced-python3": [
+    {
+      "repo": "Advanced-Video",
+      "score": 0.16412766461437303
+    },
+    {
+      "repo": "ADSP_Tutorials",
+      "score": 0.09367524989094173
+    },
+    {
+      "repo": "2019-wuhan-coronavirus-data",
+      "score": 0.07805326459861321
+    },
+    {
+      "repo": "agent-python-pytest",
+      "score": 0.074336465689314
+    },
+    {
+      "repo": "AddBlenderCustomPropertiesFromCSV",
+      "score": 0.06974839724721618
+    },
+    {
+      "repo": "a2python-webserver",
+      "score": 0.06665761559167382
+    },
+    {
+      "repo": "2048-python",
+      "score": 0.056959824519083345
+    },
+    {
+      "repo": "ADF_BigQuery",
+      "score": 0.0549990047669544
+    },
+    {
+      "repo": "605204",
+      "score": 0.051933900731937425
+    },
+    {
+      "repo": "addon-g2c3d",
+      "score": 0.05103338883508461
+    }
+  ],
+  "Advanced-Video": [
+    {
+      "repo": "ADSP_Tutorials",
+      "score": 0.2224199759322013
+    },
+    {
+      "repo": "advanced-python3",
+      "score": 0.16412766461437303
+    },
+    {
+      "repo": "accelerator-core-ios",
+      "score": 0.15854867242081527
+    },
+    {
+      "repo": "accelerator-core-js",
+      "score": 0.15009490251958812
+    },
+    {
+      "repo": "-Optimizer_OS-v.29-Advanced-Fedora-Forensic-Tuning-Suite-",
+      "score": 0.07820558011790962
+    }
+  ],
+  "aedes": [
+    {
+      "repo": "adonis-apollo-server",
+      "score": 0.15211086185546774
+    },
+    {
+      "repo": "7DaystoDieServer",
+      "score": 0.13006031148071912
+    },
+    {
+      "repo": "addon-node-red",
+      "score": 0.11133333906801482
+    },
+    {
+      "repo": "adonis-graphql-server",
+      "score": 0.10536967541563876
+    },
+    {
+      "repo": "2017-Hestia-Server",
+      "score": 0.09809052446631188
+    },
+    {
+      "repo": "action",
+      "score": 0.09510219500144379
+    },
+    {
+      "repo": "adonis-js-from-scratch",
+      "score": 0.0801749344666256
+    },
+    {
+      "repo": "addon-g2c3d",
+      "score": 0.07718761846943367
+    },
+    {
+      "repo": "ADC",
+      "score": 0.06618026258009832
+    },
+    {
+      "repo": "aenea",
+      "score": 0.06567756400810255
+    }
+  ],
+  "aenea": [
+    {
+      "repo": "aenea-grammars",
+      "score": 0.25085528559544445
+    },
+    {
+      "repo": "2Dmapping",
+      "score": 0.13020146846938932
+    },
+    {
+      "repo": "adonis-graphql-server",
+      "score": 0.10837672925960239
+    },
+    {
+      "repo": "2017-Hestia-Server",
+      "score": 0.09107375869367498
+    },
+    {
+      "repo": "7DaystoDieServer",
+      "score": 0.08513093367844513
+    },
+    {
+      "repo": "adonis-apollo-server",
+      "score": 0.08362302667780676
+    },
+    {
+      "repo": "acme.sh",
+      "score": 0.07886768873274212
+    },
+    {
+      "repo": "A-OK",
+      "score": 0.0711657284243935
+    },
+    {
+      "repo": "aedes",
+      "score": 0.06567756400810254
+    },
+    {
+      "repo": "ADC",
+      "score": 0.06144615188161143
+    }
+  ],
+  "aenea-grammars": [
+    {
+      "repo": "aenea",
+      "score": 0.25085528559544445
+    },
+    {
+      "repo": "AddBlenderCustomPropertiesFromCSV",
+      "score": 0.10661780538640508
+    },
+    {
+      "repo": "aaPanel",
+      "score": 0.09750477808008197
+    },
+    {
+      "repo": "adonis-js-from-scratch",
+      "score": 0.08477050032757241
+    },
+    {
+      "repo": "adonisjs-hackathon-starter",
+      "score": 0.0755854285678316
+    },
+    {
+      "repo": "A-OK",
+      "score": 0.06492316277727213
+    },
+    {
+      "repo": "agent-python-pytest",
+      "score": 0.06215845985455191
+    },
+    {
+      "repo": "adaptnlp",
+      "score": 0.05909067857696489
+    }
+  ],
+  "AeroEditor": [
+    {
+      "repo": "a2python-webserver",
+      "score": 0.12802326995058178
+    },
+    {
+      "repo": "ActivityExtractor",
+      "score": 0.0664448090050012
+    },
+    {
+      "repo": "agent",
+      "score": 0.059195915992363374
+    },
+    {
+      "repo": "3d_pose_baseline_pytorch",
+      "score": 0.05527253472049534
+    }
+  ],
+  "aerojump.nvim": [
+    {
+      "repo": "active_merchant",
+      "score": 0.07855645118028927
+    },
+    {
+      "repo": "a2utils",
+      "score": 0.058227865516532015
+    },
+    {
+      "repo": "addon-g2c3d",
+      "score": 0.05689302444539198
+    },
+    {
+      "repo": "Add-Time-Lapse-To-Gcode",
+      "score": 0.05543845290101083
+    }
+  ],
+  "aeropress-me-app": [
+    {
+      "repo": "-Optimizer_OS-v.29-Advanced-Fedora-Forensic-Tuning-Suite-",
+      "score": 0.10906188911483047
+    },
+    {
+      "repo": "ADC",
+      "score": 0.09410086858466846
+    },
+    {
+      "repo": "accelerator-core-js",
+      "score": 0.09068513904251718
+    },
+    {
+      "repo": "about-me",
+      "score": 0.07361193218195501
+    },
+    {
+      "repo": "addon-g2c3d",
+      "score": 0.07162191292653228
+    },
+    {
+      "repo": "Add-Time-Lapse-To-Gcode",
+      "score": 0.06639972389436492
+    },
+    {
+      "repo": "adonis-js-from-scratch",
+      "score": 0.06376854187845603
+    },
+    {
+      "repo": "active_merchant",
+      "score": 0.06267388055847219
+    },
+    {
+      "repo": "AI-basketball-analysis",
+      "score": 0.05930870385955962
+    },
+    {
+      "repo": "4nonimizer",
+      "score": 0.05929608072253633
+    }
+  ],
+  "aes67-linux-daemon": [
+    {
+      "repo": "agent",
+      "score": 0.1308386462433178
+    },
+    {
+      "repo": "Adapt",
+      "score": 0.10819636414994617
+    },
+    {
+      "repo": "agent-1",
+      "score": 0.10556663375121192
+    },
+    {
+      "repo": "a2utils",
+      "score": 0.08114232906775709
+    },
+    {
+      "repo": ".tmux",
+      "score": 0.06980910438901747
+    }
+  ],
+  "AetherSource": [
+    {
+      "repo": "2D-Pose-Estimation",
+      "score": 0.11605611771321801
+    },
+    {
+      "repo": "3LAS",
+      "score": 0.0773724573928589
+    },
+    {
+      "repo": "ActivityExtractor",
+      "score": 0.061942611834666005
+    }
+  ],
+  "agent": [
+    {
+      "repo": "-Security",
+      "score": 0.4351883897561451
+    },
+    {
+      "repo": "agent-1",
+      "score": 0.34541055354536127
+    },
+    {
+      "repo": "aes67-linux-daemon",
+      "score": 0.1308386462433178
+    },
+    {
+      "repo": "agent-python-pytest",
+      "score": 0.1264893729874858
+    },
+    {
+      "repo": "Adapt",
+      "score": 0.1026645322878303
+    },
+    {
+      "repo": "3d_pose_baseline_pytorch",
+      "score": 0.06597893452078504
+    },
+    {
+      "repo": "AeroEditor",
+      "score": 0.059195915992363374
+    },
+    {
+      "repo": "2D-Pose-Estimation",
+      "score": 0.05498046021252409
+    },
+    {
+      "repo": "-Optimizer_OS-v.29-Advanced-Fedora-Forensic-Tuning-Suite-",
+      "score": 0.05074581196324648
+    }
+  ],
+  "agent-1": [
+    {
+      "repo": "agent",
+      "score": 0.34541055354536127
+    },
+    {
+      "repo": "agent-python-pytest",
+      "score": 0.2041139051203881
+    },
+    {
+      "repo": "adonis-graphql-server",
+      "score": 0.1321729336618447
+    },
+    {
+      "repo": "2017-Hestia-Server",
+      "score": 0.12304215925502576
+    },
+    {
+      "repo": "aes67-linux-daemon",
+      "score": 0.10556663375121192
+    },
+    {
+      "repo": "adonis-apollo-server",
+      "score": 0.1033421294612484
+    },
+    {
+      "repo": "Adapt",
+      "score": 0.0726754155474972
+    }
+  ],
+  "agent-python-pytest": [
+    {
+      "repo": "agent-1",
+      "score": 0.2041139051203881
+    },
+    {
+      "repo": "agent",
+      "score": 0.1264893729874858
+    },
+    {
+      "repo": "a2python-webserver",
+      "score": 0.08153504009640544
+    },
+    {
+      "repo": "advanced-python3",
+      "score": 0.074336465689314
+    },
+    {
+      "repo": "adonisjs-hackathon-starter",
+      "score": 0.07300158724134442
+    },
+    {
+      "repo": "2048-python",
+      "score": 0.06967278284445245
+    },
+    {
+      "repo": "aenea-grammars",
+      "score": 0.06215845985455192
+    },
+    {
+      "repo": "agkozak-zsh-prompt",
+      "score": 0.05567431331578152
+    },
+    {
+      "repo": "AddBlenderCustomPropertiesFromCSV",
+      "score": 0.05534555396674738
+    }
+  ],
+  "agkozak-zsh-prompt": [
+    {
+      "repo": "-Git-Worktree-Masterclass-TUI",
+      "score": 0.09766727768461492
+    },
+    {
+      "repo": "adaptnlp",
+      "score": 0.05704149826335741
+    },
+    {
+      "repo": "agent-python-pytest",
+      "score": 0.05567431331578152
+    }
+  ],
+  "AI-basketball-analysis": [
+    {
+      "repo": "AI-ChatBot",
+      "score": 0.14615801174348106
+    },
+    {
+      "repo": "aeropress-me-app",
+      "score": 0.05930870385955962
+    },
+    {
+      "repo": "3d-pose-baseline-pytorch",
+      "score": 0.050137314602785935
+    }
+  ],
+  "AI-ChatBot": [
+    {
+      "repo": "AI-basketball-analysis",
+      "score": 0.1461580117434811
+    },
+    {
+      "repo": "about-me",
+      "score": 0.13104286847686408
+    },
+    {
+      "repo": "A-to-Z-Resources-for-Students",
+      "score": 0.12410302373106909
+    },
+    {
+      "repo": "-Broadcom-BCM4331-Forensic-Controller-Unified-v39.8-",
+      "score": 0.07470723933669329
+    },
+    {
+      "repo": "AdaptiveTableLayout",
+      "score": 0.06969028834881277
+    },
+    {
+      "repo": ".dotfiles",
+      "score": 0.06645658329767494
+    },
+    {
+      "repo": "activitywatch",
+      "score": 0.06519029145581702
+    },
+    {
+      "repo": "a2utils",
+      "score": 0.054923205949422245
+    },
+    {
+      "repo": "-Optimizer_OS-v.29-Advanced-Fedora-Forensic-Tuning-Suite-",
+      "score": 0.054612165241062854
+    },
+    {
+      "repo": "adonis-js-from-scratch",
+      "score": 0.05439414619515959
+    }
+  ]
+}
